@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" class="char-radio" role="img" aria-label="DJ de Radio Solidaria animado">
+  <style>
+    .dj-head  { animation: dj-head-bob 0.5s ease-in-out infinite; transform-origin: 120px 78px; }
+    @keyframes dj-head-bob { 0%,100%{transform:translateY(0) rotate(0);} 25%{transform:translateY(-6px) rotate(-4deg);} 75%{transform:translateY(4px) rotate(4deg);} }
+    .eq-bar-1 { animation: eq1 0.40s ease-in-out infinite;       transform-origin: 30px 220px; }
+    .eq-bar-2 { animation: eq2 0.52s ease-in-out infinite 0.1s;  transform-origin: 44px 220px; }
+    .eq-bar-3 { animation: eq3 0.36s ease-in-out infinite 0.05s; transform-origin: 58px 220px; }
+    .eq-bar-4 { animation: eq4 0.56s ease-in-out infinite 0.14s; transform-origin: 72px 220px; }
+    .eq-bar-5 { animation: eq5 0.44s ease-in-out infinite 0.22s; transform-origin: 86px 220px; }
+    @keyframes eq1 { 0%,100%{transform:scaleY(0.3);} 50%{transform:scaleY(1.0);} }
+    @keyframes eq2 { 0%,100%{transform:scaleY(0.6);} 33%{transform:scaleY(1.0);} 66%{transform:scaleY(0.2);} }
+    @keyframes eq3 { 0%,100%{transform:scaleY(1.0);} 50%{transform:scaleY(0.25);} }
+    @keyframes eq4 { 0%,100%{transform:scaleY(0.4);} 40%{transform:scaleY(0.9);} 80%{transform:scaleY(0.6);} }
+    @keyframes eq5 { 0%,100%{transform:scaleY(0.7);} 25%{transform:scaleY(0.2);} 75%{transform:scaleY(1.0);} }
+    .wave-arc-1 { animation: wave-arc 1.3s ease-out infinite; }
+    .wave-arc-2 { animation: wave-arc 1.3s ease-out infinite 0.43s; }
+    .wave-arc-3 { animation: wave-arc 1.3s ease-out infinite 0.86s; }
+    @keyframes wave-arc { 0%{opacity:0.9;transform:scale(0.8);} 100%{opacity:0;transform:scale(2);} }
+  </style>
+
+  <!-- === ONDAS DE RADIO (detrás del personaje) === -->
+  <g transform="translate(170,90)" fill="none" stroke="#4fc3f7">
+    <circle class="wave-arc-1" cx="0" cy="0" r="22" stroke-width="3" opacity="0.8"/>
+    <circle class="wave-arc-2" cx="0" cy="0" r="22" stroke-width="2" opacity="0.6"/>
+    <circle class="wave-arc-3" cx="0" cy="0" r="22" stroke-width="1.5" opacity="0.4"/>
+  </g>
+  <!-- Arcos decorativos estáticos -->
+  <path d="M188,72 Q196,90 188,108" fill="none" stroke="#4fc3f7" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
+  <path d="M196,65 Q208,90 196,115" fill="none" stroke="#4fc3f7" stroke-width="1.5" opacity="0.3" stroke-linecap="round"/>
+
+  <!-- === CUERPO === -->
+  <!-- Piernas -->
+  <rect x="98"  y="170" width="18" height="70" rx="9" fill="#1a237e"/>
+  <rect x="120" y="170" width="18" height="70" rx="9" fill="#283593"/>
+  <!-- Zapatos -->
+  <ellipse cx="107" cy="242" rx="14" ry="7" fill="#212121"/>
+  <ellipse cx="129" cy="242" rx="14" ry="7" fill="#212121"/>
+
+  <!-- Torso -->
+  <rect x="88" y="115" width="60" height="62" rx="16" fill="#4527a0"/>
+  <!-- Camiseta diseño DJ -->
+  <text x="118" y="150" font-size="18" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-weight="bold" opacity="0.6">DJ</text>
+
+  <!-- Brazos -->
+  <rect x="64"  y="118" width="26" height="45" rx="13" fill="#4527a0"/>
+  <rect x="146" y="118" width="26" height="45" rx="13" fill="#4527a0"/>
+  <!-- Manos -->
+  <circle cx="77"  cy="165" r="11" fill="#ffb74d"/>
+  <circle cx="159" cy="165" r="11" fill="#ffb74d"/>
+  <!-- Vinilo en mano izquierda -->
+  <circle cx="77" cy="165" r="9" fill="#212121"/>
+  <circle cx="77" cy="165" r="5" fill="#424242"/>
+  <circle cx="77" cy="165" r="2" fill="#4fc3f7"/>
+
+  <!-- Cuello -->
+  <rect x="109" y="104" width="18" height="17" rx="8" fill="#ffb74d"/>
+
+  <!-- === CABEZA === -->
+  <g class="dj-head">
+    <!-- Cabeza -->
+    <circle cx="118" cy="74" r="34" fill="#ffb74d"/>
+
+    <!-- Auriculares -->
+    <path d="M84,74 Q84,42 118,40 Q152,42 152,74" fill="none" stroke="#212121" stroke-width="8" stroke-linecap="round"/>
+    <!-- Almohadillas auriculares -->
+    <ellipse cx="84"  cy="76" rx="11" ry="14" fill="#212121"/>
+    <ellipse cx="84"  cy="76" rx="7"  ry="10" fill="#4fc3f7" opacity="0.8"/>
+    <ellipse cx="152" cy="76" rx="11" ry="14" fill="#212121"/>
+    <ellipse cx="152" cy="76" rx="7"  ry="10" fill="#4fc3f7" opacity="0.8"/>
+
+    <!-- Gorra al revés -->
+    <ellipse cx="118" cy="44" rx="32" ry="10" fill="#212121"/>
+    <rect x="88" y="38" width="60" height="14" rx="6" fill="#212121"/>
+    <rect x="82" y="48" width="10" height="6" rx="3" fill="#212121"/><!-- visera lateral -->
+
+    <!-- Ojos con gafas de sol -->
+    <rect x="97" y="68" width="18" height="14" rx="6" fill="#212121"/>
+    <rect x="120" y="68" width="18" height="14" rx="6" fill="#212121"/>
+    <line x1="115" y1="75" x2="120" y2="75" stroke="#424242" stroke-width="2"/>
+    <!-- Brillos en gafas -->
+    <line x1="100" y1="70" x2="106" y2="74" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+    <line x1="123" y1="70" x2="129" y2="74" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+
+    <!-- Nariz -->
+    <ellipse cx="118" cy="84" rx="5" ry="4" fill="#e8a87c"/>
+    <!-- Sonrisa grande -->
+    <path d="M105,94 Q118,106 131,94" stroke="#c4845c" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Dientes -->
+    <path d="M108,94 Q118,102 128,94" fill="white"/>
+    <!-- Barba ligera -->
+    <path d="M100,96 Q118,108 136,96" fill="none" stroke="#e8a87c" stroke-width="1.5" stroke-dasharray="3,3"/>
+  </g>
+
+  <!-- === ECUALIZADOR === -->
+  <g transform="translate(0,0)">
+    <rect x="18" y="200" width="10" height="30" rx="4" fill="#4fc3f7" class="eq-bar-1"/>
+    <rect x="32" y="200" width="10" height="30" rx="4" fill="#81d4fa" class="eq-bar-2"/>
+    <rect x="46" y="200" width="10" height="30" rx="4" fill="#4fc3f7" class="eq-bar-3"/>
+    <rect x="60" y="200" width="10" height="30" rx="4" fill="#29b6f6" class="eq-bar-4"/>
+    <rect x="74" y="200" width="10" height="30" rx="4" fill="#4fc3f7" class="eq-bar-5"/>
+    <!-- Base ecualizador -->
+    <rect x="14" y="228" width="76" height="4" rx="2" fill="rgba(79,195,247,0.3)"/>
+    <text x="52" y="244" text-anchor="middle" font-size="8" fill="#9e9e9e" font-family="Arial">RADIO EN VIVO</text>
+  </g>
+</svg>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radio Solidaria | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/radio.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="../index.html"      class="nav-link">Inicio</a>
+        <a href="../biblia.html"     class="nav-link">Biblia</a>
+        <a href="../devocional.html" class="nav-link">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">Programas <span class="nav-dropdown-arrow">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="reparto-alimentos.html"  class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos</a>
+            <a href="radio-solidaria.html"    class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📻</span>Radio Solidaria</a>
+            <a href="pan-apadrinamiento.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento</a>
+            <a href="rastro.html"             class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda</a>
+          </div>
+        </div>
+        <a href="../contacto.html" class="nav-link">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile">
+    <a href="../index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="../biblia.html"     class="nav-mobile-link">📖 Biblia</a>
+    <a href="../devocional.html" class="nav-mobile-link">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="reparto-alimentos.html"  class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="radio-solidaria.html"    class="nav-mobile-sub active">📻 Radio Solidaria</a>
+    <a href="pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="rastro.html"             class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="../contacto.html"        class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <main id="main">
+    <section class="radio-hero">
+      <div class="container radio-hero-inner">
+        <div class="radio-hero-content anim-fade-up">
+          <span class="badge">📻 En el Aire</span>
+          <h1 style="font-size:var(--text-5xl); font-weight:900; margin:var(--sp-4) 0 var(--sp-4);">
+            Radio <span class="text-accent">Solidaria</span>
+          </h1>
+          <p style="font-size:var(--text-xl); color:var(--color-text-muted); margin-bottom:var(--sp-6); line-height:1.7;">
+            Música cristiana, predicaciones y mensajes de esperanza para toda la comunidad.
+            Sintonízanos y llena tu día de fe y alegría.
+          </p>
+
+          <!-- REPRODUCTOR PRINCIPAL -->
+          <div class="radio-player-card anim-glow">
+            <!-- Estado -->
+            <div class="radio-status">
+              <div class="radio-status-dot" id="status-dot"></div>
+              <span class="radio-status-text">Detenido</span>
+            </div>
+
+            <!-- Visualizador -->
+            <canvas id="radio-visualizer" height="80" aria-hidden="true"></canvas>
+
+            <!-- Controles -->
+            <div class="radio-controls">
+              <button class="btn-play" id="btn-play-radio" aria-label="Reproducir / Pausar">▶</button>
+              <div class="radio-volume-wrap">
+                <label for="volume-slider" title="Volumen">🔊</label>
+                <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="80" aria-label="Volumen">
+              </div>
+              <button class="btn-mute" id="btn-mute-radio" title="Silenciar">🔊</button>
+            </div>
+
+            <!-- Info -->
+            <div class="radio-info">
+              <div class="radio-logo">📻</div>
+              <div>
+                <div class="radio-name">Radio Solidaria — Cuerpo de Cristo</div>
+                <div class="radio-desc">La Matanza de Acentejo, Tenerife · Las 24 horas</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top:var(--sp-4); font-size:var(--text-xs); color:var(--color-text-muted);">
+            ⚠️ La URL del stream será configurada próximamente. Vuelve pronto para escucharnos en vivo.
+          </p>
+        </div>
+
+        <div class="radio-hero-character anim-fade-right" aria-hidden="true">
+          <img src="../assets/characters/radio-man.svg" alt="DJ Radio Solidaria" class="radio-dj-svg">
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO ADICIONAL -->
+    <section class="section" style="background: linear-gradient(180deg, var(--color-bg), #0a1520);">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge">🎵 ¿Qué escucharás?</span>
+          <h2 class="section-title" style="margin-top:var(--sp-4);">Contenido para tu <span>Alma</span></h2>
+          <div class="divider"></div>
+        </div>
+        <div class="grid-3" style="margin-top:var(--sp-8);">
+          <div class="card">
+            <div class="card-body" style="text-align:center;">
+              <div style="font-size:3rem; margin-bottom:var(--sp-4);">🎵</div>
+              <h3 class="card-title">Música Cristiana</h3>
+              <p class="card-text">Alabanzas y adoración en español, para levantar tu espíritu en cualquier momento del día.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body" style="text-align:center;">
+              <div style="font-size:3rem; margin-bottom:var(--sp-4);">🎙️</div>
+              <h3 class="card-title">Predicaciones</h3>
+              <p class="card-text">Mensajes bíblicos y devocionales para fortalecer tu fe y caminar con Dios cada día.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body" style="text-align:center;">
+              <div style="font-size:3rem; margin-bottom:var(--sp-4);">🤝</div>
+              <h3 class="card-title">Noticias Solidarias</h3>
+              <p class="card-text">Información sobre los programas de la iglesia y cómo puedes participar en la comunidad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="footer-year"></span> Iglesia Cuerpo de Cristo — La Matanza de Acentejo</p>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/radio.js" defer></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

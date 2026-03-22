@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAN — Apadrinamiento de un Niño | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/pan.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="../index.html"      class="nav-link">Inicio</a>
+        <a href="../biblia.html"     class="nav-link">Biblia</a>
+        <a href="../devocional.html" class="nav-link">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">Programas <span class="nav-dropdown-arrow">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="reparto-alimentos.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos</a>
+            <a href="radio-solidaria.html"   class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📻</span>Radio Solidaria</a>
+            <a href="pan-apadrinamiento.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento</a>
+            <a href="rastro.html"            class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda</a>
+          </div>
+        </div>
+        <a href="../contacto.html" class="nav-link">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile">
+    <a href="../index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="../biblia.html"     class="nav-mobile-link">📖 Biblia</a>
+    <a href="../devocional.html" class="nav-mobile-link">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="reparto-alimentos.html"  class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="radio-solidaria.html"    class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="pan-apadrinamiento.html" class="nav-mobile-sub active">👧 PAN — Apadrinamiento</a>
+    <a href="rastro.html"             class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="../contacto.html"        class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="pan-hero">
+      <div class="container pan-hero-inner">
+        <div class="pan-hero-content anim-fade-up">
+          <span class="badge">⭐ Programa Especial</span>
+          <h1 class="pan-hero-title">
+            <span class="text-accent">PAN</span><br>
+            Apadrina un <span style="color:#f06292">Niño</span>
+          </h1>
+          <p class="pan-hero-subtitle">
+            Con tan solo una pequeña contribución mensual, puedes cambiar para siempre
+            la vida de un niño. Educación, alimentación, salud y amor.
+          </p>
+          <div class="hero-actions">
+            <a href="#ninos" class="btn btn-lg" style="background:#e91e63; border-color:#e91e63;">
+              👧 Ver niños disponibles
+            </a>
+            <a href="#formulario" class="btn btn-lg btn-outline" style="border-color:#f06292; color:#f06292;">
+              ✍️ Registrarme como padrino
+            </a>
+          </div>
+
+          <!-- Versículo -->
+          <div style="margin-top:var(--sp-8); padding:var(--sp-4) var(--sp-6); background:rgba(240,98,146,0.08); border-left:3px solid #f06292; border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <p style="font-family:var(--font-serif); font-style:italic; color:var(--color-text); font-size:var(--text-sm);">
+              "Dejad a los niños venir a mí, y no se lo impidáis; porque de los tales es el reino de los cielos."
+            </p>
+            <p style="color:#f06292; font-weight:700; font-size:var(--text-xs); margin-top:var(--sp-2);">— Mateo 19:14</p>
+          </div>
+        </div>
+
+        <div class="pan-hero-character anim-fade-right" aria-hidden="true">
+          <img src="../assets/characters/child.svg" alt="Niño caminando" class="pan-child-svg">
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section class="pan-stats">
+      <div class="container">
+        <div class="pan-stats-grid">
+          <div class="anim-fade-up anim-delay-1">
+            <span class="pan-stat-num" data-count="45">0</span>
+            <span class="pan-stat-label">Niños apadrinados actualmente</span>
+          </div>
+          <div class="anim-fade-up anim-delay-2">
+            <span class="pan-stat-num" data-count="87">0</span>
+            <span class="pan-stat-label">Padrinos y madrinas comprometidos</span>
+          </div>
+          <div class="anim-fade-up anim-delay-3">
+            <span class="pan-stat-num" data-count="8">0</span>
+            <span class="pan-stat-label">Años del programa PAN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="section pan-how" id="como-funciona">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge">🤔 Cómo funciona</span>
+          <h2 class="section-title" style="margin-top:var(--sp-4);">3 pasos para <span style="color:#f06292">cambiar una vida</span></h2>
+          <div class="divider" style="background:#f06292;"></div>
+        </div>
+        <div class="pan-steps">
+          <div class="pan-step anim-fade-up anim-delay-1">
+            <div class="pan-step-num">1</div>
+            <h3>Elige un niño</h3>
+            <p>Conoce los perfiles de los niños disponibles y elige al que quieres apadrinar.</p>
+          </div>
+          <div class="pan-step anim-fade-up anim-delay-2">
+            <div class="pan-step-num">2</div>
+            <h3>Haz tu compromiso</h3>
+            <p>Completa el formulario y elige el nivel de apoyo mensual que puedes dar.</p>
+          </div>
+          <div class="pan-step anim-fade-up anim-delay-3">
+            <div class="pan-step-num">3</div>
+            <h3>Transforma una vida</h3>
+            <p>Recibirás actualizaciones sobre el progreso del niño que apadrinaste.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NIÑOS DISPONIBLES -->
+    <section class="section" id="ninos" style="background: linear-gradient(180deg, #0a0a0a, var(--color-bg));">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">👧 Niños que esperan un padrino</span>
+          <h2 class="section-title" style="margin-top:var(--sp-4);">Estos niños <span style="color:#f06292">te necesitan</span></h2>
+          <div class="divider" style="background:#f06292;"></div>
+        </div>
+        <div class="children-grid" id="children-grid">
+          <!-- Se genera con JS -->
+          <div class="loader"><div class="loader-spinner"></div><span>Cargando...</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section class="section pan-form-section" id="formulario">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:var(--sp-10);">
+          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">✍️ Registro de Padrino</span>
+          <h2 class="section-title" style="margin-top:var(--sp-4);">Quiero ser <span style="color:#f06292">Padrino / Madrina</span></h2>
+        </div>
+
+        <div class="pan-form-container">
+          <!-- Indicadores de paso -->
+          <div class="pan-form-steps">
+            <div class="step-indicator active" id="step-ind-1">
+              <div class="step-circle">1</div>
+              <span class="step-label">Niño</span>
+            </div>
+            <div class="step-indicator" id="step-ind-2">
+              <div class="step-circle">2</div>
+              <span class="step-label">Tus datos</span>
+            </div>
+            <div class="step-indicator" id="step-ind-3">
+              <div class="step-circle">3</div>
+              <span class="step-label">Compromiso</span>
+            </div>
+          </div>
+
+          <!-- Paso 1: Elegir niño -->
+          <div class="form-step active" id="form-step-1">
+            <h3 style="margin-bottom:var(--sp-6); color:#f06292;">Paso 1: ¿A qué niño quieres apadrinar?</h3>
+            <div class="form-group">
+              <label class="form-label" for="select-child">Niño a apadrinar *</label>
+              <select id="select-child" class="input" required>
+                <option value="">— Selecciona un niño —</option>
+              </select>
+            </div>
+            <div id="selected-child-preview" style="display:none; padding:var(--sp-4); background:rgba(240,98,146,0.08); border-radius:var(--radius-md); border:1px solid rgba(240,98,146,0.3); margin-bottom:var(--sp-4);">
+              <p id="preview-text" style="font-size:var(--text-sm); color:var(--color-text-muted);"></p>
+            </div>
+            <div class="form-nav">
+              <span></span>
+              <button class="btn" id="btn-step1-next" style="background:#e91e63; border-color:#e91e63;">Siguiente →</button>
+            </div>
+          </div>
+
+          <!-- Paso 2: Datos del padrino -->
+          <div class="form-step" id="form-step-2">
+            <h3 style="margin-bottom:var(--sp-6); color:#f06292;">Paso 2: Tus datos de contacto</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="sponsor-name">Nombre *</label>
+                <input type="text" id="sponsor-name" class="input" placeholder="Tu nombre" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sponsor-surname">Apellidos *</label>
+                <input type="text" id="sponsor-surname" class="input" placeholder="Tus apellidos" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sponsor-email">Correo electrónico *</label>
+              <input type="email" id="sponsor-email" class="input" placeholder="tucorreo@ejemplo.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sponsor-phone">Teléfono</label>
+              <input type="tel" id="sponsor-phone" class="input" placeholder="+34 XXX XXX XXX">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sponsor-city">Ciudad / Localidad</label>
+              <input type="text" id="sponsor-city" class="input" placeholder="¿Dónde vives?">
+            </div>
+            <div class="form-nav">
+              <button class="btn btn-outline" id="btn-step2-prev">← Anterior</button>
+              <button class="btn" id="btn-step2-next" style="background:#e91e63; border-color:#e91e63;">Siguiente →</button>
+            </div>
+          </div>
+
+          <!-- Paso 3: Nivel de compromiso -->
+          <div class="form-step" id="form-step-3">
+            <h3 style="margin-bottom:var(--sp-6); color:#f06292;">Paso 3: Tu nivel de apoyo mensual</h3>
+            <div class="form-group">
+              <label class="form-label">¿Cuánto deseas aportar mensualmente? *</label>
+              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3); margin-top:var(--sp-3);">
+                <label class="commitment-option" style="cursor:pointer;">
+                  <input type="radio" name="amount" value="10" style="display:none;">
+                  <div class="commitment-box" data-amount="10">
+                    <span style="font-size:1.5rem; display:block; margin-bottom:var(--sp-2);">💛</span>
+                    <strong>10 €/mes</strong>
+                    <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--sp-1);">Apoyo básico</p>
+                  </div>
+                </label>
+                <label class="commitment-option" style="cursor:pointer;">
+                  <input type="radio" name="amount" value="20" style="display:none;" checked>
+                  <div class="commitment-box active" data-amount="20">
+                    <span style="font-size:1.5rem; display:block; margin-bottom:var(--sp-2);">💖</span>
+                    <strong>20 €/mes</strong>
+                    <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--sp-1);">Apoyo completo</p>
+                  </div>
+                </label>
+                <label class="commitment-option" style="cursor:pointer;">
+                  <input type="radio" name="amount" value="35" style="display:none;">
+                  <div class="commitment-box" data-amount="35">
+                    <span style="font-size:1.5rem; display:block; margin-bottom:var(--sp-2);">🌟</span>
+                    <strong>35 €/mes</strong>
+                    <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--sp-1);">Apoyo extendido</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="sponsor-message">Mensaje para el niño (opcional)</label>
+              <textarea id="sponsor-message" class="input" rows="3" placeholder="Escribe un mensaje de ánimo para el niño..."></textarea>
+            </div>
+            <div class="form-group">
+              <label style="display:flex; align-items:flex-start; gap:var(--sp-3); cursor:pointer; font-size:var(--text-sm); color:var(--color-text-muted);">
+                <input type="checkbox" id="accept-terms" style="margin-top:3px; accent-color:#e91e63;" required>
+                <span>Acepto que mis datos sean utilizados para gestionar el apadrinamiento y recibir información del programa PAN. *</span>
+              </label>
+            </div>
+            <div class="form-nav">
+              <button class="btn btn-outline" id="btn-step3-prev">← Anterior</button>
+              <button class="btn btn-lg" id="btn-submit-pan" style="background:#e91e63; border-color:#e91e63;">
+                💖 Confirmar Apadrinamiento
+              </button>
+            </div>
+          </div>
+
+          <!-- Confirmación -->
+          <div class="pan-success" id="pan-success">
+            <div class="pan-success-icon anim-pulse">🎉</div>
+            <h2>¡Gracias por tu generosidad!</h2>
+            <p style="color:var(--color-text-muted); font-size:var(--text-lg); margin-bottom:var(--sp-6);">
+              Tu solicitud de apadrinamiento ha sido enviada. El equipo de la iglesia se pondrá en contacto contigo
+              en los próximos días para confirmar los detalles.
+            </p>
+            <p style="font-family:var(--font-serif); font-style:italic; color:var(--color-accent); font-size:var(--text-xl); margin-bottom:var(--sp-8);">
+              "El que al pobre da, a Dios presta." — Proverbios 19:17
+            </p>
+            <div style="display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap;">
+              <a href="../index.html" class="btn">← Volver al inicio</a>
+              <a href="pan-apadrinamiento.html" class="btn btn-outline">Apadrinar otro niño</a>
+            </div>
+            <div style="margin-top:var(--sp-8);" aria-hidden="true">
+              <img src="../assets/characters/child.svg" alt="" style="width:150px; margin:0 auto;" class="anim-float">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="footer-year"></span> Iglesia Cuerpo de Cristo — La Matanza de Acentejo</p>
+    </div>
+  </footer>
+
+  <style>
+    .commitment-box {
+      padding: var(--sp-4);
+      background: var(--color-bg-raised);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      transition: all var(--t-fast);
+    }
+    .commitment-box.active,
+    .commitment-option input:checked + .commitment-box {
+      border-color: #f06292;
+      background: rgba(240,98,146,0.1);
+    }
+    .commitment-box:hover {
+      border-color: #f06292;
+      background: rgba(240,98,146,0.08);
+    }
+  </style>
+
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/pan-form.js" defer></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

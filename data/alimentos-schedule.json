@@ -1,0 +1,47 @@
+{
+  "program_name": "Programa Reparto de Alimentos",
+  "description": "Distribución gratuita de alimentos a familias necesitadas de La Matanza de Acentejo y alrededores.",
+  "contact": {
+    "phone": "+34 XXX XXX XXX",
+    "email": "reparto@cuerpodecristo-matanza.es"
+  },
+  "schedule": [
+    {
+      "day": "Martes",
+      "time": "10:00 — 12:00",
+      "location": "Iglesia Cuerpo de Cristo",
+      "address": "La Matanza de Acentejo, Tenerife",
+      "frequency": "Cada dos semanas"
+    },
+    {
+      "day": "Sábado",
+      "time": "09:30 — 11:30",
+      "location": "Plaza Municipal",
+      "address": "La Matanza de Acentejo, Tenerife",
+      "frequency": "Mensual (primer sábado)"
+    }
+  ],
+  "upcoming": [
+    { "date": "2026-04-01", "day": "Martes",  "time": "10:00", "location": "Iglesia Cuerpo de Cristo", "note": "Distribución especial Semana Santa" },
+    { "date": "2026-04-05", "day": "Sábado",  "time": "09:30", "location": "Plaza Municipal",           "note": "Reparto mensual" },
+    { "date": "2026-04-15", "day": "Martes",  "time": "10:00", "location": "Iglesia Cuerpo de Cristo",  "note": "" },
+    { "date": "2026-05-05", "day": "Martes",  "time": "10:00", "location": "Iglesia Cuerpo de Cristo",  "note": "" },
+    { "date": "2026-05-02", "day": "Sábado",  "time": "09:30", "location": "Plaza Municipal",           "note": "Reparto mensual" }
+  ],
+  "requirements": [
+    "Traer documento de identidad (DNI, NIE o pasaporte)",
+    "Una bolsa o carro para llevar los alimentos",
+    "Llegar puntual a la hora indicada",
+    "No se requiere ser miembro de la iglesia"
+  ],
+  "items_distributed": [
+    "Legumbres (lentejas, garbanzos, alubias)",
+    "Arroz y pasta",
+    "Conservas (atún, tomate, etc.)",
+    "Aceite de oliva",
+    "Leche y lácteos",
+    "Pan y productos de panadería",
+    "Frutas y verduras de temporada",
+    "Productos de higiene básica"
+  ]
+}

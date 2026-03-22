@@ -1,0 +1,137 @@
+{
+  "categories": ["Todo", "Muebles", "Electrodomésticos", "Ropa", "Libros", "Decoración", "Juguetes"],
+  "products": [
+    {
+      "id": "prod_001",
+      "name": "Sofá de 3 plazas",
+      "category": "Muebles",
+      "price": 85.00,
+      "currency": "EUR",
+      "description": "Sofá en muy buen estado, color beige. Tapizado limpio sin manchas. Medidas: 200x85x75 cm.",
+      "condition": "Bueno",
+      "available": true,
+      "donation_note": "Donado por familia González"
+    },
+    {
+      "id": "prod_002",
+      "name": "Mesa de comedor con 4 sillas",
+      "category": "Muebles",
+      "price": 65.00,
+      "currency": "EUR",
+      "description": "Conjunto de comedor de madera maciza. Mesa 120x80cm. Sillas tapizadas en tela gris.",
+      "condition": "Bueno",
+      "available": true,
+      "donation_note": "Donado por la iglesia"
+    },
+    {
+      "id": "prod_003",
+      "name": "Lavadora 7kg",
+      "category": "Electrodomésticos",
+      "price": 120.00,
+      "currency": "EUR",
+      "description": "Lavadora marca Samsung, 7 kg de carga, clase energética A++. Funciona perfectamente.",
+      "condition": "Muy bueno",
+      "available": true,
+      "donation_note": "Donado anónimo"
+    },
+    {
+      "id": "prod_004",
+      "name": "Microondas 20L",
+      "category": "Electrodomésticos",
+      "price": 25.00,
+      "currency": "EUR",
+      "description": "Microondas de 20 litros, color blanco. Totalmente funcional, plato giratorio incluido.",
+      "condition": "Bueno",
+      "available": true,
+      "donation_note": "Donado por familia Martínez"
+    },
+    {
+      "id": "prod_005",
+      "name": "Lote ropa niño 3-5 años",
+      "category": "Ropa",
+      "price": 15.00,
+      "currency": "EUR",
+      "description": "Lote de 10 prendas para niño, tallas 3-5 años. Camisetas, pantalones y jerseys en buen estado.",
+      "condition": "Bueno",
+      "available": true,
+      "donation_note": "Donado por familia Pérez"
+    },
+    {
+      "id": "prod_006",
+      "name": "Abrigo de señora talla M",
+      "category": "Ropa",
+      "price": 12.00,
+      "currency": "EUR",
+      "description": "Abrigo de lana gris, talla M. Excelente estado, apenas usado. Perfecto para el invierno.",
+      "condition": "Excelente",
+      "available": true,
+      "donation_note": "Donado por Carmela"
+    },
+    {
+      "id": "prod_007",
+      "name": "Biblia Reina Valera 1960",
+      "category": "Libros",
+      "price": 8.00,
+      "currency": "EUR",
+      "description": "Biblia RVR1960 edición letra grande, pasta dura azul. Muy bien conservada.",
+      "condition": "Muy bueno",
+      "available": true,
+      "donation_note": "Donado por la iglesia"
+    },
+    {
+      "id": "prod_008",
+      "name": "Colección libros infantiles (10 unid.)",
+      "category": "Libros",
+      "price": 10.00,
+      "currency": "EUR",
+      "description": "10 cuentos infantiles ilustrados para niños de 3 a 8 años. Ideales para aprender a leer.",
+      "condition": "Bueno",
+      "available": true,
+      "donation_note": "Donado anónimo"
+    },
+    {
+      "id": "prod_009",
+      "name": "Estantería de madera 5 baldas",
+      "category": "Muebles",
+      "price": 35.00,
+      "currency": "EUR",
+      "description": "Estantería de madera oscura, 5 baldas. 180x80x25 cm. Ideal para salón o estudio.",
+      "condition": "Bueno",
+      "available": true,
+      "donation_note": "Donado por familia Rodríguez"
+    },
+    {
+      "id": "prod_010",
+      "name": "Cuadro decorativo religioso",
+      "category": "Decoración",
+      "price": 18.00,
+      "currency": "EUR",
+      "description": "Cuadro con versículo bíblico, Salmos 23:1. Marco de madera dorada. 40x50 cm.",
+      "condition": "Excelente",
+      "available": true,
+      "donation_note": "Donado por la iglesia"
+    },
+    {
+      "id": "prod_011",
+      "name": "Set de juguetes educativos",
+      "category": "Juguetes",
+      "price": 20.00,
+      "currency": "EUR",
+      "description": "Conjunto de puzzles, bloques de construcción y juegos de mesa educativos para niños de 4-8 años.",
+      "condition": "Bueno",
+      "available": true,
+      "donation_note": "Donado por familia López"
+    },
+    {
+      "id": "prod_012",
+      "name": "Televisor 32 pulgadas",
+      "category": "Electrodomésticos",
+      "price": 75.00,
+      "currency": "EUR",
+      "description": "TV Samsung 32 pulgadas Full HD. Incluye mando a distancia. Funciona correctamente.",
+      "condition": "Bueno",
+      "available": false,
+      "donation_note": "Donado anónimo"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+.devo-hero {
+  background: linear-gradient(135deg, #0a150a, #0d1520);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--sp-16) 0 var(--sp-12);
+  padding-top: calc(var(--nav-height) + var(--sp-12));
+}
+
+.devo-container {
+  max-width: 760px;
+  padding: var(--sp-12) var(--sp-4);
+}
+
+.devo-page-header {
+  text-align: center;
+  margin-bottom: var(--sp-10);
+}
+.devo-page-title {
+  font-size: var(--text-3xl);
+  font-weight: 900;
+  margin-top: var(--sp-4);
+  line-height: 1.2;
+}
+
+.devo-article {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+/* Bloque de escritura */
+.devo-scripture-block {
+  background: linear-gradient(135deg, rgba(79,195,247,0.08), rgba(79,195,247,0.03));
+  border: 1px solid rgba(79,195,247,0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8) var(--sp-10);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.devo-scripture-block::before {
+  content: '"';
+  position: absolute;
+  top: -30px;
+  left: var(--sp-4);
+  font-size: 12rem;
+  color: var(--color-accent);
+  opacity: 0.06;
+  font-family: var(--font-serif);
+  line-height: 1;
+}
+
+.devo-scripture-text {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: 1.8;
+  margin-bottom: var(--sp-4);
+  position: relative;
+}
+.devo-scripture-ref {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: var(--text-base);
+  margin-bottom: var(--sp-4);
+}
+.devo-bible-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: opacity var(--t-fast);
+}
+.devo-bible-link:hover { opacity: 0.7; }
+
+/* Cuerpo */
+.devo-body {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+}
+.devo-body p {
+  font-size: var(--text-lg);
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+/* Oración */
+.devo-prayer-block {
+  background: linear-gradient(135deg, #0a1a0a, #111b0a);
+  border: 1px solid rgba(102,187,106,0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+}
+.devo-prayer-block h3 {
+  font-size: var(--text-xl);
+  color: var(--color-success);
+  margin-bottom: var(--sp-4);
+}
+.devo-prayer-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* Acciones */
+.devo-actions {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .devo-scripture-block { padding: var(--sp-6); }
+  .devo-scripture-text  { font-size: var(--text-lg); }
+  .devo-body p          { font-size: var(--text-base); }
+}

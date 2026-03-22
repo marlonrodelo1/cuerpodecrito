@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastro Solidario — Tienda | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/rastro.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="../index.html"      class="nav-link">Inicio</a>
+        <a href="../biblia.html"     class="nav-link">Biblia</a>
+        <a href="../devocional.html" class="nav-link">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">Programas <span class="nav-dropdown-arrow">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="reparto-alimentos.html"  class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos</a>
+            <a href="radio-solidaria.html"    class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📻</span>Radio Solidaria</a>
+            <a href="pan-apadrinamiento.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento</a>
+            <a href="rastro.html"             class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda</a>
+          </div>
+        </div>
+        <a href="../contacto.html" class="nav-link">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile">
+    <a href="../index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="../biblia.html"     class="nav-mobile-link">📖 Biblia</a>
+    <a href="../devocional.html" class="nav-mobile-link">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="reparto-alimentos.html"  class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="radio-solidaria.html"    class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="rastro.html"             class="nav-mobile-sub active">🛍️ Rastro — Tienda</a>
+    <a href="../contacto.html"        class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <!-- HERO RASTRO -->
+  <div class="rastro-hero">
+    <span class="badge">🛍️ Tienda Solidaria</span>
+    <h1 style="margin:var(--sp-4) 0 var(--sp-3);">Rastro <span class="text-accent">Solidario</span></h1>
+    <p style="color:var(--color-text-muted); max-width:500px; margin:0 auto; line-height:1.7;">
+      Compra artículos de segunda mano y apoya los programas de la iglesia.
+      Cada compra hace la diferencia.
+    </p>
+    <p style="font-family:var(--font-serif); font-style:italic; color:var(--color-accent); margin-top:var(--sp-4); font-size:var(--text-sm);">
+      "Al que tiene, le será dado; pero al que no tiene, hasta lo que tiene le será quitado." — Lucas 19:26
+    </p>
+  </div>
+
+  <main id="main">
+    <div class="container section">
+      <!-- Toolbar -->
+      <div class="rastro-toolbar">
+        <div class="category-filters" id="category-filters">
+          <!-- Se genera con JS -->
+        </div>
+        <div class="rastro-search-wrap">
+          <input type="search" id="rastro-search" class="input" placeholder="🔍 Buscar productos...">
+          <button class="btn btn-sm" id="btn-rastro-search">Buscar</button>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="products-grid" id="products-grid">
+        <div style="grid-column:1/-1;" class="loader">
+          <div class="loader-spinner"></div>
+          <span>Cargando productos...</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- CARRITO LATERAL -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <aside class="cart-sidebar" id="cart-sidebar" aria-label="Carrito de compra">
+    <div class="cart-header">
+      <h2 class="cart-title">🛒 Tu carrito</h2>
+      <button class="btn-close-cart" id="btn-close-cart" aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Tu carrito está vacío</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span class="cart-total-amount" id="cart-total-amount">0.00 EUR</span>
+      </div>
+      <button class="btn btn-lg" id="btn-checkout" style="width:100%;">
+        💬 Contactar por WhatsApp
+      </button>
+      <p style="font-size:var(--text-xs); color:var(--color-text-muted); text-align:center; margin-top:var(--sp-3);">
+        Te ponemos en contacto con la iglesia para coordinar la compra
+      </p>
+    </div>
+  </aside>
+
+  <!-- BOTÓN FLOTANTE CARRITO -->
+  <button class="cart-fab" id="cart-fab" aria-label="Ver carrito">
+    🛒
+    <span class="cart-fab-count" id="cart-count"></span>
+  </button>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="footer-year"></span> Iglesia Cuerpo de Cristo — La Matanza de Acentejo</p>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/rastro-store.js" defer></script>
+</body>
+</html>

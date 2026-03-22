@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devocional Diario | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/devocional.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu" role="navigation">
+        <a href="index.html"       class="nav-link" data-nav-href="/index.html">Inicio</a>
+        <a href="biblia.html"      class="nav-link" data-nav-href="/biblia.html">Biblia</a>
+        <a href="devocional.html"  class="nav-link" data-nav-href="/devocional.html">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">Programas <span class="nav-dropdown-arrow">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="programas/reparto-alimentos.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos</a>
+            <a href="programas/radio-solidaria.html"   class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📻</span>Radio Solidaria</a>
+            <a href="programas/pan-apadrinamiento.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento</a>
+            <a href="programas/rastro.html"            class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda</a>
+          </div>
+        </div>
+        <a href="contacto.html" class="nav-link" data-nav-href="/contacto.html">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile">
+    <a href="index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="biblia.html"     class="nav-mobile-link">📖 Biblia</a>
+    <a href="devocional.html" class="nav-mobile-link active">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="programas/reparto-alimentos.html"  class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="programas/radio-solidaria.html"    class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="programas/pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="programas/rastro.html"             class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="contacto.html"   class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <!-- HERO DEVOCIONAL -->
+  <div class="devo-hero">
+    <div class="container text-center">
+      <div class="anim-float" style="font-size:4rem; margin-bottom: var(--sp-4);" aria-hidden="true">🕊️</div>
+      <span class="badge">Devocional Diario</span>
+      <h1 style="margin-top: var(--sp-4);">Alimento para el <span class="text-accent">Alma</span></h1>
+      <p style="color:var(--color-text-muted); margin-top:var(--sp-3);">Una palabra de Dios para cada día de tu vida</p>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="container devo-container">
+      <!-- Se renderiza con JS -->
+      <div id="devo-full-page">
+        <div class="loader" id="devo-loader">
+          <div class="loader-spinner"></div>
+          <span>Cargando el devocional de hoy...</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="footer-year"></span> Iglesia Cuerpo de Cristo — La Matanza de Acentejo</p>
+    </div>
+  </footer>
+
+  <script src="js/nav.js" defer></script>
+  <script src="js/devotional.js" defer></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

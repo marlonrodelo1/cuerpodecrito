@@ -1,0 +1,62 @@
+[
+  {
+    "id": "child_001",
+    "name": "María",
+    "age": 7,
+    "photo": "",
+    "bio_short": "A María le encanta dibujar y sueña con ser maestra un día. Le gusta la música y cantar en el coro de la iglesia.",
+    "needs": ["Útiles escolares", "Alimentación nutritiva", "Apoyo emocional"],
+    "sponsored": false,
+    "location": "La Matanza de Acentejo"
+  },
+  {
+    "id": "child_002",
+    "name": "Carlos",
+    "age": 9,
+    "photo": "",
+    "bio_short": "Carlos es muy curioso y adora las ciencias. Su sueño es ser médico para ayudar a su comunidad.",
+    "needs": ["Libros de texto", "Comida balanceada", "Ropa escolar"],
+    "sponsored": false,
+    "location": "La Matanza de Acentejo"
+  },
+  {
+    "id": "child_003",
+    "name": "Sofía",
+    "age": 6,
+    "photo": "",
+    "bio_short": "Sofía es alegre y llena de energía. Le encanta bailar y hacer reír a todos con sus ocurrencias.",
+    "needs": ["Nutrición adecuada", "Material didáctico", "Atención médica básica"],
+    "sponsored": true,
+    "location": "La Matanza de Acentejo"
+  },
+  {
+    "id": "child_004",
+    "name": "Miguel",
+    "age": 11,
+    "photo": "",
+    "bio_short": "Miguel tiene un talento especial para el fútbol. Estudia con dedicación y quiere ser ingeniero.",
+    "needs": ["Uniforme escolar", "Alimentación", "Actividades deportivas"],
+    "sponsored": false,
+    "location": "La Matanza de Acentejo"
+  },
+  {
+    "id": "child_005",
+    "name": "Ana",
+    "age": 8,
+    "photo": "",
+    "bio_short": "Ana es muy inteligente y ya sabe leer muy bien. Cuida de sus hermanos menores con mucha responsabilidad.",
+    "needs": ["Útiles escolares", "Alimentación nutritiva", "Apoyo psicosocial"],
+    "sponsored": false,
+    "location": "La Matanza de Acentejo"
+  },
+  {
+    "id": "child_006",
+    "name": "Lucas",
+    "age": 10,
+    "photo": "",
+    "bio_short": "Lucas aprendió a tocar la guitarra y ya participa en los cultos. Su fe es un ejemplo para los adultos.",
+    "needs": ["Clases de música", "Libros escolares", "Ropa y calzado"],
+    "sponsored": false,
+    "location": "La Matanza de Acentejo"
+  }
+]

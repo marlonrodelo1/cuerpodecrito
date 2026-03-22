@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" class="char-dove" role="img" aria-label="Paloma de paz animada">
+  <style>
+    .char-dove { animation: dove-float 4s ease-in-out infinite; }
+    @keyframes dove-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33%       { transform: translateY(-14px) rotate(-2deg); }
+      66%       { transform: translateY(-7px) rotate(2deg); }
+    }
+    .wing-left  { animation: dove-flap-left  0.65s ease-in-out infinite; transform-origin: 62px 88px; }
+    .wing-right { animation: dove-flap-right 0.65s ease-in-out infinite; transform-origin: 108px 88px; }
+    .tail       { animation: dove-tail 2.5s ease-in-out infinite; transform-origin: 55px 95px; }
+    @keyframes dove-flap-left  { 0%,100%{transform:rotate(0);}25%{transform:rotate(-30deg);}50%{transform:rotate(-5deg);}75%{transform:rotate(-22deg);} }
+    @keyframes dove-flap-right { 0%,100%{transform:rotate(0);}25%{transform:rotate(30deg);}50%{transform:rotate(5deg);}75%{transform:rotate(22deg);} }
+    @keyframes dove-tail        { 0%,100%{transform:rotate(0);}50%{transform:rotate(8deg);} }
+  </style>
+
+  <!-- Cuerpo principal -->
+  <ellipse cx="100" cy="90" rx="46" ry="27" fill="#f5f5f5"/>
+
+  <!-- Ala izquierda -->
+  <g class="wing-left">
+    <ellipse cx="76" cy="80" rx="34" ry="15" fill="#e8e8e8" transform="rotate(-18,76,80)"/>
+    <ellipse cx="63" cy="85" rx="22" ry="9" fill="#d0d0d0" transform="rotate(-25,63,85)"/>
+    <ellipse cx="52" cy="90" rx="14" ry="6" fill="#bdbdbd" transform="rotate(-30,52,90)"/>
+  </g>
+
+  <!-- Ala derecha -->
+  <g class="wing-right">
+    <ellipse cx="124" cy="80" rx="34" ry="15" fill="#e8e8e8" transform="rotate(18,124,80)"/>
+    <ellipse cx="137" cy="85" rx="22" ry="9" fill="#d0d0d0" transform="rotate(25,137,85)"/>
+    <ellipse cx="148" cy="90" rx="14" ry="6" fill="#bdbdbd" transform="rotate(30,148,90)"/>
+  </g>
+
+  <!-- Cola -->
+  <g class="tail">
+    <polygon points="58,95 40,115 52,112 46,124 65,105 72,118 68,96" fill="#eeeeee"/>
+  </g>
+
+  <!-- Cuello -->
+  <ellipse cx="126" cy="82" rx="16" ry="13" fill="#f5f5f5"/>
+
+  <!-- Cabeza -->
+  <circle cx="140" cy="70" r="18" fill="#f5f5f5"/>
+
+  <!-- Pico -->
+  <polygon points="156,68 167,72 156,76" fill="#ffa726"/>
+  <line x1="156" y1="72" x2="161" y2="72" stroke="#e65100" stroke-width="1"/>
+
+  <!-- Ojo -->
+  <circle cx="145" cy="67" r="5" fill="#212121"/>
+  <circle cx="143" cy="65" r="2" fill="white"/>
+  <circle cx="147" cy="68" r="1" fill="#424242"/>
+
+  <!-- Brillo cabeza -->
+  <ellipse cx="133" cy="62" rx="6" ry="4" fill="white" opacity="0.25" transform="rotate(-20,133,62)"/>
+
+  <!-- Ramita de olivo -->
+  <line x1="157" y1="76" x2="176" y2="88" stroke="#558b2f" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="174" cy="86" rx="6" ry="3.5" fill="#7cb342" transform="rotate(-25,174,86)"/>
+  <ellipse cx="179" cy="81" rx="5" ry="3" fill="#8bc34a" transform="rotate(-10,179,81)"/>
+  <ellipse cx="170" cy="91" rx="4" ry="2.5" fill="#aed581" transform="rotate(-40,170,91)"/>
+
+  <!-- Detalles de plumas -->
+  <line x1="95" y1="88" x2="88" y2="100" stroke="#d0d0d0" stroke-width="1" stroke-linecap="round"/>
+  <line x1="100" y1="90" x2="95" y2="103" stroke="#d0d0d0" stroke-width="1" stroke-linecap="round"/>
+  <line x1="105" y1="89" x2="102" y2="102" stroke="#d0d0d0" stroke-width="1" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,28 @@
+{
+  "name": "cuerpo-de-cristo-matanza",
+  "version": "1.0.0",
+  "description": "Plataforma web de la Iglesia Cuerpo de Cristo en La Matanza de Acentejo",
+  "private": true,
+  "scripts": {
+    "cap:init":         "npx cap init 'Cuerpo de Cristo' com.cuerpodecristo.matanza --web-dir .",
+    "cap:add:android":  "npx cap add android",
+    "cap:add:ios":      "npx cap add ios",
+    "cap:sync":         "npx cap sync",
+    "cap:open:android": "npx cap open android",
+    "cap:open:ios":     "npx cap open ios",
+    "serve":            "npx http-server . -p 8080 -c-1 --cors"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.7.8",
+    "@capacitor/app": "^5.0.8",
+    "@capacitor/browser": "^5.2.0",
+    "@capacitor/core": "^5.7.8",
+    "@capacitor/ios": "^5.7.8",
+    "@capacitor/splash-screen": "^5.0.8",
+    "@capacitor/status-bar": "^5.0.8"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.7.8",
+    "http-server": "^14.1.1"
+  }
+}

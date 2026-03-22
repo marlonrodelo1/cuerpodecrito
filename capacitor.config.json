@@ -1,0 +1,44 @@
+{
+  "appId": "com.cuerpodecristo.matanza",
+  "appName": "Cuerpo de Cristo",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": [
+      "raw.githubusercontent.com",
+      "unpkg.com",
+      "formspree.io",
+      "wa.me",
+      "openstreetmap.org",
+      "*.openstreetmap.org",
+      "google.com",
+      "maps.apple.com"
+    ]
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "launchAutoHide": true,
+      "backgroundColor": "#1a1a1a",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "StatusBar": {
+      "style": "Dark",
+      "backgroundColor": "#1a1a1a"
+    }
+  },
+  "android": {
+    "buildOptions": {
+      "keystorePath": "release.keystore",
+      "keystoreAlias": "cuerpodecristo"
+    }
+  },
+  "ios": {
+    "contentInset": "automatic"
+  }
+}

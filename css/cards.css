@@ -1,0 +1,180 @@
+/* Tarjeta base */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--t-normal), box-shadow var(--t-normal), border-color var(--t-normal);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--color-accent);
+}
+
+.card-body {
+  padding: var(--sp-6);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--sp-2);
+  color: var(--color-text);
+}
+
+.card-text {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* Tarjeta de programa (home) */
+.program-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--t-normal), box-shadow var(--t-normal), border-color var(--t-normal);
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.program-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-accent-dim) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--t-normal);
+}
+.program-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--color-accent);
+}
+.program-card:hover::before {
+  opacity: 1;
+}
+.program-card-icon {
+  font-size: 3rem;
+  margin-bottom: var(--sp-4);
+  display: block;
+  filter: drop-shadow(0 0 8px var(--color-accent-glow));
+}
+.program-card-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--sp-3);
+}
+.program-card-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.program-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-top: var(--sp-4);
+  transition: gap var(--t-fast);
+}
+.program-card:hover .program-card-link {
+  gap: var(--sp-3);
+}
+
+/* Tarjeta versículo */
+.verse-card {
+  background: linear-gradient(135deg, var(--color-bg-surface) 0%, #1e2a1e 100%);
+  border: 1px solid rgba(79,195,247,0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-10) var(--sp-12);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.verse-card::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: var(--sp-8);
+  font-size: 10rem;
+  color: var(--color-accent);
+  opacity: 0.08;
+  font-family: var(--font-serif);
+  line-height: 1;
+}
+.verse-text {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: var(--sp-6);
+  position: relative;
+}
+.verse-ref {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: var(--text-base);
+  letter-spacing: 0.04em;
+}
+
+/* Tarjeta devocional preview */
+.devo-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.devo-card-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.devo-card-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.devo-card-scripture {
+  background: var(--color-accent-dim);
+  border-left: 3px solid var(--color-accent);
+  padding: var(--sp-4);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+.devo-card-excerpt {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .verse-card {
+    padding: var(--sp-8) var(--sp-6);
+  }
+  .verse-text {
+    font-size: var(--text-xl);
+  }
+}

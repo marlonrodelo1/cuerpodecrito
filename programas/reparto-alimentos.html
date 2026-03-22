@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reparto de Alimentos | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="../index.html"      class="nav-link">Inicio</a>
+        <a href="../biblia.html"     class="nav-link">Biblia</a>
+        <a href="../devocional.html" class="nav-link">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">Programas <span class="nav-dropdown-arrow">▾</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="reparto-alimentos.html"  class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos</a>
+            <a href="radio-solidaria.html"    class="nav-dropdown-item"><span class="nav-dropdown-item-icon">📻</span>Radio Solidaria</a>
+            <a href="pan-apadrinamiento.html" class="nav-dropdown-item"><span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento</a>
+            <a href="rastro.html"             class="nav-dropdown-item"><span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda</a>
+          </div>
+        </div>
+        <a href="../contacto.html" class="nav-link">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+  <nav class="nav-mobile">
+    <a href="../index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="../biblia.html"     class="nav-mobile-link">📖 Biblia</a>
+    <a href="../devocional.html" class="nav-mobile-link">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="reparto-alimentos.html"  class="nav-mobile-sub active">🍞 Reparto de Alimentos</a>
+    <a href="radio-solidaria.html"    class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="rastro.html"             class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="../contacto.html"        class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <!-- HERO -->
+  <div style="background:linear-gradient(135deg,#0f1a08,#0a1520); padding: calc(var(--nav-height) + var(--sp-12)) 0 var(--sp-12); border-bottom:1px solid var(--color-border);">
+    <div class="container" style="text-align:center;">
+      <div class="anim-float" style="font-size:5rem; margin-bottom:var(--sp-4);" aria-hidden="true">
+        <img src="../assets/characters/family.svg" alt="Familia con cesta" style="width:200px; margin:0 auto;">
+      </div>
+      <span class="badge">🍞 Programa Social</span>
+      <h1 style="margin:var(--sp-4) 0 var(--sp-3);">Reparto de <span class="text-accent">Alimentos</span></h1>
+      <p style="color:var(--color-text-muted); max-width:550px; margin:0 auto; line-height:1.7; font-size:var(--text-lg);">
+        Distribución gratuita de alimentos a familias necesitadas de La Matanza de Acentejo y alrededores.
+        Porque nadie debería pasar hambre.
+      </p>
+      <p style="font-family:var(--font-serif); font-style:italic; color:var(--color-accent); margin-top:var(--sp-6); font-size:var(--text-sm);">
+        "El que es generoso prospera; el que reanima a otros será reanimado." — Proverbios 11:25
+      </p>
+    </div>
+  </div>
+
+  <main id="main">
+    <div id="reparto-content">
+      <div class="loader"><div class="loader-spinner"></div><span>Cargando información...</span></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="footer-year"></span> Iglesia Cuerpo de Cristo — La Matanza de Acentejo</p>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js" defer></script>
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    fetch('../data/alimentos-schedule.json')
+      .then(r => r.json())
+      .then(data => {
+        const container = document.getElementById('reparto-content');
+        const upcoming = data.upcoming.filter(e => new Date(e.date) >= new Date());
+
+        container.innerHTML = `
+          <section class="section">
+            <div class="container">
+              <div class="text-center">
+                <span class="badge">📅 Próximos Repartos</span>
+                <h2 class="section-title" style="margin-top:var(--sp-4);">Calendario de <span>Distribución</span></h2>
+                <div class="divider"></div>
+              </div>
+              <div class="grid-2" style="margin-top:var(--sp-8);">
+                ${upcoming.slice(0,4).map(e => `
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="badge" style="margin-bottom:var(--sp-3);">📅 ${e.day}</div>
+                      <h3 class="card-title">${formatDate(e.date)}</h3>
+                      <p class="card-text">🕐 ${e.time} · 📍 ${e.location}</p>
+                      ${e.note ? `<p style="margin-top:var(--sp-3); font-size:var(--text-sm); color:var(--color-accent);">ℹ️ ${e.note}</p>` : ''}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <section class="section" style="background:linear-gradient(180deg,#0a0a0a,var(--color-bg));">
+            <div class="container">
+              <div class="grid-2" style="align-items:start;">
+                <div>
+                  <span class="badge" style="margin-bottom:var(--sp-4);">📋 Requisitos</span>
+                  <h2 class="section-title">¿Cómo <span>participar</span>?</h2>
+                  <ul style="margin-top:var(--sp-6); display:flex; flex-direction:column; gap:var(--sp-3);">
+                    ${data.requirements.map(r => `
+                      <li style="display:flex; gap:var(--sp-3); align-items:flex-start; font-size:var(--text-base); color:var(--color-text-muted);">
+                        <span style="color:var(--color-success); flex-shrink:0; margin-top:2px;">✓</span>${r}
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+                <div>
+                  <span class="badge" style="margin-bottom:var(--sp-4);">🛒 ¿Qué distribuimos?</span>
+                  <h2 class="section-title">Artículos <span>incluidos</span></h2>
+                  <div style="margin-top:var(--sp-6); display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3);">
+                    ${data.items_distributed.map(item => `
+                      <div style="display:flex; gap:var(--sp-2); align-items:center; font-size:var(--text-sm); color:var(--color-text-muted);">
+                        <span style="color:var(--color-accent);">🍽️</span>${item}
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-sm" style="background:#0a0a0a;">
+            <div class="container text-center">
+              <h2 class="section-title">¿Deseas <span>donar alimentos</span>?</h2>
+              <p style="color:var(--color-text-muted); margin-bottom:var(--sp-6); max-width:500px; margin-left:auto; margin-right:auto;">
+                Si quieres contribuir con alimentos o voluntariado, contacta con nosotros.
+                Cada contribución marca una diferencia.
+              </p>
+              <div style="display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap;">
+                <a href="../contacto.html" class="btn btn-lg">📍 Contactar con la iglesia</a>
+                <a href="pan-apadrinamiento.html" class="btn btn-lg btn-outline">👧 Apoyar el programa PAN</a>
+              </div>
+            </div>
+          </section>
+        `;
+      })
+      .catch(() => {
+        document.getElementById('reparto-content').innerHTML = `
+          <section class="section"><div class="container text-center">
+            <p style="color:var(--color-text-muted);">Error al cargar el calendario. Por favor, contacta con la iglesia directamente.</p>
+            <a href="../contacto.html" class="btn" style="margin-top:var(--sp-4);">📍 Contacto</a>
+          </div></section>`;
+      });
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T12:00:00');
+      return d.toLocaleDateString('es-ES', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    }
+  </script>
+</body>
+</html>

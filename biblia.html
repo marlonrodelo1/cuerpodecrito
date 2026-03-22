@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblia Reina Valera 1960 | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/biblia.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu" role="navigation" aria-label="Menú principal">
+        <a href="index.html"       class="nav-link" data-nav-href="/index.html">Inicio</a>
+        <a href="biblia.html"      class="nav-link" data-nav-href="/biblia.html">Biblia</a>
+        <a href="devocional.html"  class="nav-link" data-nav-href="/devocional.html">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-haspopup="true">
+            Programas <span class="nav-dropdown-arrow">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="programas/reparto-alimentos.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos
+            </a>
+            <a href="programas/radio-solidaria.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">📻</span>Radio Solidaria
+            </a>
+            <a href="programas/pan-apadrinamiento.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento
+            </a>
+            <a href="programas/rastro.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda
+            </a>
+          </div>
+        </div>
+        <a href="contacto.html" class="nav-link" data-nav-href="/contacto.html">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="biblia.html"     class="nav-mobile-link active">📖 Biblia</a>
+    <a href="devocional.html" class="nav-mobile-link">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="programas/reparto-alimentos.html"  class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="programas/radio-solidaria.html"    class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="programas/pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="programas/rastro.html"             class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="contacto.html"   class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="bible-hero">
+    <div class="container">
+      <span class="badge">📖 Santa Biblia</span>
+      <h1 style="margin-top: var(--sp-4);">Reina Valera <span class="text-accent">1960</span></h1>
+      <p style="color:var(--color-text-muted); margin-top: var(--sp-3);">La Palabra de Dios al alcance de todos</p>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="container">
+      <div class="bible-layout">
+
+        <!-- PANEL IZQUIERDO -->
+        <aside class="bible-nav-panel">
+          <div class="bible-nav-title">📖 Navegar</div>
+
+          <label for="book-select" class="text-muted" style="font-size:var(--text-xs);display:block;margin-bottom:var(--sp-2);">Libro</label>
+          <select id="book-select" class="input"></select>
+
+          <label for="chapter-jump" style="font-size:var(--text-xs);color:var(--color-text-muted);display:block;margin: var(--sp-4) 0 var(--sp-2);">
+            Capítulo
+          </label>
+          <div class="bible-nav-chapter-grid" id="chapter-grid">
+            <!-- Se genera con JS -->
+          </div>
+
+          <div class="font-controls">
+            <span>Tamaño texto</span>
+            <button class="font-btn" id="font-down">A−</button>
+            <button class="font-btn" id="font-up">A+</button>
+          </div>
+        </aside>
+
+        <!-- PANEL LECTOR -->
+        <section class="bible-reader-panel" aria-label="Lector bíblico">
+          <div class="bible-toolbar">
+            <div>
+              <h2 class="bible-chapter-title" id="chapter-heading">Génesis — Capítulo 1</h2>
+            </div>
+            <div class="bible-nav-arrows">
+              <button class="nav-arrow-btn" id="btn-prev" aria-label="Capítulo anterior">← Anterior</button>
+              <button class="nav-arrow-btn" id="btn-next" aria-label="Capítulo siguiente">Siguiente →</button>
+            </div>
+            <div class="bible-search-wrap">
+              <input type="search" id="bible-search" class="input bible-search-input" placeholder="🔍 Buscar en este libro...">
+              <button class="btn btn-sm" id="btn-search">Buscar</button>
+            </div>
+            <div class="search-results-count" id="search-count" style="display:none;"></div>
+          </div>
+
+          <div class="bible-chapter-content" id="chapter-content">
+            <div class="bible-loading" id="bible-loading">
+              <div class="loader-spinner"></div>
+              <span>Cargando la Palabra...</span>
+            </div>
+            <div id="verses-container" style="display:none;"></div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="margin-top:var(--sp-12);">
+    <div class="container footer-bottom">
+      <p>© <span id="footer-year"></span> Iglesia Cuerpo de Cristo — La Matanza de Acentejo</p>
+    </div>
+  </footer>
+
+  <script src="js/nav.js" defer></script>
+  <script src="js/bible.js" defer></script>
+  <script src="js/bible-reader.js" defer></script>
+</body>
+</html>
