@@ -12,7 +12,9 @@
       "openstreetmap.org",
       "*.openstreetmap.org",
       "google.com",
-      "maps.apple.com"
+      "maps.apple.com",
+      "www.rkmradio.com",
+      "rkmradio.com"
     ]
   },
   "plugins": {

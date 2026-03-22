@@ -20,12 +20,56 @@
       text-align: center;
     }
 
+    /* Selector de sede */
+    .location-selector {
+      display: flex;
+      gap: var(--sp-3);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: var(--sp-8) 0 var(--sp-6);
+    }
+    .location-tab {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: var(--sp-4) var(--sp-6);
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      cursor: pointer;
+      transition: all var(--t-fast);
+      text-align: left;
+      min-width: 200px;
+    }
+    .location-tab:hover  { border-color: var(--color-accent); }
+    .location-tab.active {
+      border-color: var(--color-accent);
+      background: rgba(79,195,247,0.07);
+      box-shadow: 0 0 20px rgba(79,195,247,0.15);
+    }
+    .location-tab-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--color-accent-dim);
+      border: 1px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .location-tab.active .location-tab-icon {
+      background: var(--color-accent);
+      color: #000;
+    }
+    .location-tab-label { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
+    .location-tab-name  { font-size: var(--text-base); font-weight: 700; color: var(--color-text); margin-top: 2px; }
+
+    /* Layout */
     .contact-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--sp-8);
       align-items: start;
-      padding: var(--sp-12) 0;
+      padding: var(--sp-8) 0 var(--sp-12);
     }
 
     /* Mapa */
@@ -36,14 +80,12 @@
       border: 1px solid var(--color-border);
       overflow: hidden;
       z-index: 1;
+      transition: opacity 0.3s;
     }
+    #church-map.loading { opacity: 0.5; }
 
-    /* Panel de info */
-    .contact-info-panel {
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-5);
-    }
+    /* Panel info */
+    .contact-info-panel { display: flex; flex-direction: column; gap: var(--sp-5); }
 
     .contact-info-card {
       background: var(--color-bg-surface);
@@ -58,14 +100,11 @@
     .contact-info-card:hover { border-color: var(--color-accent); }
 
     .contact-info-icon {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       border-radius: var(--radius-md);
       background: var(--color-accent-dim);
       border: 1px solid var(--color-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 1.5rem;
       flex-shrink: 0;
     }
@@ -77,22 +116,12 @@
       color: var(--color-text-muted);
       margin-bottom: var(--sp-1);
     }
-    .contact-info-value {
-      font-size: var(--text-base);
-      color: var(--color-text);
-      font-weight: 500;
-    }
-    .contact-info-value a {
-      color: var(--color-accent);
-      transition: opacity var(--t-fast);
-    }
+    .contact-info-value { font-size: var(--text-base); color: var(--color-text); font-weight: 500; }
+    .contact-info-value a { color: var(--color-accent); transition: opacity var(--t-fast); }
     .contact-info-value a:hover { opacity: 0.7; }
 
     /* Horarios tabla */
-    .schedule-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    .schedule-table { width: 100%; border-collapse: collapse; }
     .schedule-table td {
       padding: var(--sp-3) 0;
       border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -100,25 +129,20 @@
       color: var(--color-text-muted);
     }
     .schedule-table td:first-child {
-      font-weight: 700;
-      color: var(--color-accent);
-      width: 40%;
+      font-weight: 700; color: var(--color-accent); width: 40%;
     }
 
     /* Botón cómo llegar */
-    .btn-directions {
-      background: var(--color-success);
-      border-color: var(--color-success);
-    }
+    .btn-directions { background: var(--color-success); border-color: var(--color-success); }
     .btn-directions:hover {
-      background: #388e3c;
-      border-color: #388e3c;
+      background: #388e3c; border-color: #388e3c;
       box-shadow: 0 0 20px rgba(102,187,106,0.4);
     }
 
     @media (max-width: 900px) {
-      .contact-layout { grid-template-columns: 1fr; }
-      #church-map { height: 300px; }
+      .contact-layout       { grid-template-columns: 1fr; }
+      #church-map           { height: 300px; }
+      .location-tab         { min-width: 160px; flex: 1; }
     }
   </style>
 </head>
@@ -171,12 +195,33 @@
     <span class="badge">📍 Encuéntranos</span>
     <h1 style="margin:var(--sp-4) 0 var(--sp-3);">Contacto y <span class="text-accent">Ubicación</span></h1>
     <p style="color:var(--color-text-muted); max-width:500px; margin:0 auto; line-height:1.7;">
-      Estamos en el corazón de La Matanza de Acentejo. ¡Te esperamos con los brazos abiertos!
+      Dos sedes en Tenerife para servirte mejor. ¡Te esperamos con los brazos abiertos!
     </p>
   </div>
 
   <main id="main">
     <div class="container">
+
+      <!-- SELECTOR DE SEDE -->
+      <div class="location-selector" role="tablist" aria-label="Seleccionar sede">
+        <button class="location-tab active" role="tab" aria-selected="true"
+                onclick="selectLocation(0)" id="tab-0">
+          <div class="location-tab-icon">⛪</div>
+          <div>
+            <div class="location-tab-label">Sede 1</div>
+            <div class="location-tab-name">La Matanza de Acentejo</div>
+          </div>
+        </button>
+        <button class="location-tab" role="tab" aria-selected="false"
+                onclick="selectLocation(1)" id="tab-1">
+          <div class="location-tab-icon">⛪</div>
+          <div>
+            <div class="location-tab-label">Sede 2</div>
+            <div class="location-tab-name">Santa Cruz de Tenerife</div>
+          </div>
+        </button>
+      </div>
+
       <div class="contact-layout">
 
         <!-- MAPA -->
@@ -193,16 +238,13 @@
         </div>
 
         <!-- INFO -->
-        <div class="contact-info-panel">
+        <div class="contact-info-panel" id="info-panel">
 
           <div class="contact-info-card">
             <div class="contact-info-icon">📍</div>
             <div>
               <div class="contact-info-label">Dirección</div>
-              <div class="contact-info-value" id="church-address">
-                La Matanza de Acentejo<br>
-                Santa Cruz de Tenerife, Canarias
-              </div>
+              <div class="contact-info-value" id="info-address">—</div>
             </div>
           </div>
 
@@ -264,67 +306,114 @@
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-    // Coordenadas de La Matanza de Acentejo, Tenerife
-    // ⚠️ Ajustar la dirección exacta cuando se confirme
-    const LAT = 28.4353;
-    const LNG = -16.5132;
+    // ── Sedes ───────────────────────────────────────────────
+    const LOCATIONS = [
+      {
+        name:    'La Matanza de Acentejo',
+        address: 'Carretera General La Matanza de Acentejo, 242',
+        city:    'La Matanza de Acentejo, Santa Cruz de Tenerife',
+        lat:     28.4353,
+        lng:    -16.5132
+      },
+      {
+        name:    'Santa Cruz de Tenerife',
+        address: 'TF-28, 168',
+        city:    '38107 Santa Cruz de Tenerife',
+        lat:     28.4762,
+        lng:    -16.3150
+      }
+    ];
 
-    // Inicializar mapa Leaflet
-    const map = L.map('church-map', {
-      center: [LAT, LNG],
-      zoom: 15,
-      zoomControl: true
-    });
+    let map, marker, circle;
+    let currentIdx = 0;
 
-    // Capa OpenStreetMap (sin API key)
+    // ── Icono personalizado ────────────────────────────────
+    function makeIcon(color) {
+      return L.divIcon({
+        html: `<div style="
+          width:40px; height:40px;
+          background:${color};
+          border-radius:50% 50% 50% 0;
+          transform:rotate(-45deg);
+          border:3px solid white;
+          box-shadow:0 0 15px rgba(79,195,247,0.55);
+          display:flex; align-items:center; justify-content:center;
+        "><span style="transform:rotate(45deg);font-size:18px;display:block;text-align:center;margin-top:2px;">✝</span></div>`,
+        className:  '',
+        iconSize:   [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor:[0, -40]
+      });
+    }
+
+    // ── Init mapa ──────────────────────────────────────────
+    const loc0 = LOCATIONS[0];
+    map = L.map('church-map', { center: [loc0.lat, loc0.lng], zoom: 15 });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       maxZoom: 19
     }).addTo(map);
 
-    // Icono personalizado
-    const churchIcon = L.divIcon({
-      html: `<div style="
-        width:40px; height:40px;
-        background:#4fc3f7;
-        border-radius:50% 50% 50% 0;
-        transform: rotate(-45deg);
-        border:3px solid white;
-        box-shadow:0 0 15px rgba(79,195,247,0.6);
-        display:flex; align-items:center; justify-content:center;
-      "><span style="transform:rotate(45deg); font-size:18px; display:block; text-align:center; margin-top:2px;">✝</span></div>`,
-      className: '',
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
-      popupAnchor: [0, -40]
-    });
-
-    // Marcador
-    const marker = L.marker([LAT, LNG], { icon: churchIcon }).addTo(map);
-    marker.bindPopup(`
-      <div style="text-align:center; min-width:180px; font-family:sans-serif;">
-        <strong style="color:#1565c0;">✝ Iglesia Cuerpo de Cristo</strong><br>
-        <span style="color:#666; font-size:12px;">La Matanza de Acentejo, Tenerife</span><br><br>
-        <span style="font-size:11px; color:#888;">Domingo 10:00 · Miércoles 19:00</span>
-      </div>
-    `).openPopup();
-
-    // Botón Google Maps
-    const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`;
-    document.getElementById('btn-gmaps').href = gmapsUrl;
-
-    // Botón Apple Maps
-    const appleMapsUrl = `https://maps.apple.com/?daddr=${LAT},${LNG}&dirflg=d`;
-    document.getElementById('btn-apple-maps').href = appleMapsUrl;
-
-    // Círculo de área
-    L.circle([LAT, LNG], {
-      color: '#4fc3f7',
-      fillColor: '#4fc3f7',
-      fillOpacity: 0.08,
-      radius: 200,
-      weight: 1
+    marker = L.marker([loc0.lat, loc0.lng], { icon: makeIcon('#4fc3f7') }).addTo(map);
+    circle = L.circle([loc0.lat, loc0.lng], {
+      color: '#4fc3f7', fillColor: '#4fc3f7',
+      fillOpacity: 0.08, radius: 200, weight: 1
     }).addTo(map);
+
+    updatePopup(0);
+    updateInfo(0);
+    updateDirectionLinks(0);
+
+    // ── Selector de sede ───────────────────────────────────
+    function selectLocation(idx) {
+      if (idx === currentIdx) return;
+      currentIdx = idx;
+
+      // Tabs
+      document.querySelectorAll('.location-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+        t.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      });
+
+      const loc = LOCATIONS[idx];
+      const col = idx === 0 ? '#4fc3f7' : '#81c784';
+
+      // Mover mapa
+      map.flyTo([loc.lat, loc.lng], 15, { duration: 1.2 });
+      marker.setLatLng([loc.lat, loc.lng]);
+      marker.setIcon(makeIcon(col));
+      circle.setLatLng([loc.lat, loc.lng]);
+
+      updatePopup(idx);
+      updateInfo(idx);
+      updateDirectionLinks(idx);
+    }
+
+    function updatePopup(idx) {
+      const loc = LOCATIONS[idx];
+      marker.bindPopup(`
+        <div style="text-align:center; min-width:190px; font-family:sans-serif;">
+          <strong style="color:#1565c0;">✝ Iglesia Cuerpo de Cristo</strong><br>
+          <span style="color:#555; font-size:12px;">${loc.name}</span><br>
+          <span style="color:#777; font-size:11px;">${loc.address}</span><br><br>
+          <span style="font-size:11px; color:#888;">Domingo 10:00 · Miércoles 19:00</span>
+        </div>
+      `).openPopup();
+    }
+
+    function updateInfo(idx) {
+      const loc = LOCATIONS[idx];
+      const el  = document.getElementById('info-address');
+      if (el) el.innerHTML = `${loc.address}<br><span style="color:var(--color-text-muted);font-size:var(--text-sm);">${loc.city}</span>`;
+    }
+
+    function updateDirectionLinks(idx) {
+      const loc = LOCATIONS[idx];
+      document.getElementById('btn-gmaps').href =
+        `https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`;
+      document.getElementById('btn-apple-maps').href =
+        `https://maps.apple.com/?daddr=${loc.lat},${loc.lng}&dirflg=d`;
+    }
   </script>
 </body>
 </html>
