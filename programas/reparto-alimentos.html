@@ -9,6 +9,155 @@
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/nav.css">
   <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    /* ── Sección registro ── */
+    .bolsa-section {
+      background: linear-gradient(135deg, #081a08, #0a1208);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--sp-12) 0;
+    }
+    .bolsa-wrap { max-width: 620px; margin: 0 auto; padding: 0 var(--sp-4); }
+
+    /* Callout inicial */
+    .bolsa-callout {
+      background: linear-gradient(135deg, rgba(102,187,106,0.1), rgba(79,195,247,0.05));
+      border: 1px solid rgba(102,187,106,0.35);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bolsa-callout::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at top, rgba(102,187,106,0.07) 0%, transparent 65%);
+    }
+    .bolsa-icon { font-size: 3.5rem; margin-bottom: var(--sp-4); display: block; }
+
+    /* Formulario */
+    .bolsa-form-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+    }
+    .bolsa-field { margin-bottom: var(--sp-5); }
+    .bolsa-label {
+      display: block; font-size: var(--text-sm); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--color-text-muted); margin-bottom: var(--sp-2);
+    }
+    .bolsa-input {
+      width: 100%; background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); color: var(--color-text);
+      font-size: var(--text-base); font-family: var(--font-sans);
+      padding: var(--sp-3) var(--sp-4); outline: none;
+      transition: border-color var(--t-fast);
+    }
+    .bolsa-input:focus { border-color: var(--color-success); }
+    .bolsa-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+
+    /* Nota importante */
+    .bolsa-nota {
+      background: rgba(255,213,79,0.08);
+      border: 1px solid rgba(255,213,79,0.3);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4) var(--sp-5);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--sp-6);
+      line-height: 1.7;
+    }
+    .bolsa-nota strong { color: #ffd54f; }
+
+    /* ── TICKET ── */
+    .bolsa-ticket {
+      background: linear-gradient(135deg, #071507, #091a09);
+      border: 2px solid var(--color-success);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: none;
+    }
+    .bolsa-ticket.show { display: block; }
+    .bolsa-ticket::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(102,187,106,0.1) 0%, transparent 70%);
+    }
+    /* Línea de puntos tipo ticket */
+    .ticket-divider {
+      border: none;
+      border-top: 2px dashed rgba(102,187,106,0.3);
+      margin: var(--sp-6) 0;
+    }
+    .ticket-header {
+      display: flex; align-items: center; justify-content: center;
+      gap: var(--sp-3); margin-bottom: var(--sp-2);
+    }
+    .ticket-badge {
+      font-size: var(--text-xs); font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--color-success); position: relative; z-index: 1;
+    }
+    .ticket-name {
+      font-size: var(--text-lg); color: var(--color-text-muted);
+      margin-bottom: var(--sp-4); position: relative; z-index: 1;
+    }
+    .ticket-code {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 900; font-family: var(--font-sans);
+      letter-spacing: 0.12em;
+      color: var(--color-success);
+      text-shadow: 0 0 30px rgba(102,187,106,0.4);
+      margin: var(--sp-4) 0;
+      position: relative; z-index: 1;
+      word-break: break-all;
+    }
+    .ticket-code-label {
+      font-size: var(--text-xs); color: var(--color-text-muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: var(--sp-2);
+      position: relative; z-index: 1;
+    }
+    .ticket-instructions {
+      position: relative; z-index: 1;
+      background: rgba(0,0,0,0.3);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5);
+    }
+    .ticket-instructions p {
+      font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.7;
+    }
+    .ticket-instructions p + p { margin-top: var(--sp-2); }
+    .ticket-instructions strong { color: var(--color-text); }
+    .ticket-actions {
+      display: flex; gap: var(--sp-3); justify-content: center;
+      flex-wrap: wrap; margin-top: var(--sp-6);
+      position: relative; z-index: 1;
+    }
+
+    /* Ya registrado banner */
+    .bolsa-already {
+      background: rgba(102,187,106,0.08);
+      border: 1px solid rgba(102,187,106,0.3);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-4) var(--sp-5);
+      display: flex; align-items: center; gap: var(--sp-4);
+      flex-wrap: wrap; cursor: pointer;
+      transition: border-color var(--t-fast);
+    }
+    .bolsa-already:hover { border-color: var(--color-success); }
+    .bolsa-already-text { flex: 1; font-size: var(--text-sm); color: var(--color-text-muted); }
+    .bolsa-already-code { font-weight: 900; color: var(--color-success); font-size: var(--text-base); }
+
+    @media (max-width: 520px) {
+      .bolsa-row { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -57,7 +206,7 @@
   <!-- HERO -->
   <div style="background:linear-gradient(135deg,#0f1a08,#0a1520); padding: calc(var(--nav-height) + var(--sp-12)) 0 var(--sp-12); border-bottom:1px solid var(--color-border);">
     <div class="container" style="text-align:center;">
-      <div class="anim-float" style="font-size:5rem; margin-bottom:var(--sp-4);" aria-hidden="true">
+      <div class="anim-float" aria-hidden="true">
         <img src="../assets/characters/family.svg" alt="Familia con cesta" style="width:200px; margin:0 auto;">
       </div>
       <span class="badge">🍞 Programa Social</span>
@@ -69,8 +218,149 @@
       <p style="font-family:var(--font-serif); font-style:italic; color:var(--color-accent); margin-top:var(--sp-6); font-size:var(--text-sm);">
         "El que es generoso prospera; el que reanima a otros será reanimado." — Proverbios 11:25
       </p>
+      <!-- Ir al registro -->
+      <a href="#registro" class="btn btn-lg"
+         style="margin-top:var(--sp-8); background:var(--color-success); border-color:var(--color-success);">
+        🛍️ Necesito una bolsa de alimentos
+      </a>
     </div>
   </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECCIÓN DE REGISTRO DE BOLSA
+  ════════════════════════════════════════════════════════ -->
+  <section class="bolsa-section" id="registro">
+    <div class="bolsa-wrap">
+
+      <!-- Callout -->
+      <div class="bolsa-callout anim-fade-up">
+        <span class="bolsa-icon" aria-hidden="true">🛍️</span>
+        <span class="badge" style="background:rgba(102,187,106,0.15); color:var(--color-success); border-color:rgba(102,187,106,0.35);">
+          Bolsa gratuita de alimentos
+        </span>
+        <h2 style="margin:var(--sp-4) 0 var(--sp-3); font-size:var(--text-3xl);">
+          ¿Necesitas alimentos?
+        </h2>
+        <p style="color:var(--color-text-muted); line-height:1.8; max-width:480px; margin:0 auto var(--sp-6);">
+          Regístrate y recibirás un <strong style="color:var(--color-text);">código personal</strong>.
+          Preséntalo el <strong style="color:var(--color-text);">domingo después del culto</strong>
+          y recoge tu bolsa de alimentos <strong style="color:var(--color-text);">gratuitamente</strong>.
+          <br><br>
+          ¿Conoces a alguien que lo necesite? Puedes registrarte en su nombre.
+        </p>
+      </div>
+
+      <!-- Aviso si ya está registrado -->
+      <div id="already-banner" style="display:none; margin-top:var(--sp-6);">
+        <div class="bolsa-already" onclick="mostrarTicket()">
+          <span style="font-size:1.8rem;">✅</span>
+          <div class="bolsa-already-text">
+            Ya estás registrado esta semana. Pulsa aquí para ver tu código.
+          </div>
+          <div class="bolsa-already-code" id="already-code-preview">—</div>
+        </div>
+      </div>
+
+      <!-- TICKET (se muestra tras registrarse o al pulsar el banner) -->
+      <div class="bolsa-ticket anim-fade-up" id="ticket" style="display:none; margin-top:var(--sp-6);">
+        <div class="ticket-header" style="position:relative;z-index:1;">
+          <span style="font-size:1.4rem;">🍞</span>
+          <span class="ticket-badge">Bolsa de Alimentos — Cuerpo de Cristo</span>
+          <span style="font-size:1.4rem;">🍞</span>
+        </div>
+        <div class="ticket-name" id="ticket-name"></div>
+
+        <hr class="ticket-divider">
+
+        <div style="position:relative;z-index:1;">
+          <div class="ticket-code-label">Tu código de recogida</div>
+          <div class="ticket-code" id="ticket-code"></div>
+        </div>
+
+        <hr class="ticket-divider">
+
+        <div class="ticket-instructions">
+          <p>📅 <strong>Domingo después del culto</strong> (10:00 h aprox.)</p>
+          <p>📍 <strong>Iglesia Cuerpo de Cristo</strong> — La Matanza de Acentejo</p>
+          <p>🛍️ <strong>Lleva tu propia bolsa</strong> para recoger los alimentos</p>
+          <p style="margin-top:var(--sp-4); padding-top:var(--sp-4); border-top:1px solid rgba(255,255,255,0.06); font-style:italic; font-size:var(--text-xs);">
+            💛 Si realmente lo necesitas, venir cuenta. <br>Ayudar también cuenta — si puedes dar algo a cambio, bienvenido sea.
+          </p>
+        </div>
+
+        <div id="ticket-familia" style="display:none; margin-top:var(--sp-4); position:relative; z-index:1;">
+          <span style="font-size:var(--text-sm); color:var(--color-text-muted);">👨‍👩‍👧 Familia registrada: <strong id="ticket-familia-num"></strong> personas</span>
+        </div>
+
+        <div class="ticket-actions">
+          <button class="btn" onclick="compartirCodigo()"
+                  style="background:var(--color-success); border-color:var(--color-success);">
+            📤 Guardar / Compartir
+          </button>
+          <button class="btn btn-outline" onclick="nuevoRegistro()"
+                  style="border-color:rgba(255,255,255,0.2); color:var(--color-text-muted); font-size:var(--text-xs);">
+            Registrar otra persona
+          </button>
+        </div>
+      </div>
+
+      <!-- FORMULARIO DE REGISTRO -->
+      <div id="bolsa-form-wrap" style="margin-top:var(--sp-6);">
+        <div class="bolsa-form-card">
+          <h3 style="font-size:var(--text-xl); font-weight:800; margin-bottom:var(--sp-2);">
+            ✍️ Registro de bolsa
+          </h3>
+          <p style="color:var(--color-text-muted); font-size:var(--text-sm); margin-bottom:var(--sp-6);">
+            Rellena tus datos y te generaremos un código único de recogida.
+          </p>
+
+          <div class="bolsa-nota">
+            💛 <strong>Nota:</strong> Este servicio es gratuito y confidencial.
+            Los datos se guardan solo en tu dispositivo.
+            Si realmente lo necesitas, acude sin dudarlo.
+            <strong>Si puedes ayudar a cambio, siempre es bienvenido.</strong>
+          </div>
+
+          <div class="bolsa-row">
+            <div class="bolsa-field">
+              <label class="bolsa-label" for="f-nombre">Nombre *</label>
+              <input class="bolsa-input" type="text" id="f-nombre"
+                     placeholder="Tu nombre" autocomplete="given-name" required>
+            </div>
+            <div class="bolsa-field">
+              <label class="bolsa-label" for="f-apellido">Apellido</label>
+              <input class="bolsa-input" type="text" id="f-apellido"
+                     placeholder="Tu apellido" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="bolsa-row">
+            <div class="bolsa-field">
+              <label class="bolsa-label" for="f-personas">Personas en la familia</label>
+              <input class="bolsa-input" type="number" id="f-personas"
+                     placeholder="1" min="1" max="20">
+            </div>
+            <div class="bolsa-field">
+              <label class="bolsa-label" for="f-telefono">Teléfono (opcional)</label>
+              <input class="bolsa-input" type="tel" id="f-telefono"
+                     placeholder="+34 XXX XXX XXX" autocomplete="tel">
+            </div>
+          </div>
+
+          <div id="form-error" style="display:none; color:#ef5350; font-size:var(--text-sm); margin-bottom:var(--sp-4);">
+            ⚠️ Por favor, introduce tu nombre.
+          </div>
+
+          <button class="btn btn-lg" onclick="registrar()"
+                  style="width:100%; background:var(--color-success); border-color:var(--color-success); font-size:var(--text-lg);">
+            🛍️ Obtener mi código de bolsa
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ════════════════════════════════════════════════════════ -->
 
   <main id="main">
     <div id="reparto-content">
@@ -88,12 +378,142 @@
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+    // ══════════════════════════════════════════════════════
+    // SISTEMA DE REGISTRO DE BOLSA
+    // ══════════════════════════════════════════════════════
+    const STORE_KEY = 'cdc_bolsa_actual';
+
+    function generarCodigo(nombre) {
+      const initials = nombre.trim().toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '').slice(0, 3).padEnd(3, 'X');
+      const nums     = Math.floor(1000 + Math.random() * 9000);
+      return `BOLSA-${initials}-${nums}`;
+    }
+
+    function getSemana() {
+      // Semana ISO del año para expiración semanal
+      const d = new Date();
+      const startOfYear = new Date(d.getFullYear(), 0, 1);
+      return Math.ceil(((d - startOfYear) / 86400000 + startOfYear.getDay() + 1) / 7);
+    }
+
+    function cargarExistente() {
+      try {
+        const raw = localStorage.getItem(STORE_KEY);
+        if (!raw) return null;
+        const reg = JSON.parse(raw);
+        // Válido solo esta semana
+        if (reg.semana !== getSemana() || reg.año !== new Date().getFullYear()) return null;
+        return reg;
+      } catch(e) { return null; }
+    }
+
+    function registrar() {
+      const nombre   = document.getElementById('f-nombre').value.trim();
+      const apellido = document.getElementById('f-apellido').value.trim();
+      const personas = parseInt(document.getElementById('f-personas').value) || null;
+      const telefono = document.getElementById('f-telefono').value.trim();
+
+      if (!nombre) {
+        document.getElementById('form-error').style.display = 'block';
+        document.getElementById('f-nombre').focus();
+        return;
+      }
+      document.getElementById('form-error').style.display = 'none';
+
+      const reg = {
+        nombre,
+        apellido,
+        personas,
+        telefono,
+        code:  generarCodigo(nombre),
+        semana: getSemana(),
+        año:   new Date().getFullYear(),
+        fecha: new Date().toISOString()
+      };
+      localStorage.setItem(STORE_KEY, JSON.stringify(reg));
+      mostrarTicketDatos(reg);
+
+      // Scroll al ticket
+      document.getElementById('ticket').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function mostrarTicketDatos(reg) {
+      const nombreCompleto = reg.apellido ? `${reg.nombre} ${reg.apellido}` : reg.nombre;
+
+      document.getElementById('ticket-name').textContent  = nombreCompleto;
+      document.getElementById('ticket-code').textContent  = reg.code;
+
+      const familiaEl  = document.getElementById('ticket-familia');
+      const familiaNum = document.getElementById('ticket-familia-num');
+      if (reg.personas && reg.personas > 1) {
+        familiaNum.textContent   = reg.personas;
+        familiaEl.style.display  = 'block';
+      } else {
+        familiaEl.style.display  = 'none';
+      }
+
+      // Mostrar ticket, ocultar formulario
+      document.getElementById('bolsa-form-wrap').style.display = 'none';
+      document.getElementById('already-banner').style.display  = 'none';
+      document.getElementById('ticket').style.display = 'block';
+      document.getElementById('ticket').classList.add('show');
+    }
+
+    function mostrarTicket() {
+      const reg = cargarExistente();
+      if (reg) mostrarTicketDatos(reg);
+    }
+
+    function nuevoRegistro() {
+      // Permite registrar a otra persona (borra el código actual)
+      localStorage.removeItem(STORE_KEY);
+      document.getElementById('ticket').style.display = 'none';
+      document.getElementById('ticket').classList.remove('show');
+      document.getElementById('already-banner').style.display = 'none';
+      document.getElementById('bolsa-form-wrap').style.display = 'block';
+      document.getElementById('f-nombre').value    = '';
+      document.getElementById('f-apellido').value  = '';
+      document.getElementById('f-personas').value  = '';
+      document.getElementById('f-telefono').value  = '';
+      document.getElementById('bolsa-form-wrap').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function compartirCodigo() {
+      const reg  = cargarExistente();
+      const code = document.getElementById('ticket-code').textContent;
+      const name = document.getElementById('ticket-name').textContent;
+      const msg  = `🍞 Mi código de bolsa de alimentos\n\nNombre: ${name}\nCódigo: ${code}\n\n📅 Domingo después del culto\n📍 Iglesia Cuerpo de Cristo — La Matanza de Acentejo\n🛍️ Lleva tu bolsa`;
+
+      if (navigator.share) {
+        navigator.share({ title: 'Mi código de bolsa', text: msg }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(msg)
+          .then(() => {
+            const btn = event.target;
+            btn.textContent = '✅ ¡Copiado!';
+            setTimeout(() => btn.innerHTML = '📤 Guardar / Compartir', 2500);
+          })
+          .catch(() => alert(`Tu código es:\n\n${code}\n\nGuárdalo en una nota o haz captura de pantalla.`));
+      }
+    }
+
+    // Al cargar: comprobar si ya hay registro de esta semana
+    (function init() {
+      const reg = cargarExistente();
+      if (reg) {
+        document.getElementById('already-code-preview').textContent = reg.code;
+        document.getElementById('already-banner').style.display = 'flex';
+      }
+    })();
+
+    // ══════════════════════════════════════════════════════
+    // CARGA DE CALENDARIO (existente)
+    // ══════════════════════════════════════════════════════
     fetch('../data/alimentos-schedule.json')
       .then(r => r.json())
       .then(data => {
         const container = document.getElementById('reparto-content');
-        const upcoming = data.upcoming.filter(e => new Date(e.date) >= new Date());
-
+        const upcoming  = data.upcoming.filter(e => new Date(e.date) >= new Date());
         container.innerHTML = `
           <section class="section">
             <div class="container">
@@ -164,7 +584,7 @@
       .catch(() => {
         document.getElementById('reparto-content').innerHTML = `
           <section class="section"><div class="container text-center">
-            <p style="color:var(--color-text-muted);">Error al cargar el calendario. Por favor, contacta con la iglesia directamente.</p>
+            <p style="color:var(--color-text-muted);">Error al cargar el calendario. Contacta con la iglesia directamente.</p>
             <a href="../contacto.html" class="btn" style="margin-top:var(--sp-4);">📍 Contacto</a>
           </div></section>`;
       });
@@ -174,5 +594,6 @@
       return d.toLocaleDateString('es-ES', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
     }
   </script>
+  <script src="../js/radio-mini.js"></script>
 </body>
 </html>

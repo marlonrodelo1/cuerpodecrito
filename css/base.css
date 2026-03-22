@@ -269,4 +269,34 @@ html { scroll-padding-top: calc(var(--nav-height) + 16px); }
 }
 @media (max-width: 480px) {
   .btn-lg { padding: var(--sp-3) var(--sp-6); font-size: var(--text-base); }
+  h1 { font-size: var(--text-xl); }
+  .section-title { font-size: var(--text-2xl); }
+  .section-subtitle { font-size: var(--text-base); }
+  .container { padding: 0 var(--sp-3); }
 }
+
+/* ─── Mejoras para app móvil ──────────────────────────────── */
+/* Prevenir zoom al enfocar inputs en iOS */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Targets táctiles mínimos (44px) */
+.btn, button, a.nav-link, a.nav-mobile-link {
+  min-height: 44px;
+}
+.btn-sm { min-height: 36px; }
+
+/* Evitar scroll horizontal */
+body { overflow-x: hidden; }
+
+/* Selección de texto acorde al tema */
+::selection {
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+}
+
+/* Tap highlight transparente en móvil */
+* { -webkit-tap-highlight-color: transparent; }

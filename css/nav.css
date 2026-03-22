@@ -245,6 +245,225 @@
   color: var(--color-accent);
 }
 
+/* ─── Mini Radio Player ────────────────────────────────────────── */
+.rmp-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rmp-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent-dim);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background var(--t-fast), box-shadow var(--t-fast);
+}
+.rmp-btn:hover {
+  background: rgba(79,195,247,0.25);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+/* Punto indicador de estado */
+.rmp-dot {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--color-bg);
+  transition: background var(--t-fast);
+}
+.rmp-dot.live {
+  background: #ef5350;
+  animation: rmp-pulse 1.5s ease-in-out infinite;
+}
+.rmp-dot.connecting {
+  background: var(--color-warning);
+}
+
+@keyframes rmp-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(239,83,80,0.6); }
+  50%     { box-shadow: 0 0 0 4px rgba(239,83,80,0); }
+}
+
+/* Popup */
+.rmp-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 260px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--sp-4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--t-fast), visibility var(--t-fast), transform var(--t-fast);
+  z-index: 2000;
+}
+.rmp-popup.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Flecha arriba del popup */
+.rmp-popup::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-bg-surface);
+  border-left: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+  transform: rotate(45deg);
+}
+
+.rmp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+.rmp-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.rmp-status {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Now playing */
+.rmp-now {
+  background: var(--color-bg-raised);
+  border-radius: var(--radius-md);
+  padding: var(--sp-2) var(--sp-3);
+  margin-bottom: var(--sp-3);
+  overflow: hidden;
+}
+.rmp-now-text {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Controles */
+.rmp-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.rmp-play {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
+  transition: background var(--t-fast), box-shadow var(--t-fast);
+}
+.rmp-play:hover {
+  background: var(--color-accent-hover);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.rmp-vol-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex: 1;
+}
+.rmp-vol-icon { font-size: 0.9rem; }
+.rmp-vol {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 4px;
+  background: var(--color-bg-raised);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+}
+.rmp-vol::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  box-shadow: 0 0 4px var(--color-accent-glow);
+}
+.rmp-vol::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: none;
+}
+
+/* Botón radio en menú móvil */
+.nav-mobile-radio {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--t-fast);
+}
+.nav-mobile-radio:hover {
+  color: var(--color-accent);
+}
+.nav-mobile-radio #rmp-mobile-status {
+  color: var(--color-text-muted);
+  font-weight: 400;
+  font-size: var(--text-base);
+}
+
+/* Asegurarse que el popup no salga por la izquierda en móvil */
+@media (max-width: 420px) {
+  .rmp-popup {
+    right: -10px;
+    width: calc(100vw - 20px);
+    max-width: 300px;
+  }
+}
+
 /* Animación glow en logo */
 @keyframes pulse-border {
   0%, 100% { box-shadow: 0 0 0 0 var(--color-accent-glow); }
@@ -258,4 +477,8 @@
 }
 @media (min-width: 901px) {
   .nav-mobile { display: none !important; }
+}
+@media (max-width: 400px) {
+  .nav-logo-place { display: none; }
+  .rmp-popup { right: -8px; }
 }
