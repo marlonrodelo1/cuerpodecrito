@@ -112,6 +112,7 @@
 
         <div class="devo-actions">
           <button class="btn" id="btn-share-devo">📤 Compartir</button>
+          <button class="btn btn-outline" id="btn-save-devo">🔖 Guardar</button>
           <a href="index.html" class="btn btn-outline">← Inicio</a>
           <a href="admin-devocional.html" class="devo-admin-link">✏️ Editar devocional</a>
         </div>
@@ -132,6 +133,34 @@
           .catch(() => {});
       }
     });
+
+    // Botón guardar devocional
+    const btnSave = document.getElementById('btn-save-devo');
+    btnSave.addEventListener('click', async () => {
+      if (!window.AuthModule || !window.AuthModule.isLoggedIn()) {
+        window.location.href = 'login.html?redirect=devocional.html';
+        return;
+      }
+      btnSave.disabled = true;
+      const ok = window.ProfileModule ? await window.ProfileModule.saveDevotional(entry) : false;
+      if (ok) {
+        btnSave.textContent = '✅ Guardado';
+        btnSave.classList.add('btn-primary');
+      } else {
+        btnSave.disabled = false;
+      }
+    });
+
+    // Comprobar si ya está guardado
+    if (window.AuthModule && window.AuthModule.isLoggedIn() && window.ProfileModule) {
+      window.ProfileModule.isDevotionalSaved(entry.id).then(saved => {
+        if (saved) {
+          btnSave.textContent = '✅ Guardado';
+          btnSave.classList.add('btn-primary');
+          btnSave.disabled = true;
+        }
+      });
+    }
   }
 
   // ─── Fallback al JSON estático ──────────────────────────────

@@ -89,6 +89,10 @@
       const data = await window.BibleModule.fetchBook(book.slug);
       state.bookData = data;
       const chapterData = (data.chapters || data)[state.chapterIndex];
+      // Cargar resaltados para este capítulo (incluye localStorage + Supabase)
+      if (window.BibleHighlights) {
+        await window.BibleHighlights.loadHighlightsForChapter(book.slug, state.chapterIndex + 1);
+      }
       renderVerses(chapterData.verses, book, state.chapterIndex + 1);
     } catch(err) {
       document.getElementById('bible-loading').innerHTML =
@@ -106,6 +110,14 @@
       const row  = document.createElement('div');
       row.className = 'verse-row';
       row.id = `v${v.verse}`;
+
+      // Resaltado de color (highlights)
+      const hlColor = window.BibleHighlights
+        ? window.BibleHighlights.getHighlight(book.slug, chNum, v.verse)
+        : null;
+      if (hlColor) row.classList.add('highlight-' + hlColor);
+
+      // Resaltado de navegación (hash)
       if (state.highlightVerse && Number(v.verse) === state.highlightVerse) {
         row.classList.add('highlighted');
       }
@@ -131,13 +143,101 @@
         body.textContent = v.text;
       }
 
+      // Barra de acciones por versículo
+      const actions = document.createElement('div');
+      actions.className = 'verse-actions';
+      actions.innerHTML = `
+        <button class="verse-btn verse-btn-save"      title="Guardar versículo" aria-label="Guardar">🔖</button>
+        <button class="verse-btn verse-btn-highlight" title="Resaltar"          aria-label="Resaltar">🎨</button>
+        <button class="verse-btn verse-btn-share"     title="Compartir"         aria-label="Compartir">📤</button>
+        <div class="highlight-palette" hidden>
+          <button class="hl-color" data-color="yellow" style="color:#ffd54f" title="Amarillo">●</button>
+          <button class="hl-color" data-color="green"  style="color:#66bb6a" title="Verde">●</button>
+          <button class="hl-color" data-color="blue"   style="color:#4fc3f7" title="Azul">●</button>
+          <button class="hl-color" data-color="pink"   style="color:#f06292" title="Rosa">●</button>
+          <button class="hl-color" data-color="purple" style="color:#ba68c8" title="Morado">●</button>
+          <button class="hl-color hl-remove" data-color="none" title="Quitar resaltado">✕</button>
+        </div>`;
+
       row.appendChild(num);
       row.appendChild(body);
-      row.addEventListener('click', () => {
+      row.appendChild(actions);
+
+      // Click en fila → toggle barra de acciones + URL
+      row.addEventListener('click', (e) => {
+        if (e.target.closest('.verse-actions')) return;
+        document.querySelectorAll('.verse-row.active').forEach(r => r.classList.remove('active'));
         document.querySelectorAll('.verse-row.highlighted').forEach(r => r.classList.remove('highlighted'));
-        row.classList.toggle('highlighted');
+        row.classList.add('active');
+        row.classList.add('highlighted');
         history.replaceState(null, '', `#${book.slug}-${chNum}-${v.verse}`);
       });
+
+      // Guardar versículo
+      actions.querySelector('.verse-btn-save').addEventListener('click', async (e) => {
+        e.stopPropagation();
+        if (!window.AuthModule || !window.AuthModule.isLoggedIn()) {
+          window.location.href = `login.html?redirect=${encodeURIComponent(location.href)}`;
+          return;
+        }
+        const btn = e.currentTarget;
+        try {
+          const user = window.AuthModule.currentUser();
+          const ref  = `${book.name} ${chNum}:${v.verse}`;
+          await window.SupabaseClient.client.from('saved_verses').upsert({
+            user_id:   user.id,
+            book_slug: book.slug,
+            chapter:   chNum,
+            verse:     v.verse,
+            verse_text: v.text,
+            verse_ref:  ref
+          }, { onConflict: 'user_id,book_slug,chapter,verse' });
+          btn.textContent = '✅';
+          setTimeout(() => { btn.textContent = '🔖'; }, 2000);
+        } catch(_) {
+          btn.textContent = '❌';
+          setTimeout(() => { btn.textContent = '🔖'; }, 2000);
+        }
+      });
+
+      // Resaltar versículo
+      const palette = actions.querySelector('.highlight-palette');
+      actions.querySelector('.verse-btn-highlight').addEventListener('click', (e) => {
+        e.stopPropagation();
+        palette.hidden = !palette.hidden;
+      });
+      actions.querySelectorAll('.hl-color').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const color = btn.dataset.color;
+          if (!window.BibleHighlights) return;
+          // Quitar colores previos
+          ['yellow','green','blue','pink','purple'].forEach(c => row.classList.remove('highlight-' + c));
+          if (color === 'none') {
+            await window.BibleHighlights.removeHighlight(book.slug, chNum, v.verse);
+          } else {
+            row.classList.add('highlight-' + color);
+            await window.BibleHighlights.setHighlight(book.slug, chNum, v.verse, color);
+          }
+          palette.hidden = true;
+        });
+      });
+
+      // Compartir versículo
+      actions.querySelector('.verse-btn-share').addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const ref  = `${book.name} ${chNum}:${v.verse}`;
+        const url  = `${location.origin}${location.pathname}#${book.slug}-${chNum}-${v.verse}`;
+        const text = `"${v.text}" — ${ref}`;
+        if (navigator.share) {
+          navigator.share({ title: ref, text, url }).catch(() => {});
+        } else {
+          navigator.clipboard.writeText(`${text}\n${url}`).then(() => {
+            showToast('¡Copiado al portapapeles!');
+          }).catch(() => {});
+        }
+      });
+
       container.appendChild(row);
     });
 
@@ -235,6 +335,20 @@
 
   function escapeRegex(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function showToast(msg) {
+    let toast = document.getElementById('bible-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'bible-toast';
+      toast.className = 'bible-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add('visible');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => toast.classList.remove('visible'), 2500);
   }
 
   document.addEventListener('DOMContentLoaded', init);

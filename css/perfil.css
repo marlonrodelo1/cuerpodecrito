@@ -1,0 +1,215 @@
+/* perfil.css — Estilos para la página de perfil de usuario */
+
+.profile-page {
+  padding-top: calc(var(--nav-height) + var(--sp-8));
+  padding-bottom: var(--sp-16);
+  min-height: 100vh;
+}
+
+/* ─── Header de perfil ───────────────────────────────────────── */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-8);
+  margin-bottom: var(--sp-8);
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--color-accent);
+  background: var(--color-bg-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  overflow: hidden;
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.profile-name {
+  font-size: var(--text-xl);
+  font-family: var(--font-serif);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.profile-name-input {
+  display: none;
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  font-family: var(--font-ui);
+  padding: var(--sp-2) var(--sp-3);
+  outline: none;
+}
+
+.profile-email {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--sp-1);
+}
+
+.btn-avatar-upload {
+  margin-top: var(--sp-3);
+  font-size: var(--text-xs);
+}
+
+/* ─── Secciones ──────────────────────────────────────────────── */
+.profile-section {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-6);
+  margin-bottom: var(--sp-6);
+}
+
+.profile-section-title {
+  font-size: var(--text-lg);
+  font-family: var(--font-serif);
+  color: var(--color-accent);
+  margin-bottom: var(--sp-5);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ─── Items guardados ────────────────────────────────────────── */
+.profile-saved-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  border-radius: var(--radius-md);
+  transition: background var(--t-fast);
+}
+
+.profile-saved-item:hover {
+  background: var(--color-bg-raised);
+}
+
+.profile-saved-item + .profile-saved-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.profile-saved-info {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-saved-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.profile-saved-title {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  margin-bottom: var(--sp-1);
+}
+
+.profile-saved-date,
+.profile-saved-verse-text {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.profile-saved-verse-text {
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.profile-saved-actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+.profile-loading,
+.profile-empty {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+  padding: var(--sp-6);
+}
+
+/* ─── Botones de tamaño pequeño ──────────────────────────────── */
+.btn-sm {
+  font-size: var(--text-xs);
+  padding: var(--sp-1) var(--sp-3);
+}
+
+.btn-danger-outline {
+  background: transparent;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+.btn-danger-outline:hover {
+  background: rgba(239, 83, 80, 0.12);
+}
+
+/* ─── Sección de cuenta ──────────────────────────────────────── */
+.profile-logout-section {
+  text-align: center;
+  padding: var(--sp-4);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-name-row {
+    justify-content: center;
+  }
+  .profile-saved-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-saved-actions {
+    align-self: flex-end;
+  }
+}

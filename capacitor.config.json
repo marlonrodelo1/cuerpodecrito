@@ -14,7 +14,9 @@
       "google.com",
       "maps.apple.com",
       "www.rkmradio.com",
-      "rkmradio.com"
+      "rkmradio.com",
+      "*.supabase.co",
+      "cdn.jsdelivr.net"
     ]
   },
   "plugins": {

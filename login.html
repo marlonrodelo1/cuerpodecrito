@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu" role="navigation" aria-label="Menú principal">
+        <a href="index.html"       class="nav-link">Inicio</a>
+        <a href="biblia.html"      class="nav-link">Biblia</a>
+        <a href="devocional.html"  class="nav-link">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-haspopup="true">
+            Programas <span class="nav-dropdown-arrow">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="programas/reparto-alimentos.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos
+            </a>
+            <a href="programas/radio-solidaria.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">📻</span>Radio Solidaria
+            </a>
+            <a href="programas/pan-apadrinamiento.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento
+            </a>
+            <a href="programas/rastro.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda
+            </a>
+          </div>
+        </div>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="biblia.html"     class="nav-mobile-link">📖 Biblia</a>
+    <a href="devocional.html" class="nav-mobile-link">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="programas/reparto-alimentos.html"  class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="programas/radio-solidaria.html"    class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="programas/pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="programas/rastro.html"             class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="contacto.html"   class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <main id="main" class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">✝</div>
+      <h1 class="auth-title">Bienvenido</h1>
+      <p class="auth-subtitle">Accede a tu cuenta para guardar versículos y devocionales</p>
+
+      <!-- Tabs -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true"  aria-controls="panel-login">Iniciar sesión</button>
+        <button class="auth-tab"        id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register">Crear cuenta</button>
+      </div>
+
+      <!-- Error / éxito -->
+      <div class="auth-message" id="auth-error"   role="alert" style="display:none"></div>
+      <div class="auth-message auth-success" id="auth-ok" role="status" style="display:none"></div>
+
+      <!-- Panel login -->
+      <div id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+        <form id="form-login" class="auth-form" novalidate>
+          <div class="auth-field">
+            <label for="login-email">Correo electrónico</label>
+            <input type="email" id="login-email" name="email" autocomplete="email" required placeholder="tu@correo.com">
+          </div>
+          <div class="auth-field">
+            <label for="login-password">Contraseña</label>
+            <input type="password" id="login-password" name="password" autocomplete="current-password" required placeholder="••••••••">
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit" id="btn-login">Iniciar sesión</button>
+        </form>
+      </div>
+
+      <!-- Panel registro -->
+      <div id="panel-register" role="tabpanel" aria-labelledby="tab-register" style="display:none">
+        <form id="form-register" class="auth-form" novalidate>
+          <div class="auth-field">
+            <label for="reg-name">Tu nombre</label>
+            <input type="text" id="reg-name" name="name" autocomplete="name" required placeholder="María García">
+          </div>
+          <div class="auth-field">
+            <label for="reg-email">Correo electrónico</label>
+            <input type="email" id="reg-email" name="email" autocomplete="email" required placeholder="tu@correo.com">
+          </div>
+          <div class="auth-field">
+            <label for="reg-password">Contraseña</label>
+            <input type="password" id="reg-password" name="password" autocomplete="new-password" required placeholder="Mínimo 6 caracteres">
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit" id="btn-register">Crear cuenta</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/nav.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="js/supabase-client.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/radio-mini.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Si ya hay sesión, redirigir
+      if (window.AuthModule && window.AuthModule.isLoggedIn()) {
+        const redirect = new URLSearchParams(location.search).get('redirect') || 'perfil.html';
+        window.location.href = redirect;
+        return;
+      }
+
+      const tabLogin    = document.getElementById('tab-login');
+      const tabRegister = document.getElementById('tab-register');
+      const panelLogin  = document.getElementById('panel-login');
+      const panelReg    = document.getElementById('panel-register');
+      const errorEl     = document.getElementById('auth-error');
+      const okEl        = document.getElementById('auth-ok');
+
+      // Tabs
+      tabLogin.addEventListener('click', () => switchTab('login'));
+      tabRegister.addEventListener('click', () => switchTab('register'));
+
+      function switchTab(tab) {
+        tabLogin.classList.toggle('active', tab === 'login');
+        tabRegister.classList.toggle('active', tab === 'register');
+        panelLogin.style.display = tab === 'login' ? '' : 'none';
+        panelReg.style.display   = tab === 'register' ? '' : 'none';
+        hideMessages();
+      }
+
+      function showError(msg) {
+        errorEl.textContent = msg;
+        errorEl.style.display = '';
+        okEl.style.display = 'none';
+      }
+      function showOk(msg) {
+        okEl.textContent = msg;
+        okEl.style.display = '';
+        errorEl.style.display = 'none';
+      }
+      function hideMessages() {
+        errorEl.style.display = 'none';
+        okEl.style.display = 'none';
+      }
+      function setLoading(btn, loading) {
+        btn.disabled = loading;
+        btn.textContent = loading ? 'Cargando…' : (btn.id === 'btn-login' ? 'Iniciar sesión' : 'Crear cuenta');
+      }
+
+      // Login
+      document.getElementById('form-login').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn   = document.getElementById('btn-login');
+        const email = document.getElementById('login-email').value.trim();
+        const pass  = document.getElementById('login-password').value;
+        hideMessages();
+        setLoading(btn, true);
+        try {
+          await window.AuthModule.signIn(email, pass);
+          // Migrar highlights locales
+          if (window.BibleHighlights) await window.BibleHighlights.migrateLocalToSupabase();
+          const redirect = new URLSearchParams(location.search).get('redirect') || 'perfil.html';
+          window.location.href = redirect;
+        } catch (err) {
+          showError(err.message || 'Error al iniciar sesión');
+          setLoading(btn, false);
+        }
+      });
+
+      // Registro
+      document.getElementById('form-register').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn   = document.getElementById('btn-register');
+        const name  = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const pass  = document.getElementById('reg-password').value;
+        hideMessages();
+        if (pass.length < 6) { showError('La contraseña debe tener al menos 6 caracteres'); return; }
+        setLoading(btn, true);
+        try {
+          await window.AuthModule.signUp(email, pass, name);
+          showOk('¡Cuenta creada! Revisa tu correo para confirmar (o inicia sesión directamente).');
+          setLoading(btn, false);
+        } catch (err) {
+          showError(err.message || 'Error al crear la cuenta');
+          setLoading(btn, false);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

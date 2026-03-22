@@ -243,3 +243,94 @@
   .bible-chapter-content { padding: var(--sp-4); }
   .bible-toolbar { flex-direction: column; align-items: flex-start; }
 }
+
+/* ─── Verse Actions ──────────────────────────────────────────── */
+.verse-actions {
+  display: none;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.verse-row:hover .verse-actions,
+.verse-row.active .verse-actions {
+  display: flex;
+}
+
+.verse-btn {
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  padding: var(--sp-1) var(--sp-2);
+  transition: background var(--t-fast), color var(--t-fast);
+  line-height: 1;
+}
+
+.verse-btn:hover {
+  background: var(--color-accent-dim);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Paleta de colores de resaltado */
+.highlight-palette {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-2) var(--sp-3);
+  box-shadow: var(--shadow-md);
+}
+
+.hl-color {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  transition: transform var(--t-fast);
+}
+.hl-color:hover { transform: scale(1.3); }
+
+.hl-remove {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* ─── Highlight Colors ───────────────────────────────────────── */
+.verse-row.highlight-yellow { background: rgba(255, 213, 79, 0.15);  border-left: 3px solid #ffd54f; padding-left: var(--sp-3); }
+.verse-row.highlight-green  { background: rgba(102, 187, 106, 0.15); border-left: 3px solid #66bb6a; padding-left: var(--sp-3); }
+.verse-row.highlight-blue   { background: rgba(79, 195, 247, 0.15);  border-left: 3px solid #4fc3f7; padding-left: var(--sp-3); }
+.verse-row.highlight-pink   { background: rgba(240, 98, 146, 0.15);  border-left: 3px solid #f06292; padding-left: var(--sp-3); }
+.verse-row.highlight-purple { background: rgba(186, 104, 200, 0.15); border-left: 3px solid #ba68c8; padding-left: var(--sp-3); }
+
+/* ─── Toast ──────────────────────────────────────────────────── */
+.bible-toast {
+  position: fixed;
+  bottom: var(--sp-6);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  padding: var(--sp-3) var(--sp-6);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: opacity var(--t-normal), transform var(--t-normal);
+  pointer-events: none;
+  z-index: 9999;
+}
+.bible-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

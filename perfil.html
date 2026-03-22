@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+      <nav class="nav-menu" role="navigation" aria-label="Menú principal">
+        <a href="index.html"       class="nav-link">Inicio</a>
+        <a href="biblia.html"      class="nav-link">Biblia</a>
+        <a href="devocional.html"  class="nav-link">Devocional</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-haspopup="true">
+            Programas <span class="nav-dropdown-arrow">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="programas/reparto-alimentos.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos
+            </a>
+            <a href="programas/radio-solidaria.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">📻</span>Radio Solidaria
+            </a>
+            <a href="programas/pan-apadrinamiento.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento
+            </a>
+            <a href="programas/rastro.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda
+            </a>
+          </div>
+        </div>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="index.html"      class="nav-mobile-link">✝ Inicio</a>
+    <a href="biblia.html"     class="nav-mobile-link">📖 Biblia</a>
+    <a href="devocional.html" class="nav-mobile-link">🕊️ Devocional</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="programas/reparto-alimentos.html"  class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="programas/radio-solidaria.html"    class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="programas/pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="programas/rastro.html"             class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="contacto.html"   class="nav-mobile-link">📍 Contacto</a>
+  </nav>
+
+  <main id="profile-page" class="container profile-page">
+
+    <!-- Header del perfil -->
+    <section class="profile-header" aria-label="Información del perfil">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar" id="profile-avatar"></div>
+        <input type="file" id="avatar-input" accept="image/*" style="display:none" aria-label="Subir foto">
+      </div>
+      <div class="profile-user-info">
+        <div class="profile-name-row">
+          <h1 class="profile-name" id="profile-name">Cargando…</h1>
+          <button class="btn btn-sm btn-outline" id="btn-edit-name" aria-label="Editar nombre">✏️ Editar</button>
+          <input type="text" class="profile-name-input" id="profile-name-input" placeholder="Tu nombre" aria-label="Nombre">
+          <button class="btn btn-sm btn-primary" id="btn-save-name" style="display:none">Guardar</button>
+        </div>
+        <p class="profile-email" id="profile-email"></p>
+        <button class="btn btn-sm btn-outline btn-avatar-upload" id="btn-upload-avatar"
+          onclick="document.getElementById('avatar-input').click()">
+          📷 Cambiar foto
+        </button>
+      </div>
+    </section>
+
+    <!-- Devocionales guardados -->
+    <section class="profile-section" aria-label="Devocionales guardados">
+      <h2 class="profile-section-title">🕊️ Devocionales guardados</h2>
+      <div id="saved-devotionals-list">
+        <p class="profile-loading">Cargando…</p>
+      </div>
+    </section>
+
+    <!-- Versículos guardados -->
+    <section class="profile-section" aria-label="Versículos guardados">
+      <h2 class="profile-section-title">📖 Versículos guardados</h2>
+      <div id="saved-verses-list">
+        <p class="profile-loading">Cargando…</p>
+      </div>
+    </section>
+
+    <!-- Cuenta -->
+    <section class="profile-section profile-logout-section" aria-label="Cuenta">
+      <h2 class="profile-section-title">⚙️ Cuenta</h2>
+      <button class="btn btn-danger-outline" id="btn-logout">🚪 Cerrar sesión</button>
+    </section>
+
+  </main>
+
+  <script src="js/nav.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="js/supabase-client.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/profile.js" defer></script>
+  <script src="js/auth-nav.js" defer></script>
+  <script src="js/radio-mini.js"></script>
+</body>
+</html>
