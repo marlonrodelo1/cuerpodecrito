@@ -2,4 +2,4 @@
 cmds = ["npm install --omit=dev"]
 
 [start]
-cmd = "npx http-server . -p ${PORT:-3000} -c-1 --cors"
+cmd = "node server.js"

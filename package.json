@@ -4,16 +4,16 @@
   "description": "Plataforma web de la Iglesia Cuerpo de Cristo en La Matanza de Acentejo",
   "private": true,
   "scripts": {
-    "cap:init":         "npx cap init 'Cuerpo de Cristo' com.cuerpodecristo.matanza --web-dir .",
-    "cap:add:android":  "npx cap add android",
-    "cap:add:ios":      "npx cap add ios",
-    "build":            "node scripts/build-www.js",
-    "cap:sync":         "node scripts/build-www.js && npx cap sync",
+    "cap:init": "npx cap init 'Cuerpo de Cristo' com.cuerpodecristo.matanza --web-dir .",
+    "cap:add:android": "npx cap add android",
+    "cap:add:ios": "npx cap add ios",
+    "build": "node scripts/build-www.js",
+    "cap:sync": "node scripts/build-www.js && npx cap sync",
     "cap:open:android": "npx cap open android",
-    "cap:open:ios":     "npx cap open ios",
-    "start":            "npx http-server . -p 3000 -c-1 --cors",
-    "dev":              "live-server --port=3000 --open=index.html",
-    "serve":            "npx http-server . -p 8080 -c-1 --cors"
+    "cap:open:ios": "npx cap open ios",
+    "start": "node server.js",
+    "dev": "live-server --port=3000 --open=index.html",
+    "serve": "npx http-server . -p 8080 -c-1 --cors"
   },
   "dependencies": {
     "@capacitor/android": "^5.7.8",
@@ -22,7 +22,8 @@
     "@capacitor/core": "^5.7.8",
     "@capacitor/ios": "^5.7.8",
     "@capacitor/splash-screen": "^5.0.8",
-    "@capacitor/status-bar": "^5.0.8"
+    "@capacitor/status-bar": "^5.0.8",
+    "express": "^4.22.1"
   },
   "devDependencies": {
     "@capacitor/cli": "^5.7.8",

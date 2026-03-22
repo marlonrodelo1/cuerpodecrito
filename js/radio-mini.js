@@ -5,8 +5,10 @@
 (function RadioMini() {
   'use strict';
 
-  const STREAM_URL = 'http://www.rkmradio.com:8000/;stream.nsv';
-  const STATUS_URL = 'http://www.rkmradio.com:8000/status-json.xsl';
+  // En HTTPS usamos el proxy del servidor para evitar mixed content
+  const isSecure   = location.protocol === 'https:';
+  const STREAM_URL = isSecure ? '/radio-stream' : 'http://www.rkmradio.com:8000/;stream.nsv';
+  const STATUS_URL = isSecure ? '/radio-status' : 'http://www.rkmradio.com:8000/status-json.xsl';
 
   let audio      = null;
   let isPlaying  = false;

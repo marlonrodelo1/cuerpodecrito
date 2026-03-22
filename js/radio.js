@@ -1,10 +1,10 @@
 (function RadioModule() {
   'use strict';
 
-  // URL playlist SHOUTcast — se parsea para extraer la URL real del stream
+  // En HTTPS usamos el proxy del servidor para evitar mixed content
+  const isSecure   = location.protocol === 'https:';
+  const STREAM_URL = isSecure ? '/radio-stream' : 'http://www.rkmradio.com:8000/;stream.nsv';
   const PLS_URL    = 'http://www.rkmradio.com:8000/listen.pls?sid=10';
-  // Fallback directo si no se puede leer el PLS
-  const STREAM_URL = 'http://www.rkmradio.com:8000/;stream.nsv';
 
   let audio        = null;
   let audioCtx     = null;
@@ -19,6 +19,8 @@
   // ─── Parsear PLS y obtener URL del stream ─────────────────
   async function resolveStreamUrl() {
     if (resolvedUrl) return resolvedUrl;
+    // En HTTPS usamos directo el proxy (no PLS)
+    if (isSecure) { resolvedUrl = STREAM_URL; return resolvedUrl; }
     try {
       const res  = await fetch(PLS_URL, { cache: 'no-store' });
       const text = await res.text();
