@@ -115,8 +115,65 @@
   flex-wrap: wrap;
 }
 
+/* Imagen del devocional */
+.devo-image-wrap {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  max-height: 420px;
+}
+.devo-image {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Múltiples versículos */
+.devo-verses-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.devo-verse-block {
+  background: linear-gradient(135deg, rgba(79,195,247,0.08), rgba(79,195,247,0.03));
+  border: 1px solid rgba(79,195,247,0.25);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-7) var(--sp-8);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.devo-verse-block::before {
+  content: '"';
+  position: absolute;
+  top: -30px; left: var(--sp-4);
+  font-size: 10rem;
+  color: var(--color-accent);
+  opacity: 0.05;
+  font-family: var(--font-serif);
+  line-height: 1;
+}
+
+/* Link discreto al admin */
+.devo-admin-link {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  transition: opacity var(--t-fast);
+  text-decoration: none;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.devo-admin-link:hover { opacity: 1; color: var(--color-accent); }
+
 @media (max-width: 768px) {
   .devo-scripture-block { padding: var(--sp-6); }
+  .devo-verse-block     { padding: var(--sp-5); }
   .devo-scripture-text  { font-size: var(--text-lg); }
   .devo-body p          { font-size: var(--text-base); }
+  .devo-admin-link      { margin-left: 0; }
 }

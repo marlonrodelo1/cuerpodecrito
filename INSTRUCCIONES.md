@@ -52,6 +52,70 @@ npx cap open ios
 
 ---
 
+## Gestión de Devocionales (Admin)
+
+El panel de administración permite crear, editar y eliminar devocionales sin tocar código.
+
+### Acceso
+Abre en el navegador: `admin-devocional.html`
+PIN por defecto: **1234**
+(Se puede cambiar desde el mismo panel → sección "Cambiar PIN")
+
+### Estructura de un devocional
+| Campo | Descripción |
+|-------|-------------|
+| **Fecha** | Fecha para la que es el devocional (AAAA-MM-DD) |
+| **Título** | Ej: "Fe que mueve montañas" |
+| **Imagen** | URL de una foto (Imgur, Google Fotos, etc.) — opcional |
+| **Cuerpo** | El mensaje principal del devocional |
+| **Versículos** | Uno o varios versículos bíblicos (referencia + texto) |
+| **Oración** | Oración para cerrar el devocional |
+
+Los devocionales se guardan en el **almacenamiento local del navegador** (localStorage).
+Si no hay ninguno creado, se muestra un devocional del archivo `data/devotionals.json` como respaldo.
+
+---
+
+## Publicar en iOS y Android (Capacitor)
+
+La app está lista para empaquetar. El archivo `capacitor.config.json` ya está configurado con:
+- **App ID:** `com.cuerpodecristo.matanza`
+- **Nombre:** `Cuerpo de Cristo`
+
+### Requisitos previos
+- Node.js 18+ instalado
+- Para Android: Android Studio instalado
+- Para iOS: Mac con Xcode instalado (solo en Mac)
+
+### Primera vez — instalar dependencias
+```bash
+cd Desktop/Cuerpodecristo
+npm install
+```
+
+### Pasos Android
+```bash
+npx cap add android       # solo la primera vez
+npx cap sync              # sincronizar cambios web → app
+npx cap open android      # abrir Android Studio
+# En Android Studio: Build → Generate Signed Bundle/APK → Android APK
+```
+
+### Pasos iOS (solo Mac)
+```bash
+npx cap add ios           # solo la primera vez
+npx cap sync
+npx cap open ios
+# En Xcode: Product → Archive → Distribute App → App Store Connect
+```
+
+### Cada vez que edites el código web
+```bash
+npx cap sync    # basta con esto para actualizar la app nativa
+```
+
+---
+
 ## Configuraciones pendientes
 
 ### 1. Radio Solidaria — URL del stream

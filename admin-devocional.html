@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Devocional | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <style>
+    /* ── Layout ── */
+    .admin-wrap {
+      min-height: 100vh;
+      padding-top: calc(var(--nav-height) + var(--sp-8));
+      padding-bottom: var(--sp-16);
+    }
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-8);
+    }
+
+    /* ── PIN screen ── */
+    #pin-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+    }
+    .pin-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--sp-10) var(--sp-12);
+      text-align: center;
+      max-width: 360px;
+      width: 100%;
+    }
+    .pin-card h2 { margin-bottom: var(--sp-2); }
+    .pin-card p  { color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--sp-6); }
+    .pin-input {
+      width: 100%;
+      text-align: center;
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      background: var(--color-bg);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-text);
+      padding: var(--sp-4);
+      margin-bottom: var(--sp-5);
+      outline: none;
+      transition: border-color var(--t-fast);
+    }
+    .pin-input:focus { border-color: var(--color-accent); }
+    .pin-error {
+      color: var(--color-error, #ef5350);
+      font-size: var(--text-sm);
+      margin-top: var(--sp-3);
+      min-height: 20px;
+    }
+
+    /* ── Devocional list ── */
+    .devo-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-8);
+    }
+    .devo-list-item {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-4) var(--sp-5);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      transition: border-color var(--t-fast);
+    }
+    .devo-list-item:hover { border-color: var(--color-accent); }
+    .devo-list-item.today { border-color: var(--color-accent); background: rgba(79,195,247,0.05); }
+    .devo-list-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      overflow: hidden;
+    }
+    .devo-list-thumb img { width:100%; height:100%; object-fit:cover; }
+    .devo-list-info { flex: 1; min-width: 0; }
+    .devo-list-date { font-size: var(--text-xs); color: var(--color-accent); font-weight: 700; }
+    .devo-list-title { font-weight: 700; font-size: var(--text-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .devo-list-verses { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .devo-list-actions { display: flex; gap: var(--sp-2); flex-shrink: 0; }
+    .btn-icon {
+      width: 36px; height: 36px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: all var(--t-fast);
+    }
+    .btn-icon:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .btn-icon.danger:hover { border-color: #ef5350; color: #ef5350; }
+    .empty-state {
+      text-align: center;
+      padding: var(--sp-12);
+      color: var(--color-text-muted);
+      background: var(--color-bg-surface);
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+
+    /* ── Form / Modal ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 200;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: var(--sp-6) var(--sp-4);
+      overflow-y: auto;
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 680px;
+      padding: var(--sp-8);
+    }
+    .modal-title {
+      font-size: var(--text-xl);
+      font-weight: 800;
+      margin-bottom: var(--sp-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ── Form fields ── */
+    .field { margin-bottom: var(--sp-5); }
+    .field label {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--sp-2);
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      padding: var(--sp-3) var(--sp-4);
+      outline: none;
+      transition: border-color var(--t-fast);
+    }
+    .field input:focus,
+    .field textarea:focus { border-color: var(--color-accent); }
+    .field textarea { min-height: 120px; resize: vertical; }
+
+    /* Image preview */
+    .img-preview-wrap {
+      margin-top: var(--sp-3);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px dashed var(--color-border);
+      max-height: 200px;
+      display: none;
+    }
+    .img-preview-wrap img { width: 100%; max-height: 200px; object-fit: cover; }
+
+    /* Verse rows */
+    .verse-row {
+      display: flex;
+      gap: var(--sp-3);
+      align-items: flex-start;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-3);
+      margin-bottom: var(--sp-3);
+    }
+    .verse-row-fields { flex: 1; display: flex; flex-direction: column; gap: var(--sp-2); }
+    .verse-row input,
+    .verse-row textarea {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      padding: var(--sp-2) var(--sp-3);
+      outline: none;
+      width: 100%;
+      transition: border-color var(--t-fast);
+    }
+    .verse-row input:focus,
+    .verse-row textarea:focus { border-color: var(--color-accent); }
+    .verse-row textarea { min-height: 64px; resize: vertical; }
+    .verse-ref-hint { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+    /* Save feedback */
+    .save-feedback {
+      display: none;
+      color: var(--color-success);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      padding: var(--sp-3) var(--sp-4);
+      background: rgba(102,187,106,0.1);
+      border: 1px solid rgba(102,187,106,0.3);
+      border-radius: var(--radius-md);
+      margin-top: var(--sp-4);
+    }
+
+    /* PIN change */
+    .settings-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5);
+      margin-top: var(--sp-8);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+    }
+    .settings-card label { font-size: var(--text-sm); color: var(--color-text-muted); font-weight: 700; }
+
+    @media (max-width: 600px) {
+      .modal-card { padding: var(--sp-5); }
+      .pin-card   { padding: var(--sp-8) var(--sp-6); }
+      .devo-list-title { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">Admin Devocional</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">← Volver al sitio</a>
+        <a href="devocional.html" class="nav-link">Ver Devocional</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PIN SCREEN -->
+  <div id="pin-screen">
+    <div class="pin-card">
+      <div style="font-size:3rem; margin-bottom:var(--sp-4);">🔐</div>
+      <h2>Área de Administración</h2>
+      <p>Introduce el PIN para gestionar los devocionales</p>
+      <input type="password" inputmode="numeric" maxlength="6" placeholder="••••"
+             class="pin-input" id="pin-input" autocomplete="off">
+      <button class="btn" onclick="checkPin()" style="width:100%;">Entrar</button>
+      <p class="pin-error" id="pin-error"></p>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL (oculto hasta PIN correcto) -->
+  <div id="admin-panel" style="display:none;">
+    <div class="admin-wrap">
+      <div class="container" style="max-width:800px;">
+
+        <div class="admin-header">
+          <div>
+            <span class="badge">🕊️ Devocionales</span>
+            <h1 style="margin-top:var(--sp-2);">Gestión de <span class="text-accent">Devocionales</span></h1>
+          </div>
+          <button class="btn" onclick="openForm(null)">+ Nuevo Devocional</button>
+        </div>
+
+        <div class="devo-list" id="devo-list"></div>
+
+        <!-- Ajustes PIN -->
+        <div class="settings-card">
+          <div style="flex:1;">
+            <label>Cambiar PIN de acceso</label>
+          </div>
+          <input type="password" inputmode="numeric" maxlength="6" placeholder="Nuevo PIN"
+                 id="new-pin-input" style="width:120px; background:var(--color-bg); border:1px solid var(--color-border); border-radius:var(--radius-md); color:var(--color-text); padding:var(--sp-2) var(--sp-3); font-size:var(--text-base); outline:none;">
+          <button class="btn btn-outline btn-sm" onclick="changePin()">Guardar PIN</button>
+          <span id="pin-change-msg" style="font-size:var(--text-xs); color:var(--color-success); display:none;">✓ PIN actualizado</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL FORM -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-title">
+        <span id="modal-title-text">Nuevo Devocional</span>
+        <button class="btn-icon" onclick="closeForm()" title="Cerrar">✕</button>
+      </div>
+
+      <form id="devo-form" onsubmit="return false;">
+        <input type="hidden" id="f-id">
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-4);">
+          <div class="field">
+            <label>Fecha del devocional *</label>
+            <input type="date" id="f-date" required>
+          </div>
+          <div class="field">
+            <label>Título *</label>
+            <input type="text" id="f-title" placeholder="Ej: Fe que mueve montañas" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Imagen (URL de la foto)</label>
+          <input type="url" id="f-image" placeholder="https://... o deja vacío para omitir"
+                 oninput="previewImage(this.value)">
+          <div class="img-preview-wrap" id="img-preview-wrap">
+            <img id="img-preview" alt="Vista previa">
+          </div>
+          <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--sp-2);">
+            Sube tu foto a <strong>Imgur</strong>, <strong>Google Fotos</strong> u otro servicio y pega el enlace directo.
+          </p>
+        </div>
+
+        <div class="field">
+          <label>Cuerpo del devocional *</label>
+          <textarea id="f-body" placeholder="Escribe aquí el mensaje del devocional..." required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Versículos bíblicos</label>
+          <div id="verses-container"></div>
+          <button type="button" class="btn btn-outline btn-sm" onclick="addVerseRow()">+ Añadir versículo</button>
+        </div>
+
+        <div class="field">
+          <label>Oración del día *</label>
+          <textarea id="f-prayer" placeholder="Oración para cerrar el devocional..." required></textarea>
+        </div>
+
+        <div style="display:flex; gap:var(--sp-3); flex-wrap:wrap; margin-top:var(--sp-2);">
+          <button type="button" class="btn" onclick="saveDevo()" style="flex:1;">💾 Guardar Devocional</button>
+          <button type="button" class="btn btn-outline" onclick="closeForm()">Cancelar</button>
+        </div>
+        <div class="save-feedback" id="save-feedback">✅ ¡Devocional guardado correctamente!</div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/devotional.js"></script>
+  <script>
+    const PIN_KEY     = 'cdc_admin_pin';
+    const DEFAULT_PIN = '1234';
+
+    // ── PIN ──────────────────────────────────────────────────
+    function getStoredPin() {
+      return localStorage.getItem(PIN_KEY) || DEFAULT_PIN;
+    }
+
+    function checkPin() {
+      const val = document.getElementById('pin-input').value.trim();
+      if (val === getStoredPin()) {
+        document.getElementById('pin-screen').style.display    = 'none';
+        document.getElementById('admin-panel').style.display   = '';
+        renderList();
+      } else {
+        document.getElementById('pin-error').textContent = 'PIN incorrecto. Inténtalo de nuevo.';
+        document.getElementById('pin-input').value = '';
+        document.getElementById('pin-input').focus();
+      }
+    }
+
+    document.getElementById('pin-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkPin();
+    });
+
+    function changePin() {
+      const val = document.getElementById('new-pin-input').value.trim();
+      if (val.length < 4) { alert('El PIN debe tener al menos 4 dígitos.'); return; }
+      localStorage.setItem(PIN_KEY, val);
+      const msg = document.getElementById('pin-change-msg');
+      msg.style.display = 'inline';
+      setTimeout(() => msg.style.display = 'none', 3000);
+      document.getElementById('new-pin-input').value = '';
+    }
+
+    // ── List ─────────────────────────────────────────────────
+    function renderList() {
+      const all  = window.DevotionalModule.getAll();
+      const today = window.DevotionalModule.getTodayKey();
+      const list  = document.getElementById('devo-list');
+
+      if (!all.length) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <div style="font-size:3rem; margin-bottom:var(--sp-4);">🕊️</div>
+            <p style="font-size:var(--text-lg); font-weight:700; margin-bottom:var(--sp-2);">Sin devocionales guardados</p>
+            <p>Pulsa <strong>"+ Nuevo Devocional"</strong> para crear el primero.</p>
+          </div>`;
+        return;
+      }
+
+      list.innerHTML = all.map(d => {
+        const isToday = d.date === today;
+        const verseCount = (d.verses || []).length;
+        const thumbHtml = d.image
+          ? `<div class="devo-list-thumb"><img src="${d.image}" alt="" onerror="this.parentElement.innerHTML='🕊️'"></div>`
+          : `<div class="devo-list-thumb">🕊️</div>`;
+        return `
+          <div class="devo-list-item${isToday ? ' today' : ''}" id="item-${d.id}">
+            ${thumbHtml}
+            <div class="devo-list-info">
+              <div class="devo-list-date">${formatDate(d.date)}${isToday ? ' — HOY' : ''}</div>
+              <div class="devo-list-title">${d.title}</div>
+              <div class="devo-list-verses">${verseCount} versículo${verseCount !== 1 ? 's' : ''}</div>
+            </div>
+            <div class="devo-list-actions">
+              <button class="btn-icon" onclick="openForm('${d.id}')" title="Editar">✏️</button>
+              <button class="btn-icon danger" onclick="confirmDelete('${d.id}', '${escapeHtml(d.title)}')" title="Eliminar">🗑️</button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T12:00:00');
+      return d.toLocaleDateString('es-ES', { day:'numeric', month:'long', year:'numeric' });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+    }
+
+    function confirmDelete(id, title) {
+      if (confirm(`¿Eliminar el devocional "${title}"?\n\nEsta acción no se puede deshacer.`)) {
+        window.DevotionalModule.deleteOne(id);
+        renderList();
+      }
+    }
+
+    // ── Form ─────────────────────────────────────────────────
+    function openForm(id) {
+      const modal   = document.getElementById('modal-overlay');
+      const titleEl = document.getElementById('modal-title-text');
+
+      document.getElementById('save-feedback').style.display = 'none';
+      document.getElementById('verses-container').innerHTML  = '';
+
+      if (id) {
+        const devo = window.DevotionalModule.getAll().find(d => d.id === id);
+        if (!devo) return;
+        titleEl.textContent                    = 'Editar Devocional';
+        document.getElementById('f-id').value     = devo.id;
+        document.getElementById('f-date').value   = devo.date;
+        document.getElementById('f-title').value  = devo.title;
+        document.getElementById('f-image').value  = devo.image || '';
+        document.getElementById('f-body').value   = devo.body;
+        document.getElementById('f-prayer').value = devo.prayer;
+        previewImage(devo.image || '');
+        (devo.verses || []).forEach(v => addVerseRow(v));
+      } else {
+        titleEl.textContent = 'Nuevo Devocional';
+        document.getElementById('f-id').value     = '';
+        document.getElementById('f-date').value   = window.DevotionalModule.getTodayKey();
+        document.getElementById('f-title').value  = '';
+        document.getElementById('f-image').value  = '';
+        document.getElementById('f-body').value   = '';
+        document.getElementById('f-prayer').value = '';
+        previewImage('');
+        addVerseRow();
+      }
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeForm() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Close on backdrop click
+    document.getElementById('modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeForm();
+    });
+
+    // ── Verse rows ────────────────────────────────────────────
+    function addVerseRow(verse) {
+      const container = document.getElementById('verses-container');
+      const row = document.createElement('div');
+      row.className = 'verse-row';
+      row.innerHTML = `
+        <div class="verse-row-fields">
+          <input type="text" placeholder="Referencia (ej: Juan 3:16)"
+                 value="${verse ? escapeHtml(verse.ref) : ''}" class="v-ref">
+          <textarea placeholder="Texto del versículo..."
+                    class="v-text">${verse ? verse.text : ''}</textarea>
+        </div>
+        <button type="button" class="btn-icon danger" onclick="this.parentElement.remove()" title="Eliminar versículo">✕</button>
+      `;
+      container.appendChild(row);
+    }
+
+    // ── Image preview ─────────────────────────────────────────
+    function previewImage(url) {
+      const wrap = document.getElementById('img-preview-wrap');
+      const img  = document.getElementById('img-preview');
+      if (url && url.trim()) {
+        img.src            = url.trim();
+        wrap.style.display = 'block';
+        img.onerror        = () => wrap.style.display = 'none';
+      } else {
+        wrap.style.display = 'none';
+      }
+    }
+
+    // ── Save ─────────────────────────────────────────────────
+    function saveDevo() {
+      const id     = document.getElementById('f-id').value;
+      const date   = document.getElementById('f-date').value.trim();
+      const title  = document.getElementById('f-title').value.trim();
+      const image  = document.getElementById('f-image').value.trim();
+      const body   = document.getElementById('f-body').value.trim();
+      const prayer = document.getElementById('f-prayer').value.trim();
+
+      if (!date || !title || !body || !prayer) {
+        alert('Por favor completa los campos obligatorios: fecha, título, cuerpo y oración.');
+        return;
+      }
+
+      const verses = Array.from(document.querySelectorAll('.verse-row')).map(row => ({
+        ref:  row.querySelector('.v-ref').value.trim(),
+        text: row.querySelector('.v-text').value.trim()
+      })).filter(v => v.ref && v.text);
+
+      const devo = {
+        id:         id || window.DevotionalModule.generateId(),
+        date,
+        title,
+        image,
+        body,
+        verses,
+        prayer,
+        created_at: id ? undefined : new Date().toISOString()
+      };
+      if (!id) devo.created_at = new Date().toISOString();
+
+      window.DevotionalModule.saveOne(devo);
+
+      const fb = document.getElementById('save-feedback');
+      fb.style.display = 'block';
+      setTimeout(() => { closeForm(); renderList(); }, 1200);
+    }
+  </script>
+</body>
+</html>
