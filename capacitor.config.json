@@ -1,8 +1,7 @@
 {
   "appId": "com.cuerpodecristo.matanza",
   "appName": "Cuerpo de Cristo",
-  "webDir": ".",
-  "bundledWebRuntime": false,
+  "webDir": "www",
   "server": {
     "androidScheme": "https",
     "allowNavigation": [
