@@ -11,6 +11,7 @@
     "cap:sync":         "node scripts/build-www.js && npx cap sync",
     "cap:open:android": "npx cap open android",
     "cap:open:ios":     "npx cap open ios",
+    "start":            "npx http-server . -p 8080 -c-1 --cors",
     "dev":              "live-server --port=3000 --open=index.html",
     "serve":            "npx http-server . -p 8080 -c-1 --cors"
   },
