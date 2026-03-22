@@ -10,6 +10,92 @@
   <link rel="stylesheet" href="../css/nav.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/pan.css">
+  <style>
+    /* ── Acordeón de tabs ── */
+    .pan-tabs { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; }
+    .pan-tab-btn {
+      width: 100%; text-align: left; background: var(--color-bg-surface);
+      border: none; border-bottom: 1px solid var(--color-border);
+      padding: var(--sp-5) var(--sp-6); cursor: pointer; display: flex;
+      align-items: center; justify-content: space-between; gap: var(--sp-4);
+      font-size: var(--text-lg); font-weight: 700; color: var(--color-text);
+      transition: background var(--t-fast);
+    }
+    .pan-tab-btn:last-of-type { border-bottom: none; }
+    .pan-tab-btn:hover { background: rgba(240,98,146,0.05); }
+    .pan-tab-btn.open  { background: rgba(240,98,146,0.08); color: #f06292; border-left: 3px solid #f06292; }
+    .pan-tab-arrow { font-size: 0.8rem; transition: transform 0.25s; flex-shrink:0; }
+    .pan-tab-btn.open .pan-tab-arrow { transform: rotate(180deg); }
+    .pan-tab-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s;
+      background: var(--color-bg);
+      font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.85;
+      padding: 0 var(--sp-6);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .pan-tab-content.open { max-height: 600px; padding: var(--sp-6) var(--sp-6); }
+    .pan-tab-content:last-child { border-bottom: none; }
+
+    /* ── Objetivos ── */
+    .objetivo-card {
+      display: flex; gap: var(--sp-5); align-items: flex-start;
+      background: var(--color-bg-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl); padding: var(--sp-6);
+      transition: border-color var(--t-fast);
+    }
+    .objetivo-card:hover { border-color: #f06292; }
+    .objetivo-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, #e91e63, #f06292);
+      color: white; font-weight: 900; font-size: var(--text-lg);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Cards de acceso a niños ── */
+    .pan-access-card {
+      background: var(--color-bg-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl); overflow: hidden;
+      transition: all var(--t-fast); text-decoration: none;
+      display: flex; flex-direction: column;
+    }
+    .pan-access-card:hover { border-color: #f06292; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(240,98,146,0.15); }
+    .pan-access-img {
+      width: 100%; height: 160px; background: linear-gradient(135deg, #1a0510, #200818);
+      display: flex; align-items: center; justify-content: center; font-size: 4rem;
+    }
+    .pan-access-body { padding: var(--sp-5); flex: 1; }
+    .pan-access-title { font-weight: 800; font-size: var(--text-lg); color: var(--color-text); margin-bottom: var(--sp-2); }
+    .pan-access-desc  { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+    .pan-access-link  { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-4) var(--sp-5); color: #f06292; font-weight: 700; font-size: var(--text-sm); border-top: 1px solid var(--color-border); }
+
+    /* ── CTA grande ── */
+    .pan-cta-block {
+      background: linear-gradient(135deg, #1a0510, #200a18, #0a1020);
+      border: 1px solid rgba(240,98,146,0.3);
+      border-radius: var(--radius-xl); padding: var(--sp-12) var(--sp-8);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .pan-cta-block::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(240,98,146,0.08) 0%, transparent 70%);
+    }
+
+    /* ── Revista ── */
+    .revista-card {
+      display: flex; align-items: center; gap: var(--sp-6);
+      background: var(--color-bg-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl); padding: var(--sp-6) var(--sp-8);
+      flex-wrap: wrap;
+    }
+    .revista-icon {
+      width: 72px; height: 72px; border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #e91e63, #f06292);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; flex-shrink: 0;
+    }
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -57,29 +143,30 @@
 
   <main id="main">
 
-    <!-- HERO -->
+    <!-- ── HERO ───────────────────────────────────────────── -->
     <section class="pan-hero">
       <div class="container pan-hero-inner">
         <div class="pan-hero-content anim-fade-up">
-          <span class="badge">⭐ Programa Especial</span>
+          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">⭐ Programa P.A.N.</span>
           <h1 class="pan-hero-title">
-            <span class="text-accent">PAN</span><br>
-            Apadrina un <span style="color:#f06292">Niño</span>
+            ¿Quieres hacer un regalo que
+            <span style="color:#f06292;">cambie una vida?</span>
           </h1>
           <p class="pan-hero-subtitle">
-            Con tan solo una pequeña contribución mensual, puedes cambiar para siempre
-            la vida de un niño. Educación, alimentación, salud y amor.
+            El Programa de Apadrinamiento de Niños (P.A.N.) atiende a miles de niños
+            en todo el mundo, cubriendo por completo sus necesidades desde 1982.
+            <strong style="color:var(--color-text);">Tu ayuda siempre llega.</strong>
           </p>
           <div class="hero-actions">
-            <a href="#ninos" class="btn btn-lg" style="background:#e91e63; border-color:#e91e63;">
-              👧 Ver niños disponibles
+            <a href="https://pan.remar.org/sin-apadrinar/" target="_blank" rel="noopener"
+               class="btn btn-lg" style="background:#e91e63; border-color:#e91e63;">
+              👧 Apadrina un niño ahora
             </a>
-            <a href="#formulario" class="btn btn-lg btn-outline" style="border-color:#f06292; color:#f06292;">
-              ✍️ Registrarme como padrino
+            <a href="#que-es" class="btn btn-lg btn-outline" style="border-color:#f06292; color:#f06292;">
+              📖 Conocer el programa
             </a>
           </div>
 
-          <!-- Versículo -->
           <div style="margin-top:var(--sp-8); padding:var(--sp-4) var(--sp-6); background:rgba(240,98,146,0.08); border-left:3px solid #f06292; border-radius:0 var(--radius-md) var(--radius-md) 0;">
             <p style="font-family:var(--font-serif); font-style:italic; color:var(--color-text); font-size:var(--text-sm);">
               "Dejad a los niños venir a mí, y no se lo impidáis; porque de los tales es el reino de los cielos."
@@ -94,212 +181,246 @@
       </div>
     </section>
 
-    <!-- ESTADÍSTICAS -->
+    <!-- ── ESTADÍSTICAS ───────────────────────────────────── -->
     <section class="pan-stats">
       <div class="container">
         <div class="pan-stats-grid">
           <div class="anim-fade-up anim-delay-1">
-            <span class="pan-stat-num" data-count="45">0</span>
-            <span class="pan-stat-label">Niños apadrinados actualmente</span>
+            <span class="pan-stat-num">1982</span>
+            <span class="pan-stat-label">Año de fundación del programa</span>
           </div>
           <div class="anim-fade-up anim-delay-2">
-            <span class="pan-stat-num" data-count="87">0</span>
-            <span class="pan-stat-label">Padrinos y madrinas comprometidos</span>
+            <span class="pan-stat-num">+40</span>
+            <span class="pan-stat-label">Años cambiando vidas</span>
           </div>
           <div class="anim-fade-up anim-delay-3">
-            <span class="pan-stat-num" data-count="8">0</span>
-            <span class="pan-stat-label">Años del programa PAN</span>
+            <span class="pan-stat-num">🌍</span>
+            <span class="pan-stat-label">Presencia en varios países del mundo</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CÓMO FUNCIONA -->
-    <section class="section pan-how" id="como-funciona">
+    <!-- ── ¿QUÉ ES PAN? + ACORDEÓN ─────────────────────────── -->
+    <section class="section pan-how" id="que-es">
+      <div class="container" style="max-width:800px;">
+        <div class="text-center">
+          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">📖 El Programa</span>
+          <h2 class="section-title" style="margin-top:var(--sp-4);">Todo sobre <span style="color:#f06292">P.A.N.</span></h2>
+          <div class="divider" style="background:#f06292;"></div>
+          <p style="color:var(--color-text-muted); margin-top:var(--sp-4); font-size:var(--text-lg); line-height:1.8;">
+            P.A.N. programa de apadrinamiento de niños. El Programa P.A.N atiende a miles de niños
+            en todo el mundo a los que cubre por completo sus necesidades.
+          </p>
+        </div>
+
+        <div class="pan-tabs" style="margin-top:var(--sp-10);">
+
+          <!-- Tab 1 -->
+          <button class="pan-tab-btn open" onclick="toggleTab(this)">
+            <span>❓ ¿Qué es P.A.N.?</span>
+            <span class="pan-tab-arrow">▼</span>
+          </button>
+          <div class="pan-tab-content open">
+            <p>
+              Es un programa de Apadrinamiento de Niños que lleva funcionando desde el año <strong>1982</strong>.
+              En sus comienzos, con programas de actuación a la infancia, nos dimos cuenta de que lo primero
+              que necesitaban los niños era <em>pan</em> — podíamos darles todo nuestro cariño pero no lo recibirían
+              si antes no llenábamos sus desnutridos estómagos, y para eso hacían falta muchos recursos.
+            </p>
+            <p style="margin-top:var(--sp-4);">
+              La respuesta inmediata fue enviar juntamente con obreros toda la ayuda material posible:
+              alimentos, ropa y materiales a los diferentes países. Un día consideramos que también otros
+              podrían ser partícipes de compartir sus medios con los más necesitados,
+              y así nació <strong>P.A.N. — Programa de Apadrinamiento de Niños</strong>.
+            </p>
+          </div>
+
+          <!-- Tab 2 -->
+          <button class="pan-tab-btn" onclick="toggleTab(this)">
+            <span>⚙️ ¿Cómo funciona?</span>
+            <span class="pan-tab-arrow">▼</span>
+          </button>
+          <div class="pan-tab-content">
+            <p>
+              Para llevar a cabo este programa se cuenta con el trabajo conjunto de los <strong>voluntarios
+              en cada país</strong> donde hay casas-hogares para niños, y el personal de Remar España.
+            </p>
+            <p style="margin-top:var(--sp-4);">
+              En estos hogares ingresan niños abandonados, hijos de madres solteras, enfermos, huérfanos
+              y niños que preventivamente deben vivir separados de sus padres por circunstancias de
+              excepcional emergencia.
+            </p>
+            <p style="margin-top:var(--sp-4);">
+              Muchos de estos hogares son conducidos por matrimonios que, gracias a su vida de renuncia,
+              consiguen un ambiente familiar que suple las carencias emotivas y afectivas. Una vez ubicado
+              el menor, mediante seguimiento personalizado se le integra en el plano educativo
+              y en los restantes programas del centro.
+            </p>
+          </div>
+
+          <!-- Tab 3 -->
+          <button class="pan-tab-btn" onclick="toggleTab(this)">
+            <span>🎯 Nuestros Objetivos</span>
+            <span class="pan-tab-arrow">▼</span>
+          </button>
+          <div class="pan-tab-content">
+            <div style="display:flex; flex-direction:column; gap:var(--sp-5); margin-top:var(--sp-2);">
+              <div style="display:flex; gap:var(--sp-4); align-items:flex-start;">
+                <span style="color:#f06292; font-weight:900; font-size:var(--text-xl); flex-shrink:0;">1.</span>
+                <p>Conseguir más medios económicos para que la ayuda llegue a <strong>más niños y más países</strong> con gran necesidad.</p>
+              </div>
+              <div style="display:flex; gap:var(--sp-4); align-items:flex-start;">
+                <span style="color:#f06292; font-weight:900; font-size:var(--text-xl); flex-shrink:0;">2.</span>
+                <p>Construir un <strong>puente de contacto</strong> entre padrino y ahijado que trascienda la distancia,
+                  fortaleciendo el amor y la autoestima de ambos.</p>
+              </div>
+              <div style="display:flex; gap:var(--sp-4); align-items:flex-start;">
+                <span style="color:#f06292; font-weight:900; font-size:var(--text-xl); flex-shrink:0;">3.</span>
+                <p>Proporcionar a cada niño la base para su <strong>autonomía futura</strong> — sin desarraigarle de
+                  su cultura — mediante apoyo económico, material y moral, para que pueda iniciar
+                  sus estudios, mejorar su alimentación y recibir atención sanitaria dentro de su propia comunidad.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CÓMO PADRINAR: 3 PASOS ────────────────────────── -->
+    <section class="section" style="background: linear-gradient(180deg, #0a0a0a, var(--color-bg));">
       <div class="container">
         <div class="text-center">
-          <span class="badge">🤔 Cómo funciona</span>
-          <h2 class="section-title" style="margin-top:var(--sp-4);">3 pasos para <span style="color:#f06292">cambiar una vida</span></h2>
+          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">🤔 Cómo funciona</span>
+          <h2 class="section-title" style="margin-top:var(--sp-4);">3 pasos para <span style="color:#f06292;">cambiar una vida</span></h2>
           <div class="divider" style="background:#f06292;"></div>
         </div>
         <div class="pan-steps">
           <div class="pan-step anim-fade-up anim-delay-1">
             <div class="pan-step-num">1</div>
-            <h3>Elige un niño</h3>
-            <p>Conoce los perfiles de los niños disponibles y elige al que quieres apadrinar.</p>
+            <h3>Conoce a los niños</h3>
+            <p>Visita la página de P.A.N. y explora los perfiles de niños que esperan un padrino en todo el mundo.</p>
           </div>
           <div class="pan-step anim-fade-up anim-delay-2">
             <div class="pan-step-num">2</div>
-            <h3>Haz tu compromiso</h3>
-            <p>Completa el formulario y elige el nivel de apoyo mensual que puedes dar.</p>
+            <h3>Elige y apadrina</h3>
+            <p>Selecciona al niño que quieres apoyar y formaliza tu compromiso mensual de manera sencilla y segura.</p>
           </div>
           <div class="pan-step anim-fade-up anim-delay-3">
             <div class="pan-step-num">3</div>
-            <h3>Transforma una vida</h3>
-            <p>Recibirás actualizaciones sobre el progreso del niño que apadrinaste.</p>
+            <h3>Tu ayuda siempre llega</h3>
+            <p>Recibirás actualizaciones sobre el niño apadrinado. La distancia no impide que tu amor llegue.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- NIÑOS DISPONIBLES -->
-    <section class="section" id="ninos" style="background: linear-gradient(180deg, #0a0a0a, var(--color-bg));">
+    <!-- ── ACCESOS A REMAR PAN ─────────────────────────────── -->
+    <section class="section" id="ninos">
       <div class="container">
         <div class="text-center">
-          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">👧 Niños que esperan un padrino</span>
-          <h2 class="section-title" style="margin-top:var(--sp-4);">Estos niños <span style="color:#f06292">te necesitan</span></h2>
+          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">👧 Ellos te necesitan</span>
+          <h2 class="section-title" style="margin-top:var(--sp-4);">Encuentra <span style="color:#f06292;">tu niño</span></h2>
           <div class="divider" style="background:#f06292;"></div>
         </div>
-        <div class="children-grid" id="children-grid">
-          <!-- Se genera con JS -->
-          <div class="loader"><div class="loader-spinner"></div><span>Cargando...</span></div>
+        <div class="grid-3" style="margin-top:var(--sp-8);">
+
+          <a href="https://pan.remar.org/sin-apadrinar/" target="_blank" rel="noopener" class="pan-access-card">
+            <div class="pan-access-img">👧</div>
+            <div class="pan-access-body">
+              <div class="pan-access-title">Niños sin Apadrinar</div>
+              <div class="pan-access-desc">Conoce a los niños que esperan un padrino. Cada perfil incluye su historia, necesidades y país de origen.</div>
+            </div>
+            <div class="pan-access-link">Ver niños disponibles →</div>
+          </a>
+
+          <a href="https://pan.remar.org/hogares/" target="_blank" rel="noopener" class="pan-access-card">
+            <div class="pan-access-img">🏠</div>
+            <div class="pan-access-body">
+              <div class="pan-access-title">Hogares para Apadrinar</div>
+              <div class="pan-access-desc">También puedes apoyar directamente uno de los hogares donde viven los niños con familias voluntarias.</div>
+            </div>
+            <div class="pan-access-link">Ver hogares →</div>
+          </a>
+
+          <a href="https://pan.remar.org/beneficios-de-ser-un-padrino/" target="_blank" rel="noopener" class="pan-access-card">
+            <div class="pan-access-img">💖</div>
+            <div class="pan-access-body">
+              <div class="pan-access-title">Beneficios de ser Padrino</div>
+              <div class="pan-access-desc">Descubre todo lo que recibirás como padrino: actualizaciones, cartas del niño, fotos y mucho más.</div>
+            </div>
+            <div class="pan-access-link">Más información →</div>
+          </a>
+
         </div>
       </div>
     </section>
 
-    <!-- FORMULARIO -->
-    <section class="section pan-form-section" id="formulario">
+    <!-- ── CTA PRINCIPAL ──────────────────────────────────── -->
+    <section class="section-sm">
       <div class="container">
-        <div class="text-center" style="margin-bottom:var(--sp-10);">
-          <span class="badge" style="background:rgba(240,98,146,0.15); color:#f06292; border-color:rgba(240,98,146,0.3);">✍️ Registro de Padrino</span>
-          <h2 class="section-title" style="margin-top:var(--sp-4);">Quiero ser <span style="color:#f06292">Padrino / Madrina</span></h2>
-        </div>
-
-        <div class="pan-form-container">
-          <!-- Indicadores de paso -->
-          <div class="pan-form-steps">
-            <div class="step-indicator active" id="step-ind-1">
-              <div class="step-circle">1</div>
-              <span class="step-label">Niño</span>
+        <div class="pan-cta-block">
+          <div style="position:relative; z-index:1;">
+            <div style="font-size:4rem; margin-bottom:var(--sp-4);" aria-hidden="true">
+              <img src="../assets/characters/child.svg" alt="" style="width:140px; margin:0 auto;" class="anim-float">
             </div>
-            <div class="step-indicator" id="step-ind-2">
-              <div class="step-circle">2</div>
-              <span class="step-label">Tus datos</span>
-            </div>
-            <div class="step-indicator" id="step-ind-3">
-              <div class="step-circle">3</div>
-              <span class="step-label">Compromiso</span>
-            </div>
-          </div>
-
-          <!-- Paso 1: Elegir niño -->
-          <div class="form-step active" id="form-step-1">
-            <h3 style="margin-bottom:var(--sp-6); color:#f06292;">Paso 1: ¿A qué niño quieres apadrinar?</h3>
-            <div class="form-group">
-              <label class="form-label" for="select-child">Niño a apadrinar *</label>
-              <select id="select-child" class="input" required>
-                <option value="">— Selecciona un niño —</option>
-              </select>
-            </div>
-            <div id="selected-child-preview" style="display:none; padding:var(--sp-4); background:rgba(240,98,146,0.08); border-radius:var(--radius-md); border:1px solid rgba(240,98,146,0.3); margin-bottom:var(--sp-4);">
-              <p id="preview-text" style="font-size:var(--text-sm); color:var(--color-text-muted);"></p>
-            </div>
-            <div class="form-nav">
-              <span></span>
-              <button class="btn" id="btn-step1-next" style="background:#e91e63; border-color:#e91e63;">Siguiente →</button>
-            </div>
-          </div>
-
-          <!-- Paso 2: Datos del padrino -->
-          <div class="form-step" id="form-step-2">
-            <h3 style="margin-bottom:var(--sp-6); color:#f06292;">Paso 2: Tus datos de contacto</h3>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="sponsor-name">Nombre *</label>
-                <input type="text" id="sponsor-name" class="input" placeholder="Tu nombre" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="sponsor-surname">Apellidos *</label>
-                <input type="text" id="sponsor-surname" class="input" placeholder="Tus apellidos" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="sponsor-email">Correo electrónico *</label>
-              <input type="email" id="sponsor-email" class="input" placeholder="tucorreo@ejemplo.com" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="sponsor-phone">Teléfono</label>
-              <input type="tel" id="sponsor-phone" class="input" placeholder="+34 XXX XXX XXX">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="sponsor-city">Ciudad / Localidad</label>
-              <input type="text" id="sponsor-city" class="input" placeholder="¿Dónde vives?">
-            </div>
-            <div class="form-nav">
-              <button class="btn btn-outline" id="btn-step2-prev">← Anterior</button>
-              <button class="btn" id="btn-step2-next" style="background:#e91e63; border-color:#e91e63;">Siguiente →</button>
-            </div>
-          </div>
-
-          <!-- Paso 3: Nivel de compromiso -->
-          <div class="form-step" id="form-step-3">
-            <h3 style="margin-bottom:var(--sp-6); color:#f06292;">Paso 3: Tu nivel de apoyo mensual</h3>
-            <div class="form-group">
-              <label class="form-label">¿Cuánto deseas aportar mensualmente? *</label>
-              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3); margin-top:var(--sp-3);">
-                <label class="commitment-option" style="cursor:pointer;">
-                  <input type="radio" name="amount" value="10" style="display:none;">
-                  <div class="commitment-box" data-amount="10">
-                    <span style="font-size:1.5rem; display:block; margin-bottom:var(--sp-2);">💛</span>
-                    <strong>10 €/mes</strong>
-                    <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--sp-1);">Apoyo básico</p>
-                  </div>
-                </label>
-                <label class="commitment-option" style="cursor:pointer;">
-                  <input type="radio" name="amount" value="20" style="display:none;" checked>
-                  <div class="commitment-box active" data-amount="20">
-                    <span style="font-size:1.5rem; display:block; margin-bottom:var(--sp-2);">💖</span>
-                    <strong>20 €/mes</strong>
-                    <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--sp-1);">Apoyo completo</p>
-                  </div>
-                </label>
-                <label class="commitment-option" style="cursor:pointer;">
-                  <input type="radio" name="amount" value="35" style="display:none;">
-                  <div class="commitment-box" data-amount="35">
-                    <span style="font-size:1.5rem; display:block; margin-bottom:var(--sp-2);">🌟</span>
-                    <strong>35 €/mes</strong>
-                    <p style="font-size:var(--text-xs); color:var(--color-text-muted); margin-top:var(--sp-1);">Apoyo extendido</p>
-                  </div>
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="sponsor-message">Mensaje para el niño (opcional)</label>
-              <textarea id="sponsor-message" class="input" rows="3" placeholder="Escribe un mensaje de ánimo para el niño..."></textarea>
-            </div>
-            <div class="form-group">
-              <label style="display:flex; align-items:flex-start; gap:var(--sp-3); cursor:pointer; font-size:var(--text-sm); color:var(--color-text-muted);">
-                <input type="checkbox" id="accept-terms" style="margin-top:3px; accent-color:#e91e63;" required>
-                <span>Acepto que mis datos sean utilizados para gestionar el apadrinamiento y recibir información del programa PAN. *</span>
-              </label>
-            </div>
-            <div class="form-nav">
-              <button class="btn btn-outline" id="btn-step3-prev">← Anterior</button>
-              <button class="btn btn-lg" id="btn-submit-pan" style="background:#e91e63; border-color:#e91e63;">
-                💖 Confirmar Apadrinamiento
-              </button>
-            </div>
-          </div>
-
-          <!-- Confirmación -->
-          <div class="pan-success" id="pan-success">
-            <div class="pan-success-icon anim-pulse">🎉</div>
-            <h2>¡Gracias por tu generosidad!</h2>
-            <p style="color:var(--color-text-muted); font-size:var(--text-lg); margin-bottom:var(--sp-6);">
-              Tu solicitud de apadrinamiento ha sido enviada. El equipo de la iglesia se pondrá en contacto contigo
-              en los próximos días para confirmar los detalles.
-            </p>
-            <p style="font-family:var(--font-serif); font-style:italic; color:var(--color-accent); font-size:var(--text-xl); margin-bottom:var(--sp-8);">
-              "El que al pobre da, a Dios presta." — Proverbios 19:17
+            <span class="badge" style="background:rgba(240,98,146,0.2); color:#f06292; border-color:rgba(240,98,146,0.4);">💖 ¡Actúa hoy!</span>
+            <h2 class="section-title" style="margin-top:var(--sp-4); font-size:var(--text-4xl);">
+              Una realidad que <span style="color:#f06292;">salva vidas</span>
+            </h2>
+            <p style="color:var(--color-text-muted); max-width:560px; margin:var(--sp-4) auto var(--sp-8); font-size:var(--text-lg); line-height:1.8;">
+              Miles de niños en todo el mundo necesitan un padrino. Tu aportación mensual
+              cubre su alimentación, educación y salud. <strong style="color:var(--color-text);">Sé parte del cambio.</strong>
             </p>
             <div style="display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap;">
-              <a href="../index.html" class="btn">← Volver al inicio</a>
-              <a href="pan-apadrinamiento.html" class="btn btn-outline">Apadrinar otro niño</a>
+              <a href="https://pan.remar.org/sin-apadrinar/" target="_blank" rel="noopener"
+                 class="btn btn-lg" style="background:#e91e63; border-color:#e91e63; font-size:var(--text-lg); padding:var(--sp-5) var(--sp-10);">
+                👧 Apadrina un niño
+              </a>
+              <a href="https://pan.remar.org/donacion/" target="_blank" rel="noopener"
+                 class="btn btn-lg btn-outline" style="border-color:#f06292; color:#f06292;">
+                💝 Hacer una donación
+              </a>
             </div>
-            <div style="margin-top:var(--sp-8);" aria-hidden="true">
-              <img src="../assets/characters/child.svg" alt="" style="width:150px; margin:0 auto;" class="anim-float">
-            </div>
+            <p style="margin-top:var(--sp-6); font-size:var(--text-xs); color:var(--color-text-muted); opacity:0.6;">
+              Programa gestionado por Remar ONG · pan.remar.org
+            </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DESCARGA LA REVISTA ────────────────────────────── -->
+    <section class="section-sm" style="background: #0a0a0a;">
+      <div class="container" style="max-width:700px;">
+        <div class="revista-card">
+          <div class="revista-icon">📰</div>
+          <div style="flex:1;">
+            <h3 style="font-size:var(--text-xl); font-weight:800; margin-bottom:var(--sp-2);">¿Quieres saber más?</h3>
+            <p style="color:var(--color-text-muted); margin-bottom:var(--sp-4);">
+              Descarga la <strong>Revista P.A.N.</strong> y conoce de cerca las historias de los niños,
+              los hogares y el trabajo de voluntarios en todo el mundo.
+            </p>
+            <a href="https://pan.remar.org/wp-content/uploads/2024/10/REVISTA-PAN.pdf"
+               target="_blank" rel="noopener"
+               class="btn" style="background:#e91e63; border-color:#e91e63;">
+              📥 Descargar Revista PAN (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── VERSÍCULO FINAL ────────────────────────────────── -->
+    <section class="section-sm">
+      <div class="container text-center" style="max-width:600px;">
+        <div style="padding:var(--sp-8); background:rgba(240,98,146,0.06); border:1px solid rgba(240,98,146,0.2); border-radius:var(--radius-xl);">
+          <div style="font-size:3rem; margin-bottom:var(--sp-4);">🙏</div>
+          <p style="font-family:var(--font-serif); font-style:italic; font-size:var(--text-xl); line-height:1.8; color:var(--color-text); margin-bottom:var(--sp-4);">
+            "El que al pobre da, a Dios presta; y el bien que ha hecho, se lo volverá a pagar."
+          </p>
+          <p style="color:#f06292; font-weight:700;">— Proverbios 19:17</p>
         </div>
       </div>
     </section>
@@ -312,28 +433,27 @@
     </div>
   </footer>
 
-  <style>
-    .commitment-box {
-      padding: var(--sp-4);
-      background: var(--color-bg-raised);
-      border: 2px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      text-align: center;
-      transition: all var(--t-fast);
-    }
-    .commitment-box.active,
-    .commitment-option input:checked + .commitment-box {
-      border-color: #f06292;
-      background: rgba(240,98,146,0.1);
-    }
-    .commitment-box:hover {
-      border-color: #f06292;
-      background: rgba(240,98,146,0.08);
-    }
-  </style>
-
   <script src="../js/nav.js" defer></script>
-  <script src="../js/pan-form.js" defer></script>
-  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Acordeón de tabs
+    function toggleTab(btn) {
+      const content = btn.nextElementSibling;
+      const isOpen  = btn.classList.contains('open');
+
+      // Cerrar todos
+      document.querySelectorAll('.pan-tab-btn').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+      });
+
+      // Abrir el pulsado si estaba cerrado
+      if (!isOpen) {
+        btn.classList.add('open');
+        content.classList.add('open');
+      }
+    }
+  </script>
 </body>
 </html>
