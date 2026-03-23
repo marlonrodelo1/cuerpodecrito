@@ -108,6 +108,7 @@
 /* ===== VERSÍCULO DEL DÍA ===== */
 .section-verse {
   background: linear-gradient(180deg, var(--color-bg) 0%, #0f1f0f 50%, var(--color-bg) 100%);
+  padding-top: calc(var(--nav-height) + var(--sp-8));
 }
 
 /* ===== DEVOCIONAL PREVIEW ===== */

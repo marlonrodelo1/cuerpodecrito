@@ -1,0 +1,124 @@
+/* bottom-nav.css — Barra de navegación inferior estilo app móvil */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 62px;
+  background: rgba(26, 26, 26, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: stretch;
+  z-index: 1001;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Cada ítem */
+.bnav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: var(--sp-2) var(--sp-1);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: color var(--t-fast);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.bnav-item:hover,
+.bnav-item:focus-visible {
+  color: var(--color-accent);
+  outline: none;
+}
+
+.bnav-item.active {
+  color: var(--color-accent);
+}
+
+/* Indicador activo (punto superior) */
+.bnav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+/* Icono SVG */
+.bnav-icon {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke var(--t-fast);
+  flex-shrink: 0;
+}
+
+/* Ítem activo: icono con fill sutil */
+.bnav-item.active .bnav-icon {
+  stroke-width: 2;
+}
+
+/* Label */
+.bnav-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+/* Punto de radio activo */
+.bnav-radio-dot {
+  position: absolute;
+  top: 6px;
+  right: calc(50% - 14px);
+  width: 6px;
+  height: 6px;
+  background: var(--color-danger);
+  border-radius: 50%;
+  display: none;
+}
+.bnav-radio-dot.live {
+  display: block;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.7); }
+}
+
+/* Compensar el espacio de la barra en el body */
+body {
+  padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px));
+}
+
+/* En pantallas muy grandes (desktop) la barra sigue visible pero más sutil */
+@media (min-width: 1024px) {
+  .bottom-nav {
+    max-width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+  }
+}

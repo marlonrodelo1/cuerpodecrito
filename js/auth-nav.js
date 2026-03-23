@@ -16,39 +16,12 @@
 
   function renderNav() {
     const loggedIn = window.AuthModule && window.AuthModule.isLoggedIn();
-    const user     = loggedIn ? window.AuthModule.currentUser() : null;
 
     // Limpiar inyecciones previas
     document.querySelectorAll('.nav-auth-wrap, .nav-mobile-auth').forEach(el => el.remove());
 
-    // ─── Desktop nav ─────────────────────────────────────────────
-    const navInner = document.querySelector('.nav-inner');
-    if (navInner) {
-      const wrap = document.createElement('div');
-      wrap.className = 'nav-auth-wrap';
-
-      if (loggedIn) {
-        const initial = _getInitial(user);
-        const avatar  = _getAvatar();
-        wrap.innerHTML = `
-          <a href="perfil.html" class="nav-auth-avatar" title="Mi perfil" aria-label="Mi perfil">
-            ${avatar
-              ? `<img src="${avatar}" alt="Perfil" class="nav-auth-img">`
-              : `<span class="nav-auth-initial">${initial}</span>`
-            }
-          </a>`;
-      } else {
-        wrap.innerHTML = `<a href="login.html" class="nav-auth-btn" aria-label="Iniciar sesión">Entrar</a>`;
-      }
-
-      // Insertar antes del hamburguer o del rmp-wrap
-      const ref = navInner.querySelector('.rmp-wrap') || navInner.querySelector('.nav-hamburger');
-      if (ref) {
-        navInner.insertBefore(wrap, ref);
-      } else {
-        navInner.appendChild(wrap);
-      }
-    }
+    // El botón de perfil/entrar lo gestiona la barra inferior (bottom-nav.js)
+    // Solo inyectamos en el menú móvil hamburguesa para acceso rápido
 
     // ─── Menú móvil ──────────────────────────────────────────────
     const navMobile = document.querySelector('.nav-mobile');

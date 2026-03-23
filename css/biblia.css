@@ -247,10 +247,12 @@
 /* ─── Verse Actions ──────────────────────────────────────────── */
 .verse-actions {
   display: none;
+  flex-direction: row;
   align-items: center;
   gap: var(--sp-2);
   margin-top: var(--sp-2);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  grid-column: 2; /* alinear bajo el texto, no bajo el número */
 }
 
 .verse-row:hover .verse-actions,

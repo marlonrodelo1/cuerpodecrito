@@ -14,16 +14,14 @@
   let isPlaying  = false;
   let metaTimer  = null;
 
-  // ─── Inyectar HTML en el header ─────────────────────────────
+  // ─── Inyectar popup de radio (sin botón en header — la barra inferior lo activa) ──
   function inject() {
-    const navInner = document.querySelector('.nav-inner');
-    if (!navInner) return;
-
-    // Botón + popup
+    // Insertar solo el popup flotante anclado al body (activado desde bottom-nav)
     const wrap = document.createElement('div');
-    wrap.className = 'rmp-wrap';
+    wrap.className = 'rmp-wrap rmp-body-wrap';
+    wrap.id = 'rmp-body-wrap';
     wrap.innerHTML = `
-      <button class="rmp-btn" id="rmp-btn" aria-label="Radio Solidaria" title="Abrir radio">
+      <button class="rmp-btn" id="rmp-btn" aria-label="Radio Solidaria" title="Abrir radio" style="display:none">
         <span class="rmp-icon">📻</span>
         <span class="rmp-dot" id="rmp-dot"></span>
       </button>
@@ -44,16 +42,9 @@
         </div>
       </div>
     `;
+    document.body.appendChild(wrap);
 
-    // Insertar antes del hamburger (o al final del nav-inner)
-    const hamburger = navInner.querySelector('.nav-hamburger');
-    if (hamburger) {
-      navInner.insertBefore(wrap, hamburger);
-    } else {
-      navInner.appendChild(wrap);
-    }
-
-    // También agregar botón en menú móvil
+    // También agregar botón en menú móvil (hamburguesa)
     const navMobile = document.querySelector('.nav-mobile');
     if (navMobile) {
       const mobileRadio = document.createElement('button');

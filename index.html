@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Iglesia Cuerpo de Cristo en La Matanza de Acentejo — Biblia, programas sociales, radio y más.">
   <title>Iglesia Cuerpo de Cristo — La Matanza de Acentejo</title>
@@ -12,6 +15,7 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/cards.css">
   <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/bottom-nav.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -77,77 +81,6 @@
   </nav>
 
   <main id="main">
-
-    <!-- HERO -->
-    <section class="hero-section">
-      <div class="hero-bg-particles" aria-hidden="true">
-        <span class="particle"></span><span class="particle"></span>
-        <span class="particle"></span><span class="particle"></span>
-        <span class="particle"></span><span class="particle"></span>
-      </div>
-
-      <div class="container hero-inner">
-        <div class="hero-content anim-fade-up">
-          <div class="badge" style="margin-bottom: var(--sp-4);">✝ La Matanza de Acentejo</div>
-          <h1 class="hero-title">
-            Iglesia<br>
-            <span class="text-accent">Cuerpo de Cristo</span>
-          </h1>
-          <p class="hero-subtitle">
-            Una comunidad de fe comprometida con el amor, la solidaridad y el servicio.
-            Juntos crecemos, juntos servimos.
-          </p>
-          <div class="hero-actions">
-            <a href="programas/pan-apadrinamiento.html" class="btn btn-lg">
-              👧 Apadrina un Niño
-            </a>
-            <a href="biblia.html" class="btn btn-lg btn-outline">
-              📖 Leer la Biblia
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-character anim-fade-right" aria-hidden="true">
-          <!-- Paloma animada SVG inline -->
-          <svg class="char-dove hero-dove" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Paloma de paz">
-            <!-- Cuerpo -->
-            <ellipse cx="100" cy="90" rx="45" ry="28" fill="#f5f5f5"/>
-            <!-- Cabeza -->
-            <circle cx="140" cy="72" r="20" fill="#f5f5f5"/>
-            <!-- Pico -->
-            <polygon points="158,70 168,74 158,78" fill="#ffa726"/>
-            <!-- Ojo -->
-            <circle cx="145" cy="69" r="4" fill="#1a1a1a"/>
-            <circle cx="146" cy="68" r="1.5" fill="white"/>
-            <!-- Ala izquierda -->
-            <g class="wing-left">
-              <ellipse cx="85" cy="78" rx="35" ry="16" fill="#e0e0e0" transform="rotate(-20,85,78)"/>
-              <ellipse cx="72" cy="82" rx="25" ry="10" fill="#bdbdbd" transform="rotate(-25,72,82)"/>
-            </g>
-            <!-- Ala derecha -->
-            <g class="wing-right">
-              <ellipse cx="115" cy="78" rx="35" ry="16" fill="#e0e0e0" transform="rotate(20,115,78)"/>
-              <ellipse cx="128" cy="82" rx="25" ry="10" fill="#bdbdbd" transform="rotate(25,128,82)"/>
-            </g>
-            <!-- Cola -->
-            <g class="tail">
-              <polygon points="60,90 45,110 55,108 50,120 70,102 80,118 75,95" fill="#eeeeee"/>
-            </g>
-            <!-- Ramita de olivo -->
-            <line x1="158" y1="78" x2="175" y2="88" stroke="#66bb6a" stroke-width="2"/>
-            <ellipse cx="173" cy="86" rx="5" ry="3" fill="#66bb6a" transform="rotate(-30,173,86)"/>
-            <ellipse cx="178" cy="82" rx="4" ry="2.5" fill="#81c784" transform="rotate(-15,178,82)"/>
-            <!-- Brillo -->
-            <circle cx="130" cy="65" r="6" fill="white" opacity="0.3"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="hero-scroll-hint" aria-hidden="true">
-        <span>Descubre más</span>
-        <div class="scroll-arrow">↓</div>
-      </div>
-    </section>
 
     <!-- VERSÍCULO DEL DÍA -->
     <section class="section section-verse" id="versiculo">
@@ -258,29 +191,6 @@
       </div>
     </section>
 
-    <!-- ESTADÍSTICAS -->
-    <section class="section-sm stats-section">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item anim-fade-up anim-delay-1">
-            <span class="stat-number" data-count="150">0</span><span class="stat-unit">+</span>
-            <span class="stat-label">Familias apoyadas</span>
-          </div>
-          <div class="stat-item anim-fade-up anim-delay-2">
-            <span class="stat-number" data-count="45">0</span><span class="stat-unit"></span>
-            <span class="stat-label">Niños apadrinados</span>
-          </div>
-          <div class="stat-item anim-fade-up anim-delay-3">
-            <span class="stat-number" data-count="12">0</span><span class="stat-unit"></span>
-            <span class="stat-label">Años de servicio</span>
-          </div>
-          <div class="stat-item anim-fade-up anim-delay-4">
-            <span class="stat-number" data-count="300">0</span><span class="stat-unit">+</span>
-            <span class="stat-label">Miembros activos</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -333,5 +243,6 @@
   <script src="js/home.js" defer></script>
   <script src="js/auth-nav.js" defer></script>
   <script src="js/radio-mini.js"></script>
+  <script src="js/bottom-nav.js" defer></script>
 </body>
 </html>

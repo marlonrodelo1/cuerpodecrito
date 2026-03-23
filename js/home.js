@@ -3,47 +3,12 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     setFooterYear();
-    animateCounters();
     setupScrollAnimations();
   });
 
   function setFooterYear() {
     const el = document.getElementById('footer-year');
     if (el) el.textContent = new Date().getFullYear();
-  }
-
-  // Contadores animados en las estadísticas
-  function animateCounters() {
-    const counters = document.querySelectorAll('[data-count]');
-    if (!counters.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          countUp(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach(c => observer.observe(c));
-  }
-
-  function countUp(el) {
-    const target   = parseInt(el.getAttribute('data-count'), 10);
-    const duration = 1800;
-    const steps    = 60;
-    const increment = target / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        el.textContent = target;
-        clearInterval(timer);
-      } else {
-        el.textContent = Math.floor(current);
-      }
-    }, duration / steps);
   }
 
   // Fade-up al entrar en viewport
