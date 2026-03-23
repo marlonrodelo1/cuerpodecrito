@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/cards.css">
   <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/chat.css">
   <link rel="stylesheet" href="css/bottom-nav.css">
 </head>
 <body>
@@ -35,6 +36,7 @@
         <a href="index.html"       class="nav-link" data-nav-href="/index.html">Inicio</a>
         <a href="biblia.html"      class="nav-link" data-nav-href="/biblia.html">Biblia</a>
         <a href="devocional.html"  class="nav-link" data-nav-href="/devocional.html">Devocional</a>
+        <a href="oracion.html"     class="nav-link" data-nav-href="/oracion.html">🔴 Oración en Vivo</a>
 
         <div class="nav-dropdown">
           <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
@@ -72,6 +74,7 @@
     <a href="index.html"      class="nav-mobile-link" data-nav-href="/index.html">✝ Inicio</a>
     <a href="biblia.html"     class="nav-mobile-link" data-nav-href="/biblia.html">📖 Biblia</a>
     <a href="devocional.html" class="nav-mobile-link" data-nav-href="/devocional.html">🕊️ Devocional</a>
+    <a href="oracion.html"    class="nav-mobile-link" data-nav-href="/oracion.html">🔴 Oración en Vivo</a>
     <div class="nav-mobile-section">Programas</div>
     <a href="programas/reparto-alimentos.html" class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
     <a href="programas/radio-solidaria.html"   class="nav-mobile-sub">📻 Radio Solidaria</a>
@@ -82,115 +85,171 @@
 
   <main id="main">
 
-    <!-- VERSÍCULO DEL DÍA -->
-    <section class="section section-verse" id="versiculo">
-      <div class="container">
-        <div class="text-center" style="margin-bottom: var(--sp-8);">
-          <span class="badge">📖 Versículo del Día</span>
-        </div>
-
-        <div class="verse-card" id="daily-verse-card">
-          <div class="loader" id="verse-loader">
-            <div class="loader-spinner"></div>
-            <span>Cargando versículo...</span>
-          </div>
-          <p class="verse-text" id="verse-text" style="display:none;"></p>
-          <p class="verse-ref"  id="verse-ref"  style="display:none;"></p>
-          <a href="#" class="verse-link" id="verse-link" style="display:none; margin-top: var(--sp-6); color: var(--color-accent); font-size: var(--text-sm); font-weight:600;">
-            Leer capítulo completo →
-          </a>
-        </div>
+    <!-- TABS BAR -->
+    <div class="home-tabs-bar" id="home-tabs-bar">
+      <div class="container home-tabs-inner">
+        <button class="home-tab active" data-tab="hoy">Hoy</button>
+        <button class="home-tab" data-tab="comunidad">Comunidad</button>
+        <a href="oracion.html" class="home-tab home-tab-live">
+          <span class="tab-live-dot" id="tab-live-dot"></span>Oración en Vivo
+        </a>
       </div>
-    </section>
+    </div>
 
-    <!-- DEVOCIONAL PREVIEW -->
-    <section class="section section-devo" id="devocional">
-      <div class="container">
-        <div class="text-center" style="margin-bottom: var(--sp-8);">
-          <span class="badge">🕊️ Devocional de Hoy</span>
-          <h2 class="section-title" style="margin-top: var(--sp-4);">Alimento para el <span>Alma</span></h2>
-        </div>
+    <!-- SALUDO -->
+    <div class="home-greeting container" id="home-greeting" style="display:none">
+      <span id="greeting-text">Bienvenido</span><span id="greeting-name"></span> 👋
+    </div>
 
-        <div class="devo-card" id="devo-preview">
-          <div class="loader" id="devo-loader">
-            <div class="loader-spinner"></div>
-            <span>Cargando devocional...</span>
-          </div>
-          <div id="devo-content" style="display:none;">
-            <div class="devo-card-tag">
-              <span class="badge" id="devo-date-badge"></span>
+    <!-- ═══ TAB HOY ═══ -->
+    <div id="main-hoy">
+
+      <!-- VERSÍCULO DEL DÍA -->
+      <section class="verse-hero-section" id="versiculo">
+        <div class="verse-hero-bg"></div>
+        <div class="verse-hero-inner container">
+          <div class="verse-hero-content">
+            <span class="badge verse-hero-badge">📖 Versículo del Día</span>
+            <div class="verse-glass-card" id="daily-verse-card">
+              <div class="loader" id="verse-loader">
+                <div class="loader-spinner"></div>
+                <span>Cargando versículo...</span>
+              </div>
+              <p class="verse-text" id="verse-text" style="display:none;"></p>
+              <p class="verse-ref"  id="verse-ref"  style="display:none;"></p>
+              <div class="verse-actions-bar" id="verse-actions-bar" style="display:none;">
+                <button class="verse-action-btn" id="verse-like-btn" aria-label="Me gusta">
+                  <span class="verse-action-icon">❤️</span>
+                  <span class="verse-action-label" id="verse-like-count">0</span>
+                </button>
+                <button class="verse-action-btn" id="verse-comment-btn" aria-label="Comentar">
+                  <span class="verse-action-icon">💬</span>
+                  <span class="verse-action-label" id="verse-comment-count">0</span>
+                </button>
+                <button class="verse-action-btn" id="verse-share-btn" aria-label="Compartir">
+                  <span class="verse-action-icon">📤</span>
+                </button>
+                <a href="#" class="verse-action-btn verse-read-link" id="verse-link">
+                  Ver capítulo →
+                </a>
+              </div>
             </div>
-            <h3 class="devo-card-title" id="devo-title"></h3>
-            <div class="devo-card-scripture" id="devo-scripture"></div>
-            <p class="devo-card-excerpt" id="devo-excerpt"></p>
-            <div style="margin-top: var(--sp-6); display:flex; gap: var(--sp-4); flex-wrap:wrap;">
-              <a href="devocional.html" class="btn">Leer devocional completo</a>
+            <!-- Panel de comentarios -->
+            <div class="verse-comments-panel" id="verse-comments-panel" style="display:none;">
+              <div class="verse-comments-list" id="verse-comments-list"></div>
+              <div class="verse-comment-input-area" id="verse-comment-input-area"></div>
+            </div>
+          </div>
+          <div class="verse-hero-dove">
+            <img src="assets/characters/dove.svg" alt="Paloma de la paz" class="verse-dove-img">
+          </div>
+        </div>
+      </section>
+
+      <!-- DEVOCIONAL PREVIEW -->
+      <section class="section section-devo" id="devocional">
+        <div class="container">
+          <div class="text-center" style="margin-bottom: var(--sp-8);">
+            <span class="badge">🕊️ Devocional de Hoy</span>
+            <h2 class="section-title" style="margin-top: var(--sp-4);">Alimento para el <span>Alma</span></h2>
+          </div>
+
+          <div class="devo-card" id="devo-preview">
+            <div class="loader" id="devo-loader">
+              <div class="loader-spinner"></div>
+              <span>Cargando devocional...</span>
+            </div>
+            <div id="devo-content" style="display:none;">
+              <div class="devo-card-tag">
+                <span class="badge" id="devo-date-badge"></span>
+              </div>
+              <h3 class="devo-card-title" id="devo-title"></h3>
+              <div class="devo-card-scripture" id="devo-scripture"></div>
+              <p class="devo-card-excerpt" id="devo-excerpt"></p>
+              <div style="margin-top: var(--sp-6); display:flex; gap: var(--sp-4); flex-wrap:wrap;">
+                <a href="devocional.html" class="btn">Leer devocional completo</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- PROGRAMAS -->
-    <section class="section" id="programas">
-      <div class="container">
-        <div class="text-center">
-          <span class="badge">🤝 Nuestros Programas</span>
-          <h2 class="section-title" style="margin-top: var(--sp-4);">Sirviendo a la <span>Comunidad</span></h2>
-          <div class="divider"></div>
+      <!-- PROGRAMAS -->
+      <section class="section" id="programas">
+        <div class="container">
+          <div class="text-center">
+            <span class="badge">🤝 Nuestros Programas</span>
+            <h2 class="section-title" style="margin-top: var(--sp-4);">Sirviendo a la <span>Comunidad</span></h2>
+            <div class="divider"></div>
+          </div>
+
+          <div class="programs-grid">
+
+            <!-- PAN - DESTACADO -->
+            <a href="programas/pan-apadrinamiento.html" class="program-card program-card-featured">
+              <span class="program-card-icon">👧</span>
+              <span class="badge" style="margin-bottom: var(--sp-3);">⭐ Programa Especial</span>
+              <h3 class="program-card-title">PAN — Apadrinamiento de un Niño</h3>
+              <p class="program-card-desc">
+                Cambia la vida de un niño con tu apoyo mensual. Educación, alimentación y
+                amor para los más pequeños de nuestra comunidad.
+              </p>
+              <span class="program-card-link">Apadrinar ahora →</span>
+            </a>
+
+            <!-- REPARTO -->
+            <a href="programas/reparto-alimentos.html" class="program-card">
+              <span class="program-card-icon">🍞</span>
+              <h3 class="program-card-title">Reparto de Alimentos</h3>
+              <p class="program-card-desc">
+                Distribución gratuita de alimentos a familias necesitadas. Nadie debe
+                pasar hambre en nuestra comunidad.
+              </p>
+              <span class="program-card-link">Ver programa →</span>
+            </a>
+
+            <!-- RADIO -->
+            <a href="programas/radio-solidaria.html" class="program-card">
+              <span class="program-card-icon">📻</span>
+              <h3 class="program-card-title">Radio Solidaria</h3>
+              <p class="program-card-desc">
+                Escucha nuestra radio en vivo con música cristiana, predicaciones y
+                mensajes de esperanza las 24 horas.
+              </p>
+              <span class="program-card-link">Escuchar ahora →</span>
+            </a>
+
+            <!-- RASTRO -->
+            <a href="programas/rastro.html" class="program-card">
+              <span class="program-card-icon">🛍️</span>
+              <h3 class="program-card-title">Rastro — Tienda Solidaria</h3>
+              <p class="program-card-desc">
+                Compra y vende muebles, electrodomésticos y más. Los beneficios apoyan
+                los programas de la iglesia.
+              </p>
+              <span class="program-card-link">Ver tienda →</span>
+            </a>
+
+          </div>
         </div>
+      </section>
 
-        <div class="programs-grid">
+    </div><!-- /#main-hoy -->
 
-          <!-- PAN - DESTACADO -->
-          <a href="programas/pan-apadrinamiento.html" class="program-card program-card-featured">
-            <span class="program-card-icon">👧</span>
-            <span class="badge" style="margin-bottom: var(--sp-3);">⭐ Programa Especial</span>
-            <h3 class="program-card-title">PAN — Apadrinamiento de un Niño</h3>
-            <p class="program-card-desc">
-              Cambia la vida de un niño con tu apoyo mensual. Educación, alimentación y
-              amor para los más pequeños de nuestra comunidad.
-            </p>
-            <span class="program-card-link">Apadrinar ahora →</span>
-          </a>
-
-          <!-- REPARTO -->
-          <a href="programas/reparto-alimentos.html" class="program-card">
-            <span class="program-card-icon">🍞</span>
-            <h3 class="program-card-title">Reparto de Alimentos</h3>
-            <p class="program-card-desc">
-              Distribución gratuita de alimentos a familias necesitadas. Nadie debe
-              pasar hambre en nuestra comunidad.
-            </p>
-            <span class="program-card-link">Ver programa →</span>
-          </a>
-
-          <!-- RADIO -->
-          <a href="programas/radio-solidaria.html" class="program-card">
-            <span class="program-card-icon">📻</span>
-            <h3 class="program-card-title">Radio Solidaria</h3>
-            <p class="program-card-desc">
-              Escucha nuestra radio en vivo con música cristiana, predicaciones y
-              mensajes de esperanza las 24 horas.
-            </p>
-            <span class="program-card-link">Escuchar ahora →</span>
-          </a>
-
-          <!-- RASTRO -->
-          <a href="programas/rastro.html" class="program-card">
-            <span class="program-card-icon">🛍️</span>
-            <h3 class="program-card-title">Rastro — Tienda Solidaria</h3>
-            <p class="program-card-desc">
-              Compra y vende muebles, electrodomésticos y más. Los beneficios apoyan
-              los programas de la iglesia.
-            </p>
-            <span class="program-card-link">Ver tienda →</span>
-          </a>
-
+    <!-- ═══ TAB COMUNIDAD ═══ -->
+    <div id="main-comunidad" style="display:none;">
+      <div class="chat-container container">
+        <div class="chat-messages" id="chat-messages">
+          <div class="loader" id="chat-loader">
+            <div class="loader-spinner"></div>
+            <span>Cargando mensajes...</span>
+          </div>
+        </div>
+        <div class="chat-input-bar" id="chat-input-bar">
+          <!-- Se rellena por community-chat.js según el estado de auth -->
         </div>
       </div>
-    </section>
-
+    </div><!-- /#main-comunidad -->
 
   </main>
 
@@ -209,6 +268,7 @@
           <a href="index.html">Inicio</a>
           <a href="biblia.html">Biblia RVR1960</a>
           <a href="devocional.html">Devocional Diario</a>
+          <a href="oracion.html">Oración en Vivo</a>
           <a href="contacto.html">Contacto y Mapa</a>
         </div>
         <div class="footer-col">
@@ -242,6 +302,8 @@
   <script src="js/devotional.js" defer></script>
   <script src="js/home.js" defer></script>
   <script src="js/auth-nav.js" defer></script>
+  <script src="js/community-chat.js" defer></script>
+  <script src="js/home-tabs.js" defer></script>
   <script src="js/radio-mini.js"></script>
   <script src="js/bottom-nav.js" defer></script>
 </body>

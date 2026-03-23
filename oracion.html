@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Oración en vivo — Iglesia Cuerpo de Cristo">
+  <title>Oración en Vivo | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/oracion.css">
+  <link rel="stylesheet" href="css/bottom-nav.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <!-- NAVEGACIÓN -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Inicio">
+        <div class="nav-logo-icon">✝</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cuerpo de Cristo</span>
+          <span class="nav-logo-place">La Matanza de Acentejo</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" role="navigation" aria-label="Menú principal">
+        <a href="index.html"      class="nav-link" data-nav-href="/index.html">Inicio</a>
+        <a href="biblia.html"     class="nav-link" data-nav-href="/biblia.html">Biblia</a>
+        <a href="devocional.html" class="nav-link" data-nav-href="/devocional.html">Devocional</a>
+        <a href="oracion.html"    class="nav-link active" data-nav-href="/oracion.html">🔴 Oración en Vivo</a>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Programas <span class="nav-dropdown-arrow">▾</span>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="programas/reparto-alimentos.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🍞</span>Reparto de Alimentos
+            </a>
+            <a href="programas/radio-solidaria.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">📻</span>Radio Solidaria
+            </a>
+            <a href="programas/pan-apadrinamiento.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">👧</span>PAN — Apadrinamiento
+            </a>
+            <a href="programas/rastro.html" class="nav-dropdown-item">
+              <span class="nav-dropdown-item-icon">🛍️</span>Rastro — Tienda
+            </a>
+          </div>
+        </div>
+
+        <a href="contacto.html" class="nav-link" data-nav-href="/contacto.html">Contacto</a>
+      </nav>
+
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MENÚ MÓVIL -->
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="index.html"      class="nav-mobile-link" data-nav-href="/index.html">✝ Inicio</a>
+    <a href="biblia.html"     class="nav-mobile-link" data-nav-href="/biblia.html">📖 Biblia</a>
+    <a href="devocional.html" class="nav-mobile-link" data-nav-href="/devocional.html">🕊️ Devocional</a>
+    <a href="oracion.html"    class="nav-mobile-link active" data-nav-href="/oracion.html">🔴 Oración en Vivo</a>
+    <div class="nav-mobile-section">Programas</div>
+    <a href="programas/reparto-alimentos.html" class="nav-mobile-sub">🍞 Reparto de Alimentos</a>
+    <a href="programas/radio-solidaria.html"   class="nav-mobile-sub">📻 Radio Solidaria</a>
+    <a href="programas/pan-apadrinamiento.html" class="nav-mobile-sub">👧 PAN — Apadrinamiento</a>
+    <a href="programas/rastro.html"            class="nav-mobile-sub">🛍️ Rastro — Tienda</a>
+    <a href="contacto.html"   class="nav-mobile-link" data-nav-href="/contacto.html">📍 Contacto</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <div class="oracion-hero">
+      <div class="container">
+        <h1 class="oracion-hero-title">🙏 Oración en Vivo</h1>
+        <p class="oracion-hero-sub">
+          Únete a nosotros en la oración comunitaria en tiempo real desde cualquier lugar.
+        </p>
+      </div>
+    </div>
+
+    <!-- PLAYER (inyectado por oracion.js) -->
+    <section class="oracion-player-section">
+      <div class="container" id="oracion-player">
+        <div class="loader">
+          <div class="loader-spinner"></div>
+          <span>Comprobando transmisión...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRÓXIMAS ORACIONES -->
+    <section class="oracion-schedule-section">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: var(--sp-6);">
+          <span class="badge">📅 Horarios de Oración</span>
+          <h2 class="section-title" style="margin-top: var(--sp-3);">Próximas <span>Transmisiones</span></h2>
+        </div>
+        <div class="oracion-schedule-grid">
+          <div class="oracion-schedule-item">
+            <div class="oracion-schedule-day">Domingo</div>
+            <div class="oracion-schedule-time">09:30</div>
+            <div class="oracion-schedule-label">Oración antes del culto</div>
+          </div>
+          <div class="oracion-schedule-item">
+            <div class="oracion-schedule-day">Miércoles</div>
+            <div class="oracion-schedule-time">18:30</div>
+            <div class="oracion-schedule-label">Oración de mediodía de semana</div>
+          </div>
+          <div class="oracion-schedule-item">
+            <div class="oracion-schedule-day">Viernes</div>
+            <div class="oracion-schedule-time">19:00</div>
+            <div class="oracion-schedule-label">Noche de intercesión jóvenes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Iglesia Cuerpo de Cristo</h4>
+          <p style="color: var(--color-text-muted); font-size: var(--text-sm); line-height:1.6;">
+            Sirviendo a la comunidad de La Matanza de Acentejo con amor y fe.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <a href="index.html">Inicio</a>
+          <a href="biblia.html">Biblia RVR1960</a>
+          <a href="devocional.html">Devocional Diario</a>
+          <a href="oracion.html">Oración en Vivo</a>
+          <a href="contacto.html">Contacto y Mapa</a>
+        </div>
+        <div class="footer-col">
+          <h4>Programas</h4>
+          <a href="programas/pan-apadrinamiento.html">PAN — Apadrinamiento</a>
+          <a href="programas/reparto-alimentos.html">Reparto de Alimentos</a>
+          <a href="programas/radio-solidaria.html">Radio Solidaria</a>
+          <a href="programas/rastro.html">Rastro — Tienda</a>
+        </div>
+        <div class="footer-col">
+          <h4>Horarios de Culto</h4>
+          <p style="color: var(--color-text-muted); font-size: var(--text-sm);">
+            Domingo: 10:00 — 12:00<br>
+            Miércoles: 19:00 — 21:00<br>
+            Viernes (Jóvenes): 19:30
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="footer-year"></span> Iglesia Cuerpo de Cristo — La Matanza de Acentejo</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="js/supabase-client.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/auth-nav.js" defer></script>
+  <script src="js/oracion.js" defer></script>
+  <script src="js/radio-mini.js"></script>
+  <script src="js/bottom-nav.js" defer></script>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

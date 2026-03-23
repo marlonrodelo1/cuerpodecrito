@@ -487,7 +487,9 @@
 /* Responsive */
 @media (max-width: 900px) {
   .nav-menu { display: none; }
-  .nav-hamburger { display: flex; }
+  /* Hamburger oculto en móvil — la bottom-nav gestiona la navegación */
+  .nav-hamburger { display: none; }
+  .nav-mobile { display: none !important; }
 }
 @media (min-width: 901px) {
   .nav-mobile { display: none !important; }
