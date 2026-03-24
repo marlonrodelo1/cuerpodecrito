@@ -77,8 +77,13 @@
     <div class="container section">
       <!-- Toolbar -->
       <div class="rastro-toolbar">
-        <div class="category-filters" id="category-filters">
-          <!-- Se genera con JS -->
+        <div class="rastro-filters-row">
+          <div class="category-filters" id="category-filters">
+            <!-- Se genera con JS -->
+          </div>
+          <select class="input rastro-sede-filter" id="sede-filter" style="max-width:200px; font-size:var(--text-sm);">
+            <option value="">📍 Todas las sedes</option>
+          </select>
         </div>
         <div class="rastro-search-wrap">
           <input type="search" id="rastro-search" class="input" placeholder="🔍 Buscar productos...">
@@ -130,10 +135,10 @@
   </button>
 
   <script src="../js/nav.js" defer></script>
-  <script src="../js/rastro-store.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="../js/supabase-client.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-client.js"></script>
   <script src="../js/auth.js" defer></script>
+  <script src="../js/rastro-store.js" defer></script>
   <script src="../js/auth-nav.js" defer></script>
   <script src="../js/radio-mini.js"></script>
   <script src="../js/bottom-nav.js" defer></script>

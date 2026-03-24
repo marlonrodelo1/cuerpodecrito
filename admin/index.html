@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin | Iglesia Cuerpo de Cristo</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- HEADER ADMIN -->
+  <header class="adm-header">
+    <div class="adm-header-inner">
+      <a href="../index.html" class="adm-logo">
+        <div class="adm-logo-icon">✝</div>
+        <div class="adm-logo-text">
+          <span class="adm-logo-name">Admin</span>
+          <span class="adm-logo-sede" id="adm-sede-name">Cargando...</span>
+        </div>
+      </a>
+      <button class="adm-logout-btn" id="adm-logout">Salir →</button>
+    </div>
+  </header>
+
+  <!-- LOADING OVERLAY -->
+  <div class="adm-loading" id="adm-loading">
+    <div class="loader-spinner"></div>
+    <span>Verificando acceso...</span>
+  </div>
+
+  <!-- SIN ACCESO: crear primera sede -->
+  <div class="adm-no-sede" id="adm-no-sede" style="display:none">
+    <div class="adm-no-sede-card">
+      <div class="adm-no-sede-icon">🏛️</div>
+      <h2>Bienvenido al panel de administración</h2>
+      <p>No tienes ninguna sede asignada. Crea tu primera sede para empezar.</p>
+      <form class="adm-create-sede-form" id="adm-create-sede-form">
+        <input class="input" id="new-sede-name"    type="text"  placeholder="Nombre de la sede" required>
+        <input class="input" id="new-sede-city"    type="text"  placeholder="Ciudad" required>
+        <input class="input" id="new-sede-address" type="text"  placeholder="Dirección">
+        <button class="btn" type="submit">➕ Crear mi sede</button>
+        <span class="adm-form-msg" id="create-sede-msg"></span>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PRINCIPAL -->
+  <div class="adm-layout" id="adm-layout" style="display:none">
+
+    <!-- SIDEBAR / TABS -->
+    <nav class="adm-sidebar" id="adm-sidebar">
+      <button class="adm-nav-item active" data-section="sede">🏠 Mi Sede</button>
+      <button class="adm-nav-item" data-section="rastro">📦 Rastro</button>
+      <button class="adm-nav-item" data-section="devo">📖 Devocionales</button>
+      <button class="adm-nav-item" data-section="stream">🔴 Transmisión</button>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <main class="adm-main">
+
+      <!-- ── SECCIÓN SEDE ── -->
+      <section class="adm-section active" id="sec-sede">
+        <h2 class="adm-section-title">🏠 Información de la Sede</h2>
+
+        <div class="adm-card">
+          <div class="adm-form-grid">
+            <div class="adm-field">
+              <label class="adm-label">Nombre</label>
+              <input class="input" id="sede-name" type="text">
+            </div>
+            <div class="adm-field">
+              <label class="adm-label">Ciudad</label>
+              <input class="input" id="sede-city" type="text">
+            </div>
+            <div class="adm-field adm-field-full">
+              <label class="adm-label">Dirección</label>
+              <input class="input" id="sede-address" type="text">
+            </div>
+            <div class="adm-field">
+              <label class="adm-label">Latitud (ej. 28.4682)</label>
+              <input class="input" id="sede-lat" type="number" step="any" placeholder="28.4682">
+            </div>
+            <div class="adm-field">
+              <label class="adm-label">Longitud (ej. -16.3779)</label>
+              <input class="input" id="sede-lng" type="number" step="any" placeholder="-16.3779">
+            </div>
+          </div>
+          <button class="btn" id="btn-save-info">💾 Guardar información</button>
+          <span class="adm-msg" id="info-msg"></span>
+        </div>
+
+        <div class="adm-card">
+          <h3 class="adm-subsection-title">🕐 Horarios de Servicios</h3>
+          <div class="adm-schedule-grid" id="adm-schedule-grid">
+            <!-- Generado por JS -->
+          </div>
+          <button class="btn" id="btn-save-schedule">💾 Guardar horarios</button>
+          <span class="adm-msg" id="schedule-msg"></span>
+        </div>
+
+        <div class="adm-card">
+          <h3 class="adm-subsection-title">🤝 Programas Activos</h3>
+          <div class="adm-programs-grid">
+            <label class="adm-check-item">
+              <input type="checkbox" value="reparto"> <span>🍞 Reparto de Alimentos</span>
+            </label>
+            <label class="adm-check-item">
+              <input type="checkbox" value="pan"> <span>👧 PAN — Apadrinamiento</span>
+            </label>
+            <label class="adm-check-item">
+              <input type="checkbox" value="radio"> <span>📻 Radio Solidaria</span>
+            </label>
+            <label class="adm-check-item">
+              <input type="checkbox" value="rastro"> <span>🛍️ Rastro — Tienda</span>
+            </label>
+          </div>
+          <button class="btn" id="btn-save-programs">💾 Guardar programas</button>
+          <span class="adm-msg" id="programs-msg"></span>
+        </div>
+      </section>
+
+      <!-- ── SECCIÓN RASTRO ── -->
+      <section class="adm-section" id="sec-rastro" style="display:none">
+        <div class="adm-section-header">
+          <h2 class="adm-section-title">📦 Productos del Rastro</h2>
+          <button class="btn" id="btn-new-product">➕ Añadir producto</button>
+        </div>
+
+        <div class="adm-product-list" id="adm-product-list">
+          <div class="loader">
+            <div class="loader-spinner"></div>
+            <span>Cargando productos...</span>
+          </div>
+        </div>
+
+        <!-- MODAL PRODUCTO -->
+        <div class="adm-modal-overlay" id="product-modal" style="display:none">
+          <div class="adm-modal">
+            <div class="adm-modal-header">
+              <h3 id="modal-product-title">Nuevo Producto</h3>
+              <button class="adm-modal-close" id="btn-close-modal">✕</button>
+            </div>
+            <div class="adm-modal-body">
+              <input type="hidden" id="product-id">
+              <div class="adm-form-grid">
+                <div class="adm-field adm-field-full">
+                  <label class="adm-label">Nombre *</label>
+                  <input class="input" id="product-name" type="text" required>
+                </div>
+                <div class="adm-field">
+                  <label class="adm-label">Categoría</label>
+                  <select class="input" id="product-category">
+                    <option>Muebles</option>
+                    <option>Electrodomésticos</option>
+                    <option>Ropa</option>
+                    <option>Libros</option>
+                    <option>Decoración</option>
+                    <option>Juguetes</option>
+                    <option>Otros</option>
+                  </select>
+                </div>
+                <div class="adm-field">
+                  <label class="adm-label">Precio (EUR)</label>
+                  <input class="input" id="product-price" type="number" step="0.01" min="0">
+                </div>
+                <div class="adm-field">
+                  <label class="adm-label">Condición</label>
+                  <select class="input" id="product-condition">
+                    <option>Nuevo</option>
+                    <option selected>Buen estado</option>
+                    <option>Usado</option>
+                  </select>
+                </div>
+                <div class="adm-field">
+                  <label class="adm-label">Disponible</label>
+                  <select class="input" id="product-available">
+                    <option value="true">Sí</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+                <div class="adm-field adm-field-full">
+                  <label class="adm-label">Descripción</label>
+                  <textarea class="input" id="product-description" rows="3"></textarea>
+                </div>
+                <div class="adm-field adm-field-full">
+                  <label class="adm-label">URL de imagen</label>
+                  <input class="input" id="product-image" type="url" placeholder="https://...">
+                </div>
+              </div>
+            </div>
+            <div class="adm-modal-footer">
+              <button class="btn btn-ghost" id="btn-cancel-product">Cancelar</button>
+              <button class="btn" id="btn-save-product">💾 Guardar producto</button>
+              <span class="adm-msg" id="product-msg"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECCIÓN DEVOCIONALES ── -->
+      <section class="adm-section" id="sec-devo" style="display:none">
+        <div class="adm-section-header">
+          <h2 class="adm-section-title">📖 Devocionales</h2>
+          <button class="btn" id="btn-new-devo">➕ Nuevo devocional</button>
+        </div>
+
+        <div class="adm-devo-list" id="adm-devo-list">
+          <div class="loader">
+            <div class="loader-spinner"></div>
+            <span>Cargando devocionales...</span>
+          </div>
+        </div>
+
+        <!-- FORMULARIO DEVOCIONAL -->
+        <div class="adm-devo-form-wrap" id="adm-devo-form-wrap" style="display:none">
+          <div class="adm-card">
+            <h3 class="adm-subsection-title" id="devo-form-title">Nuevo Devocional</h3>
+            <input type="hidden" id="devo-id">
+            <div class="adm-form-grid">
+              <div class="adm-field">
+                <label class="adm-label">Fecha *</label>
+                <input class="input" id="devo-date" type="date" required>
+              </div>
+              <div class="adm-field">
+                <label class="adm-label">Imagen (URL)</label>
+                <input class="input" id="devo-image" type="url" placeholder="https://...">
+              </div>
+              <div class="adm-field adm-field-full">
+                <label class="adm-label">Título *</label>
+                <input class="input" id="devo-title" type="text" required>
+              </div>
+              <div class="adm-field adm-field-full">
+                <label class="adm-label">Versículo(s) (ej. Juan 3:16)</label>
+                <input class="input" id="devo-verses" type="text" placeholder="Juan 3:16, Salmos 23:1">
+              </div>
+              <div class="adm-field adm-field-full">
+                <label class="adm-label">Cuerpo del devocional</label>
+                <textarea class="input" id="devo-body" rows="8"></textarea>
+              </div>
+              <div class="adm-field adm-field-full">
+                <label class="adm-label">Oración</label>
+                <textarea class="input" id="devo-prayer" rows="4"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; gap:var(--sp-3); flex-wrap:wrap; align-items:center;">
+              <button class="btn" id="btn-save-devo">💾 Guardar devocional</button>
+              <button class="btn btn-ghost" id="btn-cancel-devo">Cancelar</button>
+              <span class="adm-msg" id="devo-msg"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SECCIÓN STREAM ── -->
+      <section class="adm-section" id="sec-stream" style="display:none">
+        <h2 class="adm-section-title">🔴 Transmisión en Vivo</h2>
+        <div class="adm-card adm-card-stream">
+          <p class="adm-hint">Pega el enlace de YouTube Live para iniciar una transmisión de oración.</p>
+          <div class="adm-form-grid">
+            <div class="adm-field adm-field-full">
+              <label class="adm-label">URL de YouTube Live</label>
+              <input class="input" id="stream-url" type="url" placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+            <div class="adm-field adm-field-full">
+              <label class="adm-label">Título de la transmisión</label>
+              <input class="input" id="stream-title" type="text" placeholder="Oración en Vivo — Domingo">
+            </div>
+          </div>
+          <div class="adm-stream-actions">
+            <button class="btn adm-btn-live" id="btn-start-stream">🔴 Iniciar transmisión</button>
+            <button class="btn btn-danger" id="btn-stop-stream" style="display:none">⬛ Finalizar transmisión</button>
+          </div>
+          <span class="adm-msg" id="stream-msg"></span>
+
+          <div class="adm-stream-status" id="adm-stream-status" style="display:none">
+            <div class="adm-stream-live-dot"></div>
+            <span>Transmisión activa</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-client.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
